@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GLYDE — Move Smarter Across Accra</title>
+  <meta name="description"
+    content="Ghana's first app-based scheduled bus service. Book your seat on the Accra–Dodowa and Accra–Oyarifa routes. Safe, on time, every time.">
+  <meta property="og:title" content="GLYDE — Move Smarter Across Accra">
+  <meta property="og:description" content="Book your seat. Track your bus. Arrive on time.">
+  <meta property="og:image" content="https://glyde.com.gh/assets/og-image.jpg">
+  <meta property="og:url" content="https://glyde.com.gh">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/pages/home.css">
+</head>
+
+<body>
+
+  <!-- Page Transition Overlay -->
+  <div id="page-transition" aria-hidden="true"></div>
+
+  <!-- Navbar (injected by nav.js) -->
+  <nav id="navbar" aria-label="Main navigation"></nav>
+
+  <!-- ═══════════════════════════════════════════════════════
+       HERO SECTION — DESIGN.md §7A
+       Full viewport, 55/45 two-column grid
+  ═══════════════════════════════════════════════════════════ -->
+  <section id="hero" class="hero-section" aria-labelledby="hero-headline">
+
+    <!-- Background parallax watermark: "GLYDE" barely visible green -->
+    <div class="hero-watermark" id="heroWatermark" aria-hidden="true">GLYDE</div>
+
+    <div class="hero-inner container">
+
+      <!-- ─────────────────── LEFT COLUMN ─────────────────── -->
+      <div class="hero-left">
+
+
+
+        <!-- 3-line display headline -->
+        <!-- z-index: lines 1 & 3 sit in front of bus for depth layering -->
+        <h1 id="hero-headline" class="hero-headline">
+          <span class="hero-hl-line hl-1 anim-hero anim-delay-200">Move</span>
+          <span class="hero-hl-line hl-2 anim-hero anim-delay-350">Smarter.</span>
+          <span class="hero-hl-line hl-3 anim-hero anim-delay-500">Across&nbsp;<em>Accra.</em></span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="hero-subtitle anim-hero anim-delay-650">
+          GLYDE is Ghana's first app-based scheduled bus service.
+          Book your seat, track your bus, and arrive on time&nbsp;—&nbsp;every time.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="hero-ctas anim-hero anim-delay-800">
+          <a href="#waitlist" class="btn btn-primary" id="hero-cta-waitlist">
+            Join the Waitlist&nbsp;&rarr;
+          </a>
+          <a href="how-it-works.html" class="btn btn-secondary" id="hero-cta-hiw">
+            How It Works
+          </a>
+        </div>
+
+        <!-- Stats bar: 3 stats with vertical dividers -->
+        <div class="hero-stats anim-hero anim-delay-950" aria-label="Service statistics">
+          <div class="stat-item">
+            <span class="stat-num" id="stat-routes" data-target="2">2</span>
+            <span class="stat-label">Active Routes</span>
+          </div>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="stat-item">
+            <span class="stat-num">100%</span>
+            <span class="stat-label">App-Based</span>
+          </div>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="stat-item">
+            <span class="stat-num" id="stat-incidents" data-target="0">0</span>
+            <span class="stat-label">Incidents</span>
+          </div>
+        </div>
+
+      </div>
+      <!-- /hero-left -->
+
+
+      <!-- ─────────────────── RIGHT COLUMN ─────────────────── -->
+      <div class="hero-right anim-hero-right anim-delay-600">
+
+        <!-- Floating Card 1 — Next Departure (top-right of bus) -->
+        <div class="floating-card fc-departure card-float anim-hero-fade anim-delay-1000" role="complementary"
+          aria-label="Next departure information">
+          <div class="fc-header">
+            <span class="live-dot" aria-hidden="true"></span>
+            <span class="fc-eyebrow">NEXT DEPARTURE</span>
+          </div>
+          <div class="fc-time">
+            6:45&nbsp;<span class="fc-ampm">AM</span>
+            <span class="fc-sep" aria-hidden="true">&rarr;</span>
+            7:35&nbsp;<span class="fc-ampm">AM</span>
+          </div>
+          <div class="fc-route-text">Accra Central &rarr; Dodowa</div>
+          <a href="#waitlist" class="fc-book-btn" id="fc-book-now">Book Now</a>
+        </div>
+
+        <div class="hero-bus-wrap anim-hero-fade anim-delay-600">
+          <img src="assets/hero-bus-breakout.png" alt="GLYDE bus" class="hero-bus-img" />
+        </div>
+
+        <!-- Floating Card 2 — Passenger Rating (bottom-left of bus) -->
+        <div class="floating-card fc-rating card-float-delayed anim-hero-fade anim-delay-1000" role="complementary"
+          aria-label="Passenger rating">
+          <span class="fc-eyebrow" style="display:block; margin-bottom:8px;">PASSENGER RATING</span>
+          <div class="fc-rating-row">
+            <span class="fc-star" aria-hidden="true">⭐</span>
+            <span class="fc-score-big">4.9</span>
+            <span class="fc-score-small">/ 5</span>
+          </div>
+          <div class="fc-subtext">Based on early pilot feedback</div>
+        </div>
+
+      </div>
+      <!-- /hero-right -->
+
+    </div>
+    <!-- /hero-inner -->
+
+    <!-- Scroll hint — bottom center, fades out at 100px scroll -->
+    <div class="scroll-hint anim-hero-fade anim-delay-1200" aria-hidden="true">
+      <div class="scroll-hint-icon"></div>
+      <span class="scroll-hint-text">SCROLL TO EXPLORE</span>
+    </div>
+
+  </section>
+  <!-- /hero-section -->
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       TICKER STRIP — DESIGN.md §7B
+       Green background, infinite scroll left, 25s linear
+       Content injected by animations.js → initTicker()
+  ═══════════════════════════════════════════════════════════ -->
+  <div class="ticker-wrap" aria-hidden="true"></div>
+
+
+  <!-- ═══ Rest of home sections (built in subsequent prompts) ═══ -->
+
+  <!-- ═══════════════════════════════════════════════════════
+       WHY GLYDE SECTION — DESIGN.md §7C
+       40% text left / 60% 3-feature-cards right
+       .reveal-left on text, staggered .reveal on cards
+  ═══════════════════════════════════════════════════════════ -->
+  <section id="why-glyde" class="section why-glyde-section" aria-labelledby="why-glyde-heading">
+    <div class="container">
+      <div class="why-glyde-inner">
+
+        <!-- LEFT: Label + heading + body -->
+        <div class="why-glyde-left reveal-left">
+          <span class="label">/ WHY GLYDE</span>
+          <h2 id="why-glyde-heading" class="why-glyde-heading">
+            Transport that actually works.
+          </h2>
+          <p class="why-glyde-body">
+            Trotros are unpredictable. Ride-hailing is expensive.
+            GLYDE is the third option&nbsp;—&nbsp;affordable, scheduled,
+            and safe. Built specifically for Accra's commuters.
+          </p>
+          <a href="how-it-works.html" class="btn btn-secondary" id="why-glyde-cta">
+            See How It Works
+          </a>
+        </div>
+
+        <!-- RIGHT: 3 feature cards (staggered reveal) -->
+        <div class="why-glyde-cards">
+
+          <!-- Card 1 — App-Based Booking -->
+          <div class="feature-card reveal delay-1" id="feature-card-1" role="article"
+            aria-label="Feature: Book in seconds">
+            <div class="feature-card-icon" aria-hidden="true">
+              <i class="ph ph-device-mobile-camera"></i>
+            </div>
+            <h3 class="feature-card-title">Book in seconds.</h3>
+            <p class="feature-card-body">
+              Open the app, pick your route and seat, pay instantly.
+              No queue. No cash. No stress.
+            </p>
+          </div>
+
+          <!-- Card 2 — Safe by Design -->
+          <div class="feature-card reveal delay-2" id="feature-card-2" role="article"
+            aria-label="Feature: Safe by design">
+            <div class="feature-card-icon" aria-hidden="true">
+              <i class="ph ph-shield-check"></i>
+            </div>
+            <h3 class="feature-card-title">Safe by design.</h3>
+            <p class="feature-card-body">
+              Every driver is background-checked, trained, and certified.
+              Every bus is insured and roadworthy&nbsp;—&nbsp;always.
+            </p>
+          </div>
+
+          <!-- Card 3 — Always on Time -->
+          <div class="feature-card reveal delay-3" id="feature-card-3" role="article"
+            aria-label="Feature: Always on time">
+            <div class="feature-card-icon" aria-hidden="true">
+              <i class="ph ph-map-pin"></i>
+            </div>
+            <h3 class="feature-card-title">Always on time.</h3>
+            <p class="feature-card-body">
+              Scheduled departures mean you plan your day around your bus,
+              not the other way around.
+            </p>
+          </div>
+
+        </div>
+        <!-- /why-glyde-cards -->
+
+      </div>
+    </div>
+  </section>
+  <!-- /why-glyde -->
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       STICKY COMPARE SECTION — DESIGN.md §7D
+       Left panel pinned via GSAP ScrollTrigger.
+       Right panel: 3 scroll-bound blocks scrub: 1
+  ═══════════════════════════════════════════════════════════ -->
+  <section id="compare" class="compare-section" aria-label="The GLYDE Difference">
+
+    <!-- LEFT — STICKY PANEL (pinned by GSAP) -->
+    <div class="compare-left" id="compareLeft" role="complementary">
+
+      <!-- Section tag -->
+      <span class="label compare-label">/ THE GLYDE DIFFERENCE</span>
+
+      <h2 class="compare-left-heading">
+        A better way to move through Accra.
+      </h2>
+
+      <!-- CSS gradient visual — replaces Accra photo placeholder -->
+      <div class="compare-visual" aria-hidden="true">
+        <!-- Decorative bus route graphic -->
+        <div class="compare-visual-inner">
+          <div class="cv-route-line"></div>
+          <div class="cv-dot cv-dot-1">
+            <span>Accra</span>
+          </div>
+          <div class="cv-dot cv-dot-2">
+            <span>Madina</span>
+          </div>
+          <div class="cv-dot cv-dot-3">
+            <span>Dodowa</span>
+          </div>
+          <div class="cv-bus" aria-hidden="true">
+            <i class="ph ph-bus"></i>
+          </div>
+        </div>
+        <div class="compare-visual-bg" aria-hidden="true"></div>
+      </div>
+
+      <!-- Progress dots that highlight as right blocks scroll -->
+      <div class="compare-progress" aria-hidden="true" id="compareProgress">
+        <div class="progress-dot active" data-index="0"></div>
+        <div class="progress-dot" data-index="1"></div>
+        <div class="progress-dot" data-index="2"></div>
+      </div>
+
+    </div>
+    <!-- /compare-left -->
+
+    <!-- RIGHT — SCROLLABLE BLOCKS -->
+    <div class="compare-right" id="compareRight">
+
+      <!-- Block 1 — No More Waiting -->
+      <div class="compare-block" id="compare-block-0" data-index="0">
+        <div class="compare-block-inner">
+          <div class="compare-block-num" aria-hidden="true">01</div>
+          <img src="assets/card1.png" alt="Commuter waiting for bus"
+            style="width: 100%; height: 300px; object-fit: cover; border-radius: 16px; margin: 24px 0; box-shadow: 0 24px 64px rgba(0,0,0,0.15);" />
+          <h3 class="compare-block-heading">
+            No more waiting at the roadside.
+          </h3>
+          <p class="compare-block-body">
+            With GLYDE, you know exactly when your bus departs.
+            Track it live, arrive at your stop on time,
+            and board without chaos.
+          </p>
+          <div class="compare-tag">
+            <i class="ph ph-check-circle" aria-hidden="true"></i>
+            Live bus tracking
+          </div>
+        </div>
+      </div>
+
+      <!-- Block 2 — Total Transparency -->
+      <div class="compare-block" id="compare-block-1" data-index="1">
+        <div class="compare-block-inner">
+          <div class="compare-block-num" aria-hidden="true">02</div>
+          <img src="assets/card2.png" alt="App showing fixed fare"
+            style="width: 100%; height: 300px; object-fit: cover; border-radius: 16px; margin: 24px 0; box-shadow: 0 24px 64px rgba(0,0,0,0.15);" />
+          <h3 class="compare-block-heading">
+            Know what you're paying before you board.
+          </h3>
+          <p class="compare-block-body">
+            Fixed fares, shown upfront in the app. No fare disputes,
+            no last-minute changes. What you see is what you pay.
+          </p>
+          <div class="compare-tag">
+            <i class="ph ph-check-circle" aria-hidden="true"></i>
+            Transparent fixed fares
+          </div>
+        </div>
+      </div>
+
+      <!-- Block 3 — Professionalism -->
+      <div class="compare-block" id="compare-block-2" data-index="2">
+        <div class="compare-block-inner">
+          <div class="compare-block-num" aria-hidden="true">03</div>
+          <img src="assets/card3.png" alt="Driver welcoming passenger"
+            style="width: 100%; height: 300px; object-fit: cover; border-radius: 16px; margin: 24px 0; box-shadow: 0 24px 64px rgba(0,0,0,0.15);" />
+          <h3 class="compare-block-heading">
+            Professionalism isn't optional.
+          </h3>
+          <p class="compare-block-body">
+            From the moment you board to the second you arrive&nbsp;—
+            GLYDE drivers follow a strict code of conduct.
+            Uniform, courtesy, safety. Every ride.
+          </p>
+          <div class="compare-tag">
+            <i class="ph ph-check-circle" aria-hidden="true"></i>
+            Vetted &amp; certified drivers
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- /compare-right -->
+
+  </section>
+  <!-- /compare -->
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       FULL-BLEED REVEAL SECTION — DESIGN.md §7E
+       clip-path wipe left→right driven by ScrollTrigger scrub:1.5
+       Ken Burns scale 1.1→1 on scroll
+       Overlay heading fades in at ~60% clip progress
+  ═══════════════════════════════════════════════════════════ -->
+  <div id="image-reveal" class="reveal-section" role="region" aria-label="About GLYDE">
+
+    <!-- Clip wrapper — clip-path animated by GSAP -->
+    <div class="reveal-clip" id="revealClip">
+
+      <!-- CSS gradient "photo" placeholder (dark green gradient) -->
+      <div class="reveal-image" id="revealImage" aria-hidden="true"></div>
+
+      <!-- Overlay heading — fades in at 60% clip progress -->
+      <div class="reveal-overlay" id="revealOverlay" aria-hidden="true">
+        <h2 class="reveal-overlay-heading">
+          Built for Accra.<br>Ready for Ghana.
+        </h2>
+        <p class="reveal-overlay-sub">
+          Starting with 2 routes. Growing with every ride.
+        </p>
+      </div>
+
+    </div>
+    <!-- /reveal-clip -->
+
+    <!-- Background layer visible before clip reveals -->
+    <div class="reveal-bg" aria-hidden="true"></div>
+
+  </div>
+  <!-- /image-reveal -->
+
+  <!-- ═══════════════════════════════════════════════════════
+       SERVICES CARD STACK — DESIGN.md §7F
+       Dark section. Cards cascade in from left with GSAP.
+       Right-side vertical progress dots.
+  ═══════════════════════════════════════════════════════════ -->
+  <section id="services" class="services-section" aria-labelledby="services-heading">
+
+    <!-- Pinned full-bleed background — §7F spec: "image from §7E still visible behind cards" -->
+    <div class="services-bg-pin" aria-hidden="true">
+      <!-- Reuses the same dark green gradient as the §7E reveal image -->
+    </div>
+
+    <div class="services-inner">
+
+      <!-- LEFT: Section label + heading + card stack -->
+      <div class="services-left">
+        <div class="services-text reveal-left">
+          <span class="label services-label">/ HOW IT WORKS</span>
+          <h2 id="services-heading" class="services-heading">
+            Three steps.<br>One smooth ride.
+          </h2>
+        </div>
+
+        <!-- Stacked card container (positioned relative) -->
+        <div class="services-cards-wrap" id="servicesCardsWrap" aria-label="How GLYDE works, 3 steps">
+
+          <!-- Card 1 -->
+          <div class="service-card" id="service-card-0" aria-label="Step 01: Book Your Ride">
+            <div class="service-card-num" aria-hidden="true">01</div>
+            <div class="service-card-icon" aria-hidden="true">
+              <i class="ph ph-device-mobile-camera"></i>
+            </div>
+            <h3 class="service-card-title">Book Your Ride</h3>
+            <p class="service-card-body">
+              Open GLYDE, choose your route, pick your seat
+              and time slot. Confirm with mobile money or card.
+            </p>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="service-card" id="service-card-1" aria-label="Step 02: Board at Your Stop">
+            <div class="service-card-num" aria-hidden="true">02</div>
+            <div class="service-card-icon" aria-hidden="true">
+              <i class="ph ph-map-pin"></i>
+            </div>
+            <h3 class="service-card-title">Board at Your Stop</h3>
+            <p class="service-card-body">
+              Arrive at your designated stop. Your booking is
+              confirmed via SMS and in-app. Show your pass to board.
+            </p>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="service-card" id="service-card-2" aria-label="Step 03: Arrive on Time">
+            <div class="service-card-num" aria-hidden="true">03</div>
+            <div class="service-card-icon" aria-hidden="true">
+              <i class="ph ph-clock"></i>
+            </div>
+            <h3 class="service-card-title">Arrive on Time</h3>
+            <p class="service-card-body">
+              GLYDE buses run on schedule. Sit back, relax,
+              and arrive when you planned to arrive.
+            </p>
+          </div>
+
+        </div>
+        <!-- /services-cards-wrap -->
+      </div>
+      <!-- /services-left -->
+
+      <!-- RIGHT: Vertical progress dots indicator -->
+      <div class="services-dots" id="servicesDotsNav" aria-hidden="true">
+        <div class="svc-dot active" data-index="0"></div>
+        <div class="svc-dot" data-index="1"></div>
+        <div class="svc-dot" data-index="2"></div>
+      </div>
+
+    </div>
+    <!-- /services-inner -->
+
+  </section>
+  <!-- /services -->
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       ROUTE PREVIEW — DESIGN.md §7G
+       2-column: route cards left, animated SVG map right
+  ═══════════════════════════════════════════════════════════ -->
+  <section id="routes-preview" class="routes-preview-section section" aria-labelledby="routes-heading">
+    <div class="container">
+
+      <!-- Section header: centered above columns -->
+      <div class="routes-header">
+        <span class="label reveal">/ OUR ROUTES</span>
+        <h2 id="routes-heading" class="routes-heading reveal delay-1">
+          Two routes. More coming.
+        </h2>
+        <p class="routes-subheading reveal delay-2">
+          We currently operate the Accra–Dodowa and Accra–Oyarifa corridors,
+          with plans to expand across Greater Accra.
+        </p>
+      </div>
+
+      <div class="routes-grid">
+
+        <!-- LEFT: Route cards -->
+        <div class="routes-cards">
+
+          <!-- Route Card 1 — Accra → Dodowa -->
+          <div class="route-card reveal delay-1" id="route-card-dodowa" role="article"
+            aria-label="Accra to Dodowa route">
+            <div class="route-card-header">
+              <div class="route-badge">ACTIVE</div>
+              <div class="route-duration">
+                <i class="ph ph-clock" aria-hidden="true"></i>
+                ~45 min
+              </div>
+            </div>
+            <h3 class="route-name">Accra <span class="route-arrow" aria-hidden="true">→</span> Dodowa</h3>
+            <div class="route-stops" aria-label="Stops: Accra, Airport, Madina, Adenta, Dodowa">
+              <div class="route-stop-item">
+                <div class="rsi-dot rsi-dot--start" aria-hidden="true"></div>
+                <span>Accra</span>
+              </div>
+              <div class="route-stop-line" aria-hidden="true"></div>
+              <div class="route-stop-item">
+                <div class="rsi-dot" aria-hidden="true"></div>
+                <span>Airport</span>
+              </div>
+              <div class="route-stop-line" aria-hidden="true"></div>
+              <div class="route-stop-item">
+                <div class="rsi-dot" aria-hidden="true"></div>
+                <span>Madina</span>
+              </div>
+              <div class="route-stop-line" aria-hidden="true"></div>
+              <div class="route-stop-item">
+                <div class="rsi-dot" aria-hidden="true"></div>
+                <span>Adenta</span>
+              </div>
+              <div class="route-stop-line" aria-hidden="true"></div>
+              <div class="route-stop-item">
+                <div class="rsi-dot rsi-dot--end" aria-hidden="true"></div>
+                <span>Dodowa</span>
+              </div>
+            </div>
+            <div class="route-meta">
+              <div class="route-meta-item">
+                <i class="ph ph-repeat" aria-hidden="true"></i>
+                Every 30 min
+              </div>
+              <div class="route-meta-item">
+                <i class="ph ph-sun" aria-hidden="true"></i>
+                6:00 AM – 9:00 PM
+              </div>
+            </div>
+          </div>
+
+          <!-- Route Card 2 — Accra → Oyarifa -->
+          <div class="route-card reveal delay-2" id="route-card-oyarifa" role="article"
+            aria-label="Accra to Oyarifa route">
+            <div class="route-card-header">
+              <div class="route-badge">ACTIVE</div>
+              <div class="route-duration">
+                <i class="ph ph-clock" aria-hidden="true"></i>
+                ~35 min
+              </div>
+            </div>
+            <h3 class="route-name">Accra <span class="route-arrow" aria-hidden="true">→</span> Oyarifa</h3>
+            <div class="route-stops" aria-label="Stops: Accra, Airport, Legon, Adenta, Oyarifa">
+              <div class="route-stop-item">
+                <div class="rsi-dot rsi-dot--start" aria-hidden="true"></div>
+                <span>Accra</span>
+              </div>
+              <div class="route-stop-line" aria-hidden="true"></div>
+              <div class="route-stop-item">
+                <div class="rsi-dot" aria-hidden="true"></div>
+                <span>Airport</span>
+              </div>
+              <div class="route-stop-line" aria-hidden="true"></div>
+              <div class="route-stop-item">
+                <div class="rsi-dot" aria-hidden="true"></div>
+                <span>Legon</span>
+              </div>
+              <div class="route-stop-line" aria-hidden="true"></div>
+              <div class="route-stop-item">
+                <div class="rsi-dot" aria-hidden="true"></div>
+                <span>Adenta</span>
+              </div>
+              <div class="route-stop-line" aria-hidden="true"></div>
+              <div class="route-stop-item">
+                <div class="rsi-dot rsi-dot--end" aria-hidden="true"></div>
+                <span>Oyarifa</span>
+              </div>
+            </div>
+            <div class="route-meta">
+              <div class="route-meta-item">
+                <i class="ph ph-repeat" aria-hidden="true"></i>
+                Every 30 min
+              </div>
+              <div class="route-meta-item">
+                <i class="ph ph-sun" aria-hidden="true"></i>
+                6:00 AM – 9:00 PM
+              </div>
+            </div>
+          </div>
+
+          <!-- CTA link -->
+          <a href="routes.html" class="btn btn-secondary routes-cta reveal delay-3" id="routes-cta">
+            View All Route Details &rarr;
+          </a>
+
+        </div>
+        <!-- /routes-cards -->
+
+        <!-- RIGHT: Animated SVG route map -->
+        <div class="route-map" id="routeMap" aria-label="Route map diagram" role="img">
+          <svg class="route-map-svg" viewBox="0 0 320 480" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+
+            <!-- Map background -->
+            <rect width="320" height="480" fill="none" />
+
+            <!-- ── Route 1: Accra → Dodowa (left path) ── -->
+            <path id="routePath1" class="route-path"
+              d="M 80 60 C 75 100, 70 140, 72 180 C 74 220, 78 250, 76 290 C 74 330, 72 370, 74 410" fill="none"
+              stroke="var(--green)" stroke-width="2.5" stroke-dasharray="6 4" stroke-linecap="round"
+              stroke-dashoffset="1000" />
+
+            <!-- ── Route 2: Accra → Oyarifa (right path) ── -->
+            <path id="routePath2" class="route-path"
+              d="M 200 60 C 210 100, 220 140, 225 180 C 230 220, 228 255, 226 295 C 224 335, 222 370, 220 410"
+              fill="none" stroke="rgba(0,230,77,0.45)" stroke-width="2" stroke-dasharray="5 5" stroke-linecap="round"
+              stroke-dashoffset="1000" />
+
+            <!-- Shared origin dot — Accra (Accra) -->
+            <circle cx="80" cy="60" r="10" fill="var(--green)" stroke="white" stroke-width="2" />
+            <circle cx="200" cy="60" r="10" fill="var(--green)" stroke="white" stroke-width="2" />
+
+            <!-- Connecting dashed line between two origins -->
+            <line x1="90" y1="60" x2="190" y2="60" stroke="rgba(0,230,77,0.3)" stroke-width="1.5"
+              stroke-dasharray="4 3" />
+
+            <!-- Route 1 intermediate stops -->
+            <circle cx="72" cy="180" r="6" fill="var(--green)" stroke="white" stroke-width="1.5" />
+            <circle cx="76" cy="290" r="6" fill="var(--green)" stroke="white" stroke-width="1.5" />
+            <circle cx="74" cy="410" r="10" fill="var(--green)" stroke="white" stroke-width="2" />
+
+            <!-- Route 2 intermediate stops -->
+            <circle cx="225" cy="180" r="6" fill="rgba(0,230,77,0.75)" stroke="white" stroke-width="1.5" />
+            <circle cx="226" cy="295" r="6" fill="rgba(0,230,77,0.75)" stroke="white" stroke-width="1.5" />
+            <circle cx="220" cy="410" r="10" fill="rgba(0,230,77,0.75)" stroke="white" stroke-width="2" />
+
+            <!-- Stop labels — Route 1 (Dodowa) -->
+            <text x="55" y="57" text-anchor="end" font-family="Poppins,Arial,sans-serif" font-size="10"
+              font-weight="700" fill="var(--charcoal)">Accra</text>
+            <text x="55" y="183" text-anchor="end" font-family="Poppins,Arial,sans-serif" font-size="9"
+              font-weight="500" fill="var(--dark-gray)">Airport</text>
+            <text x="55" y="293" text-anchor="end" font-family="Poppins,Arial,sans-serif" font-size="9"
+              font-weight="500" fill="var(--dark-gray)">Madina</text>
+            <text x="55" y="413" text-anchor="end" font-family="Poppins,Arial,sans-serif" font-size="10"
+              font-weight="700" fill="var(--charcoal)">Dodowa</text>
+
+            <!-- Stop labels — Route 2 (Oyarifa) -->
+            <text x="245" y="57" text-anchor="start" font-family="Poppins,Arial,sans-serif" font-size="10"
+              font-weight="700" fill="var(--charcoal)">Accra</text>
+            <text x="245" y="183" text-anchor="start" font-family="Poppins,Arial,sans-serif" font-size="9"
+              font-weight="500" fill="var(--dark-gray)">Airport</text>
+            <text x="245" y="298" text-anchor="start" font-family="Poppins,Arial,sans-serif" font-size="9"
+              font-weight="500" fill="var(--dark-gray)">Legon</text>
+            <text x="245" y="413" text-anchor="start" font-family="Poppins,Arial,sans-serif" font-size="10"
+              font-weight="700" fill="var(--charcoal)">Oyarifa</text>
+
+            <!-- Route name labels -->
+            <text x="80" y="440" text-anchor="middle" font-family="Poppins,Arial,sans-serif" font-size="9"
+              font-weight="700" letter-spacing="1" fill="var(--green)" text-transform="uppercase">DODOWA</text>
+            <text x="220" y="440" text-anchor="middle" font-family="Poppins,Arial,sans-serif" font-size="9"
+              font-weight="700" letter-spacing="1" fill="rgba(0,230,77,0.7)">OYARIFA</text>
+
+            <!-- Animated bus icon on route 1 -->
+            <g id="mapBusIcon" transform="translate(64, 210)">
+              <rect x="0" y="0" width="20" height="12" rx="3" fill="var(--green)" />
+              <rect x="2" y="2" width="6" height="6" rx="1" fill="rgba(0,0,0,0.3)" />
+              <rect x="12" y="2" width="6" height="6" rx="1" fill="rgba(0,0,0,0.3)" />
+              <circle cx="4" cy="13" r="2.5" fill="var(--charcoal)" />
+              <circle cx="16" cy="13" r="2.5" fill="var(--charcoal)" />
+            </g>
+
+          </svg>
+        </div>
+        <!-- /route-map -->
+
+      </div>
+      <!-- /routes-grid -->
+
+    </div>
+  </section>
+  <!-- /routes-preview -->
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       WAITLIST SECTION — DESIGN.md §7H
+       Dark charcoal bg. Centered 720px form card.
+       4-row form + full-width green submit button.
+  ═══════════════════════════════════════════════════════════ -->
+  <section id="waitlist" class="waitlist-section" aria-labelledby="waitlist-heading">
+    <div class="container">
+      <div class="waitlist-inner">
+
+        <!-- Header -->
+        <div class="waitlist-header reveal">
+          <span class="label waitlist-label">/ JOIN THE MOVEMENT</span>
+          <h2 id="waitlist-heading" class="waitlist-heading">Be first to ride.</h2>
+          <p class="waitlist-subheading">
+            We're launching soon. Get early access, exclusive pricing,
+            and updates straight to your phone.
+          </p>
+        </div>
+
+        <!-- Form card -->
+        <div class="waitlist-card reveal delay-1">
+          <form class="waitlist-form" id="waitlistForm" novalidate aria-label="Join waitlist form">
+
+            <!-- Row 1: Name -->
+            <div class="wf-row">
+              <div class="wf-field">
+                <label for="wf-first-name" class="wf-label">First Name <span style="color: red;">*</span></label>
+                <input type="text" id="wf-first-name" name="firstName" class="wf-input" placeholder="Your first name"
+                  autocomplete="given-name" required>
+              </div>
+              <div class="wf-field">
+                <label for="wf-last-name" class="wf-label">Last Name <span style="color: red;">*</span></label>
+                <input type="text" id="wf-last-name" name="lastName" class="wf-input" placeholder="Your last name"
+                  autocomplete="family-name" required>
+              </div>
+            </div>
+
+            <!-- Row 2: Contact -->
+            <div class="wf-row">
+              <div class="wf-field">
+                <label for="wf-phone" class="wf-label">Phone Number <span style="color: red;">*</span></label>
+                <input type="tel" id="wf-phone" name="phone" class="wf-input" placeholder="+233 XX XXX XXXX"
+                  autocomplete="tel" required>
+              </div>
+              <div class="wf-field">
+                <label for="wf-email" class="wf-label">Email Address <span style="color: red;">*</span></label>
+                <input type="email" id="wf-email" name="email" class="wf-input" placeholder="your@email.com"
+                  autocomplete="email" required>
+              </div>
+            </div>
+
+            <!-- Row 3: Route preference -->
+            <div class="wf-row wf-row--full">
+              <div class="wf-field">
+                <label for="wf-route" class="wf-label">Preferred Route <span style="color: red;">*</span></label>
+                <div class="wf-select-wrap">
+                  <select id="wf-route" name="route" class="wf-input wf-select" required onchange="toggleOtherRoute(this.value)">
+                    <option value="" disabled selected>Select your route</option>
+                    <option value="dodowa">Accra – Dodowa</option>
+                    <option value="oyarifa">Accra – Oyarifa</option>
+                    <option value="other">Other</option>
+                  </select>
+                  <i class="ph ph-caret-down wf-select-icon" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 3b: Other Route (hidden by default) -->
+            <div class="wf-row" id="wf-other-route-row" style="display: none; margin-top: 24px;">
+              <div class="wf-field">
+                <label for="wf-from" class="wf-label">From <span style="color: red;">*</span></label>
+                <input type="text" id="wf-from" name="from" class="wf-input" placeholder="Origin" autocomplete="off">
+              </div>
+              <div class="wf-field">
+                <label for="wf-to" class="wf-label">To <span style="color: red;">*</span></label>
+                <input type="text" id="wf-to" name="to" class="wf-input" placeholder="Destination" autocomplete="off">
+              </div>
+            </div>
+            
+            <script>
+              function toggleOtherRoute(value) {
+                const otherRow = document.getElementById('wf-other-route-row');
+                const fromInput = document.getElementById('wf-from');
+                const toInput = document.getElementById('wf-to');
+                if (value === 'other') {
+                  otherRow.style.display = 'flex';
+                  fromInput.required = true;
+                  toInput.required = true;
+                } else {
+                  otherRow.style.display = 'none';
+                  fromInput.required = false;
+                  toInput.required = false;
+                  fromInput.value = '';
+                  toInput.value = '';
+                }
+              }
+            </script>
+            <div style="display: none;">
+
+            </div>
+
+            <!-- Row 4: Submit -->
+            <div class="wf-row wf-row--full" style="margin-top: 24px;">
+              <button type="submit" class="wf-submit" id="waitlistSubmit">
+                <span class="wf-submit-text">Join the Waitlist&nbsp;&rarr;</span>
+              </button>
+            </div>
+
+            <!-- Success message (hidden by default) -->
+            <div class="wf-success" id="waitlistSuccess" aria-live="polite" aria-hidden="true">
+              ✅&nbsp;You're on the list! We'll be in touch soon.
+            </div>
+
+          </form>
+
+          <!-- Privacy note -->
+          <p class="wf-privacy">
+            🔒&nbsp;No spam. Just GLYDE updates. Unsubscribe anytime.
+          </p>
+        </div>
+        <!-- /waitlist-card -->
+
+      </div>
+    </div>
+  </section>
+  <!-- /waitlist -->
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       APP DOWNLOAD SECTION — DESIGN.md §7I
+       Light green tint bg. 2-col: text left / phone right.
+  ═══════════════════════════════════════════════════════════ -->
+  <section id="app-download" class="app-section section" aria-labelledby="app-heading">
+    <div class="container">
+      <div class="app-inner">
+
+        <!-- LEFT: Text content -->
+        <div class="app-left reveal-left">
+          <span class="badge-pill badge-pill--dark">COMING SOON</span>
+          <h2 id="app-heading" class="app-heading">
+            GLYDE in your<br>pocket.
+          </h2>
+          <p class="app-body">
+            The full GLYDE experience — booking, live tracking, trip history,
+            and more — all in one app. Launching on iOS and Android.
+          </p>
+
+          <!-- Store buttons (disabled — tooltip on hover) -->
+          <div class="app-store-row">
+            <button class="app-store-btn" id="app-ios-btn" aria-label="Download on Apple App Store — Coming Soon"
+              disabled>
+              <i class="ph ph-apple-logo" aria-hidden="true"></i>
+              <div class="asb-text">
+                <span class="asb-small">Download on the</span>
+                <span class="asb-big">App Store</span>
+              </div>
+              <div class="app-store-tooltip">Coming soon</div>
+            </button>
+
+            <button class="app-store-btn" id="app-android-btn" aria-label="Get it on Google Play — Coming Soon"
+              disabled>
+              <i class="ph ph-google-play-logo" aria-hidden="true"></i>
+              <div class="asb-text">
+                <span class="asb-small">Get it on</span>
+                <span class="asb-big">Google Play</span>
+              </div>
+              <div class="app-store-tooltip">Coming soon</div>
+            </button>
+          </div>
+
+          <!-- Notify me mini-form -->
+          <div class="app-notify">
+            <p class="app-notify-text">Want to know the moment it launches?</p>
+            <form class="app-notify-form" id="appNotifyForm" novalidate aria-label="App launch notification form">
+              <input type="email" id="app-notify-email" name="notifyEmail" class="app-notify-input"
+                placeholder="your@email.com" autocomplete="email" required>
+              <button type="submit" class="app-notify-btn" id="app-notify-submit">
+                Notify Me
+                <i class="ph ph-arrow-right" aria-hidden="true"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+        <!-- /app-left -->
+
+        <!-- RIGHT: CSS/SVG phone mockup with GLYDE app UI -->
+        <div class="app-right reveal-right">
+          <div class="phone-mockup bus-float" aria-hidden="true">
+
+            <!-- Phone shell -->
+            <div class="phone-shell">
+
+              <!-- Notch / dynamic island -->
+              <div class="phone-notch"></div>
+
+              <!-- Phone screen -->
+              <div class="phone-screen">
+
+                <!-- App status bar -->
+                <div class="app-status-bar">
+                  <span class="app-status-time">9:41</span>
+                  <div class="app-status-icons">
+                    <i class="ph ph-wifi-high"></i>
+                    <i class="ph ph-battery-charging-vertical"></i>
+                  </div>
+                </div>
+
+                <!-- App content -->
+                <div class="app-content">
+                  <!-- Centered App Logo -->
+                  <div style="flex-grow: 1; display: flex; align-items: center; justify-content: center; min-height: 200px; margin-bottom: 24px;">
+                    <img src="assets/logo.svg" alt="Glyde Logo" style="width: 100px; height: auto;">
+                  </div>
+
+                  <!-- Book now button (in-app) -->
+                  <button class="app-book-btn" aria-label="Book now in app (demo)" tabindex="-1">
+                    Book Now
+                  </button>
+
+                </div>
+                <!-- /app-content -->
+
+                <!-- Bottom nav bar -->
+                <div class="app-nav-bar">
+                  <div class="anb-item anb-item--active">
+                    <i class="ph ph-house"></i>
+                    <span>Home</span>
+                  </div>
+                  <div class="anb-item">
+                    <i class="ph ph-map-trifold"></i>
+                    <span>Routes</span>
+                  </div>
+                  <div class="anb-item">
+                    <i class="ph ph-ticket"></i>
+                    <span>My Trips</span>
+                  </div>
+                  <div class="anb-item">
+                    <i class="ph ph-user-circle"></i>
+                    <span>Account</span>
+                  </div>
+                </div>
+
+              </div>
+              <!-- /phone-screen -->
+
+            </div>
+            <!-- /phone-shell -->
+
+          </div>
+          <!-- /phone-mockup -->
+        </div>
+        <!-- /app-right -->
+
+      </div>
+    </div>
+  </section>
+  <!-- /app-download -->
+
+  <!-- Footer (injected by animations.js → buildFooter()) -->
+  <footer id="footer" aria-label="Site footer"></footer>
+
+
+  <!-- ══════════════════════ SCRIPTS ══════════════════════ -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <!-- nav.js runs first — builds navbar and sets active link -->
+  <script src="js/nav.js"></script>
+  <!-- animations.js — page transitions, reveal observer, cursor, ticker, footer -->
+  <script src="js/animations.js"></script>
+  <!-- home.js — parallax watermark, stats counter -->
+  <script src="js/pages/home.js"></script>
+</body>
+
+</html>

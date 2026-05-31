@@ -1,0 +1,254 @@
+/* =============================================================
+   GLYDE — footer.css
+   4-column footer grid, social hovers, mobile collapse
+   ============================================================= */
+
+/* ─────────────────────────────────────────────────────────────
+   1. FOOTER SHELL
+   ───────────────────────────────────────────────────────────── */
+#footer {
+  background: var(--near-black);
+  color: rgba(255, 255, 255, 0.55);
+  padding: 80px 0 0;
+  position: relative;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   2. FOOTER GRID — 4 columns
+   ───────────────────────────────────────────────────────────── */
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.2fr;
+  gap: 48px;
+  padding-bottom: 60px;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   3. COLUMN 1 — Brand
+   ───────────────────────────────────────────────────────────── */
+.footer-brand .footer-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  text-decoration: none;
+}
+
+.footer-logo-mark {
+  width: 36px;
+  height: 36px;
+  background: var(--charcoal);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.footer-logo-mark img,
+.footer-logo-mark svg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.footer-logo-wordmark {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--white);
+  font-family: var(--font);
+}
+
+.footer-tagline {
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 28px;
+  max-width: 260px;
+}
+
+/* Social icons row */
+.footer-social {
+  display: flex;
+  gap: 10px;
+}
+
+.footer-social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 17px;
+  text-decoration: none;
+  transition:
+    background   var(--duration-fast) var(--ease),
+    border-color var(--duration-fast) var(--ease),
+    color        var(--duration-fast) var(--ease),
+    transform    var(--duration-fast) var(--ease);
+}
+
+.footer-social a:hover {
+  background: var(--green);
+  border-color: var(--green);
+  color: var(--charcoal);
+  transform: scale(1.1);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   4. COLUMNS 2–4 — Nav / Routes / Contact
+   ───────────────────────────────────────────────────────────── */
+.footer-col-title {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 20px;
+}
+
+.footer-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-links a {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.45);
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.footer-links a:hover {
+  color: var(--green);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   5. COLUMN 4 — Contact info
+   ───────────────────────────────────────────────────────────── */
+.footer-contact-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-bottom: 16px;
+}
+
+.footer-contact-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.footer-contact-value {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease);
+}
+
+a.footer-contact-value:hover {
+  color: var(--green);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   6. DIVIDER
+   ───────────────────────────────────────────────────────────── */
+.footer-divider {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  margin: 0;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   7. BOTTOM BAR
+   ───────────────────────────────────────────────────────────── */
+.footer-bottom {
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.footer-bottom-left {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.footer-bottom-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.footer-bottom-right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.footer-bottom-right a {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.3);
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease);
+}
+
+.footer-bottom-right a:hover {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   8. RESPONSIVE — tablet: 2-col
+   ───────────────────────────────────────────────────────────── */
+@media (max-width: 1023px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+}
+
+@media (max-width: 767px) {
+  #footer {
+    padding-top: 60px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1; /* full width on mobile */
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 479px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}

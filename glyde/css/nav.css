@@ -1,0 +1,435 @@
+/* =============================================================
+   GLYDE — nav.css
+   Navbar: default state, scrolled state, active link, CTA,
+   mobile hamburger, full-screen overlay
+   ============================================================= */
+
+/* ─────────────────────────────────────────────────────────────
+   1. NAVBAR SHELL
+   ───────────────────────────────────────────────────────────── */
+#navbar {
+  position: fixed;
+  top: 24px;
+  left: 24px;
+  right: 24px;
+  max-width: calc(var(--container) - 48px);
+  margin: 0 auto;
+  z-index: 1000;
+  height: 72px;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 100px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s var(--ease);
+}
+
+/* ── Scrolled state (class added by nav.js at 60px scroll) ── */
+#navbar.scrolled {
+  height: 64px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  top: 16px;
+}
+
+/* ── Inner layout ── */
+.nav-inner {
+  height: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   2. LOGO
+   ───────────────────────────────────────────────────────────── */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.nav-logo-mark {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: transparent;
+  flex-shrink: 0;
+}
+
+.nav-logo-mark img,
+.nav-logo-mark svg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.nav-logo-wordmark {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--charcoal);
+  font-family: var(--font);
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   3. NAV LINKS (desktop)
+   ───────────────────────────────────────────────────────────── */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  position: relative;
+}
+
+.nav-links a {
+  display: inline-block;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--dark-gray);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  transition: color var(--duration-fast) var(--ease);
+  position: relative;
+}
+
+.nav-links a:hover {
+  color: var(--charcoal);
+}
+
+/* Active state underline — scaleX 0→1 */
+.nav-links a.active {
+  color: var(--charcoal);
+  font-weight: 600;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 14px;
+  right: 14px;
+  height: 2px;
+  background: var(--green);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.3s var(--ease-out);
+  border-radius: 2px;
+}
+
+.nav-links a.active::after,
+.nav-links a:hover::after {
+  transform: scaleX(1);
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   4. CTA BUTTON (with pulse ring)
+   ───────────────────────────────────────────────────────────── */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.nav-cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 24px;
+  background: var(--green);
+  color: var(--charcoal);
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition:
+    background   var(--duration-fast) var(--ease),
+    transform    var(--duration-fast) var(--ease),
+    box-shadow   var(--duration-fast) var(--ease);
+}
+
+.nav-cta:hover {
+  background: var(--green-dark);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-green);
+}
+
+.nav-cta:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: none;
+}
+
+
+
+/* ─────────────────────────────────────────────────────────────
+   5. HAMBURGER BUTTON (mobile only)
+   ───────────────────────────────────────────────────────────── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: background var(--duration-fast) var(--ease);
+  z-index: 1100;
+  flex-shrink: 0;
+}
+
+.nav-hamburger:hover {
+  background: var(--light-gray);
+}
+
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--charcoal);
+  border-radius: 2px;
+  transform-origin: center;
+  transition:
+    transform  0.35s var(--ease-in-out),
+    opacity    0.25s var(--ease),
+    width      0.25s var(--ease);
+}
+
+/* X state when menu is open */
+.nav-hamburger.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-hamburger.open span:nth-child(2) {
+  opacity: 0;
+  width: 0;
+}
+
+.nav-hamburger.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   6. MOBILE FULL-SCREEN OVERLAY MENU
+   ───────────────────────────────────────────────────────────── */
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--charcoal);
+  z-index: 1050;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+
+  /* Hidden state */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s var(--ease-in-out);
+}
+
+.nav-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Overlay nav links */
+.nav-overlay-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nav-overlay-links li {
+  overflow: hidden;
+}
+
+.nav-overlay-links a {
+  display: block;
+  font-size: clamp(28px, 6vw, 40px);
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: -1px;
+  padding: 10px 32px;
+  text-decoration: none;
+  transition: color 0.25s var(--ease);
+
+  /* Stagger entrance */
+  transform: translateY(40px);
+  opacity: 0;
+  transition:
+    color      0.25s var(--ease),
+    transform  0.5s  var(--ease-out),
+    opacity    0.5s  var(--ease-out);
+}
+
+.nav-overlay.open .nav-overlay-links a {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.nav-overlay-links a:hover,
+.nav-overlay-links a.active {
+  color: var(--white);
+}
+
+.nav-overlay-links a.active {
+  color: var(--green);
+}
+
+/* Stagger delays for overlay links */
+.nav-overlay.open .nav-overlay-links li:nth-child(1) a { transition-delay: 0.05s; }
+.nav-overlay.open .nav-overlay-links li:nth-child(2) a { transition-delay: 0.10s; }
+.nav-overlay.open .nav-overlay-links li:nth-child(3) a { transition-delay: 0.15s; }
+.nav-overlay.open .nav-overlay-links li:nth-child(4) a { transition-delay: 0.20s; }
+.nav-overlay.open .nav-overlay-links li:nth-child(5) a { transition-delay: 0.25s; }
+.nav-overlay.open .nav-overlay-links li:nth-child(6) a { transition-delay: 0.30s; }
+
+/* CTA inside overlay */
+.nav-overlay-cta {
+  margin-top: 40px;
+  padding: 14px 40px;
+  background: var(--green);
+  color: var(--charcoal);
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+
+  transform: translateY(30px);
+  opacity: 0;
+  transition:
+    background 0.2s var(--ease),
+    transform  0.5s var(--ease-out),
+    opacity    0.5s var(--ease-out);
+  transition-delay: 0.35s;
+}
+
+.nav-overlay.open .nav-overlay-cta {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.nav-overlay-cta:hover {
+  background: var(--green-dark);
+}
+
+/* Overlay close (X) button in top right */
+.nav-overlay-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  color: var(--white);
+  font-size: 20px;
+  transition: background var(--duration-fast) var(--ease);
+}
+
+.nav-overlay-close:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+/* Overlay social row */
+.nav-overlay-social {
+  position: absolute;
+  bottom: 40px;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-overlay-social a {
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease);
+}
+
+.nav-overlay-social a:hover {
+  color: var(--green);
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   7. RESPONSIVE — mobile breakpoint
+   ───────────────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  #navbar {
+    top: 12px;
+    left: 12px;
+    right: 12px;
+  }
+
+  .nav-inner {
+    height: 60px;
+    padding: 0 16px;
+  }
+
+  .nav-links,
+  .nav-cta {
+    display: none;
+  }
+
+  .nav-hamburger {
+    display: flex;
+  }
+}
+
+/* Hide overlay on desktop */
+@media (min-width: 768px) {
+  .nav-overlay {
+    display: none !important;
+  }
+}
+
+/* Prevent body scroll when overlay is open */
+body.nav-open {
+  overflow: hidden;
+}

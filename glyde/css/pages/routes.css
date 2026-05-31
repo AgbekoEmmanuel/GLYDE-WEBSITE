@@ -1,0 +1,500 @@
+/* =============================================================
+   GLYDE — css/pages/routes.css
+   §10 — Page Hero · Route Detail Cards · Route Map · Schedule
+   ============================================================= */
+
+/* ─────────────────────────────────────────────────────────────
+   1. PAGE HERO
+   ───────────────────────────────────────────────────────────── */
+.routes-hero {
+  position: relative;
+  background: var(--charcoal);
+  overflow: hidden;
+  min-height: 55vh;
+  display: flex;
+  align-items: center;
+  padding-top: 72px; /* navbar offset */
+}
+
+.routes-hero-inner {
+  position: relative;
+  z-index: 1;
+  padding-top: 60px;
+  padding-bottom: 80px;
+}
+
+.routes-hero-content {
+  max-width: 700px;
+}
+
+.routes-hero-heading {
+  font-size: clamp(48px, 6vw, 80px);
+  font-weight: 900;
+  letter-spacing: -3px;
+  line-height: 1.0;
+  color: var(--white);
+  margin: 16px 0 24px;
+}
+
+.routes-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px 8px 12px;
+  background: rgba(0, 230, 77, 0.1);
+  border: 1px solid rgba(0, 230, 77, 0.2);
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--green);
+  margin-bottom: 24px;
+}
+
+
+.routes-hero-subtitle {
+  font-size: clamp(16px, 1.8vw, 20px);
+  font-weight: 400;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.6);
+  max-width: 500px;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   2. ROUTE DETAIL CARDS
+   ───────────────────────────────────────────────────────────── */
+.route-cards-section {
+  background: var(--bg-light);
+  padding: 80px 0 120px;
+  /* Shift cards up to overlap hero slightly */
+  margin-top: -40px;
+  position: relative;
+  z-index: 10;
+}
+
+.route-cards-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.route-card-full {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+  overflow: hidden;
+}
+
+/* Card Header */
+.route-card-header {
+  background: var(--near-black);
+  padding: 32px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.rc-header-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.rc-title {
+  color: var(--white);
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  margin: 0;
+}
+
+.rc-badge {
+  background: rgba(0,230,77,0.15);
+  color: var(--green);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+}
+
+.rc-header-right {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.rc-stat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255,255,255,0.7);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.rc-stat i {
+  color: var(--green);
+  font-size: 18px;
+}
+
+/* Card Body */
+.route-card-body {
+  padding: 64px 40px;
+  display: grid;
+  grid-template-columns: 35% 1fr;
+  gap: 80px;
+}
+
+.rc-col-title {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--mid-gray);
+  text-transform: uppercase;
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Stop Timeline */
+.stop-timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.stop-line {
+  position: absolute;
+  left: 7px;
+  top: 16px;
+  width: 2px;
+  height: calc(100% - 32px);
+  background: linear-gradient(to bottom, var(--green), rgba(0,230,77,0.15));
+  z-index: 0;
+}
+
+.stop-item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  z-index: 1;
+}
+
+.stop-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 3px solid var(--border);
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+.stop-dot--start {
+  width: 20px;
+  height: 20px;
+  border: 4px solid var(--green);
+  margin-left: -2px;
+}
+
+.stop-dot--end {
+  width: 20px;
+  height: 20px;
+  border: 4px solid var(--charcoal);
+  margin-left: -2px;
+}
+
+.stop-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.stop-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--charcoal);
+}
+
+.stop-note {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--mid-gray);
+}
+
+/* Info Grid */
+.rc-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px 40px;
+  margin-bottom: 40px;
+}
+
+.rc-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.rc-info-item--full {
+  grid-column: 1 / -1;
+}
+
+.rc-info-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--mid-gray);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.rc-info-value {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--charcoal);
+}
+
+.rc-cta {
+  display: inline-flex;
+}
+
+@media (max-width: 991px) {
+  .route-card-body {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+
+@media (max-width: 767px) {
+  .route-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .rc-header-right {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .rc-info-grid {
+    grid-template-columns: 1fr;
+  }
+  .route-cards-section { margin-top: -40px; }
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   3. ROUTE MAP SECTION
+   ───────────────────────────────────────────────────────────── */
+.route-map-section {
+  background: var(--white);
+  padding: 100px 0;
+  text-align: center;
+}
+
+.route-map-header {
+  margin-bottom: 48px;
+}
+
+.map-heading {
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 900;
+  letter-spacing: -2px;
+  color: var(--charcoal);
+  margin-top: 12px;
+}
+
+.map-container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  border-radius: var(--radius-lg);
+  background: rgba(0, 230, 77, 0.04);
+  border: 1px solid rgba(0,230,77,0.1);
+  overflow: hidden;
+}
+
+.network-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.svg-route-path {
+  fill: none;
+  stroke: var(--green);
+  stroke-width: 4;
+  stroke-dasharray: 10 10;
+  stroke-dashoffset: 1000; /* Animated by GSAP */
+  stroke-linecap: round;
+}
+
+.svg-stop {
+  fill: var(--white);
+  stroke: var(--green);
+  stroke-width: 3;
+}
+
+.svg-label {
+  font-family: var(--font);
+  font-size: 14px;
+  fill: var(--charcoal);
+  font-weight: 600;
+}
+
+.svg-label--bold {
+  font-weight: 800;
+  font-size: 16px;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   4. SCHEDULE TABLE
+   ───────────────────────────────────────────────────────────── */
+.schedule-section {
+  background: var(--bg-light);
+  padding: 100px 0;
+}
+
+.schedule-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.schedule-heading {
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 900;
+  letter-spacing: -2px;
+  color: var(--charcoal);
+  margin: 12px 0 20px;
+}
+
+.schedule-subtitle {
+  font-size: 16px;
+  color: var(--mid-gray);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.schedule-table-wrap {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+  overflow-x: auto;
+  margin: 0 auto;
+  max-width: 900px;
+}
+
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.schedule-table th {
+  background: var(--charcoal);
+  color: var(--white);
+  padding: 20px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.schedule-table td {
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border);
+  color: var(--dark-gray);
+  font-size: 15px;
+  transition: background 0.2s;
+}
+
+.schedule-table tr:nth-child(even) td {
+  background: rgba(0,0,0,0.015);
+}
+
+.schedule-table tr:hover td {
+  background: rgba(0, 230, 77, 0.05);
+}
+
+.schedule-table strong {
+  color: var(--charcoal);
+  font-weight: 700;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.status-active {
+  background: rgba(0, 230, 77, 0.15);
+  color: var(--green-deeper);
+}
+
+.schedule-footer {
+  padding: 20px 24px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--mid-gray);
+  background: var(--white);
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   5. COMING SOON TEASER
+   ───────────────────────────────────────────────────────────── */
+.teaser-section {
+  background: var(--charcoal);
+  padding: 120px 0;
+  text-align: center;
+}
+
+.teaser-inner {
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.teaser-heading {
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 900;
+  letter-spacing: -2px;
+  color: var(--white);
+  margin-bottom: 20px;
+}
+
+.teaser-body {
+  font-size: 18px;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 48px;
+}
+
+.teaser-routes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 48px;
+}
+
+.teaser-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 16px 24px;
+  border-radius: var(--radius-md);
+  color: var(--white);
+  font-weight: 600;
+  font-size: 16px;
+}

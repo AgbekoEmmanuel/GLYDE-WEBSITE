@@ -1,0 +1,918 @@
+/* =============================================================
+   GLYDE — css/pages/how-it-works.css
+   §9 — Page Hero · Horizontal Steps · Step Details · FAQ
+   ============================================================= */
+
+
+/* ─────────────────────────────────────────────────────────────
+   1. PAGE HERO
+   ───────────────────────────────────────────────────────────── */
+.hiw-hero {
+  position: relative;
+  background: var(--charcoal);
+  min-height: 72vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding-top: 72px; /* navbar offset */
+}
+
+/* Radial glow top-right — CSS only, no image */
+.hiw-hero-glow {
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,230,77,0.18) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Large watermark "3" */
+.hiw-hero-watermark {
+  position: absolute;
+  bottom: -60px;
+  left: -20px;
+  font-size: clamp(240px, 35vw, 420px);
+  font-weight: 900;
+  line-height: 1;
+  color: rgba(0, 230, 77, 0.05);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  letter-spacing: -20px;
+}
+
+.hiw-hero-inner {
+  position: relative;
+  z-index: 1;
+  padding-top: 60px;
+  padding-bottom: 80px;
+}
+
+.hiw-hero-content {
+  max-width: 760px;
+}
+
+/* Breadcrumb */
+.hiw-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 24px;
+}
+
+.hiw-breadcrumb a {
+  color: rgba(255,255,255,0.4);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.hiw-breadcrumb a:hover { color: var(--green); }
+
+.hiw-breadcrumb span[aria-current] { color: rgba(255,255,255,0.65); }
+
+/* Hero label */
+.hiw-hero-label {
+  color: var(--green) !important;
+}
+
+/* Hero heading */
+.hiw-hero-heading {
+  font-size: clamp(48px, 7vw, 88px);
+  font-weight: 900;
+  letter-spacing: -4px;
+  line-height: 1.0;
+  color: var(--white);
+  margin: 16px 0 20px;
+}
+
+.hiw-hero-heading em {
+  font-style: normal;
+  color: var(--green);
+}
+
+/* Subtitle */
+.hiw-hero-subtitle {
+  font-size: clamp(15px, 1.6vw, 18px);
+  font-weight: 400;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.55);
+  max-width: 480px;
+  margin-bottom: 40px;
+}
+
+/* Step overview pills row */
+.hiw-step-pills {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.step-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: var(--radius-pill);
+  backdrop-filter: blur(8px);
+}
+
+.sp-num {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--green);
+}
+
+.sp-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.7);
+}
+
+.step-pill-arrow {
+  font-size: 18px;
+  color: rgba(255,255,255,0.2);
+}
+
+/* Hero entrance animations */
+.anim-hero {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.anim-hero.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.anim-delay-0   { transition-delay: 0ms; }
+.anim-delay-200 { transition-delay: 200ms; }
+.anim-delay-400 { transition-delay: 400ms; }
+.anim-delay-600 { transition-delay: 600ms; }
+
+@media (max-width: 767px) {
+  .hiw-hero              { min-height: auto; padding-top: 72px; }
+  .hiw-hero-heading      { letter-spacing: -3px; }
+  .hiw-step-pills        { gap: 8px; }
+  .step-pill             { padding: 8px 12px; }
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   2. HORIZONTAL SCROLL STEPS
+   Per DESIGN.md §9: GSAP ScrollTrigger pin + horizontal x
+   ───────────────────────────────────────────────────────────── */
+
+/* Outer pinnable container */
+.steps-scroll-container {
+  overflow: hidden;
+  background: var(--white);
+  /* Height set dynamically by GSAP based on track width */
+}
+
+/* Horizontal track — flex row of step cards */
+.steps-track {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: max-content;
+  will-change: transform;
+}
+
+/* Individual step card */
+.step-card {
+  position: relative;
+  width: min(560px, 85vw);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 80px 60px 80px 80px;
+  background: var(--white);
+  border-right: 1px solid var(--border);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.step-card--last {
+  border-right: none;
+}
+
+/* Big faded background number — DESIGN.md §9: 120px, rgba(0,230,77,0.12) */
+.step-card-bg-num {
+  position: absolute;
+  top: 50%;
+  right: 60px;
+  transform: translateY(-50%);
+  font-size: 120px;
+  font-weight: 900;
+  letter-spacing: -8px;
+  line-height: 1;
+  color: rgba(0, 230, 77, 0.12);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  font-family: var(--font);
+}
+
+/* Card content (above bg number) */
+.step-card-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 380px;
+}
+
+/* Icon: 60px, green */
+.step-card-icon {
+  width: 64px;
+  height: 64px;
+  background: rgba(0,230,77,0.10);
+  border: 1px solid rgba(0,230,77,0.20);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  color: var(--green-deeper);
+}
+
+/* Step title: 24px bold */
+.step-card-title {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  line-height: 1.1;
+  color: var(--charcoal);
+  margin: 0;
+}
+
+/* Description: 16px */
+.step-card-desc {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--mid-gray);
+  margin: 0;
+}
+
+/* Sub-points checklist */
+.step-card-points {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.step-card-points li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--dark-gray);
+}
+
+.step-card-points i {
+  color: var(--green-deeper);
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+/* Connector arrow between cards */
+.step-connector {
+  position: absolute;
+  right: -28px; /* overlaps border, centered */
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  pointer-events: none;
+}
+
+.step-connector-line {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--green);
+}
+
+.step-connector i {
+  font-size: 24px;
+  color: var(--green);
+  margin-left: -4px;
+}
+
+/* Mobile: vertical stack */
+@media (max-width: 767px) {
+  .steps-scroll-container { overflow: visible; }
+
+  .steps-track {
+    flex-direction: column;
+    width: 100%;
+    will-change: unset;
+  }
+
+  .step-card {
+    width: 100%;
+    min-height: auto;
+    padding: 60px 24px;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .step-card-bg-num {
+    font-size: 80px;
+    right: 20px;
+  }
+
+  .step-connector { display: none; }
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   3. STEP DETAIL SECTIONS
+   Alternating layout. Each uses clip-path reveal (§7E technique).
+   ───────────────────────────────────────────────────────────── */
+
+.step-detail-section {
+  background: var(--white);
+  padding: 120px 0;
+  overflow: hidden;
+}
+
+.step-detail-section--dark {
+  background: var(--charcoal);
+}
+
+/* 2-column grid */
+.step-detail-inner {
+  display: grid;
+  gap: 80px;
+  align-items: center;
+}
+
+.step-detail-inner--img-left  { grid-template-columns: 1fr 1fr; }
+.step-detail-inner--text-left { grid-template-columns: 1fr 1fr; }
+
+/* Visual block (clip-path reveal container) */
+.sd-visual {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+/* Clip-path wrap — same technique as §7E */
+.sd-clip-wrap {
+  clip-path: inset(0 100% 0 0);  /* initial state: fully hidden */
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: none;             /* GSAP handles the transition */
+}
+
+/* Image fills clip-wrap */
+.sd-image {
+  width: 100%;
+  aspect-ratio: 4/5;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+}
+
+/* ── App mockup placeholder (Step 1) ── */
+.sd-image--app {
+  background: linear-gradient(155deg, #001a0d 0%, #000d08 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+}
+
+/* CSS app mockup inside Step 1 detail */
+.sd-app-mockup { width: 100%; max-width: 280px; }
+
+.sdm-shell {
+  background: #0a0a0a;
+  border-radius: 36px;
+  border: 2.5px solid rgba(255,255,255,0.1);
+  box-shadow:
+    0 0 0 1px rgba(0,0,0,0.5),
+    0 24px 64px rgba(0,0,0,0.4),
+    inset 0 0 0 1px rgba(255,255,255,0.04);
+  overflow: hidden;
+  position: relative;
+}
+
+.sdm-notch {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 72px;
+  height: 20px;
+  background: #0a0a0a;
+  border-radius: 0 0 12px 12px;
+  z-index: 10;
+  border: 2px solid rgba(255,255,255,0.08);
+}
+
+.sdm-screen {
+  background:
+    radial-gradient(ellipse at 20% 15%, rgba(0,230,77,0.18) 0%, transparent 50%),
+    linear-gradient(155deg, #001a0d 0%, #000a05 100%);
+  padding: 44px 16px 20px;
+  min-height: 440px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sdm-statusbar {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 4px;
+}
+
+.sdm-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sdm-logo {
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+
+.sdm-label {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: rgba(255,255,255,0.35);
+}
+
+.sdm-route-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 12px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--white);
+}
+
+.sdm-time-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+.sdm-time-chip {
+  padding: 7px 10px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  text-align: center;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.55);
+}
+
+.sdm-time-chip--active {
+  background: rgba(0,230,77,0.15);
+  border-color: rgba(0,230,77,0.3);
+  color: var(--green);
+}
+
+.sdm-seat-row {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  padding: 8px 0;
+}
+
+.sdm-seat {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: block;
+}
+
+.sdm-seat--available { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); }
+.sdm-seat--taken     { background: rgba(255,255,255,0.03); border: 1px dashed rgba(255,255,255,0.08); }
+.sdm-seat--selected  { background: var(--green); }
+
+.sdm-book-btn {
+  margin-top: 4px;
+  padding: 12px;
+  background: var(--green);
+  color: var(--charcoal);
+  font-size: 12px;
+  font-weight: 800;
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* ── Bus stop scene placeholder (Step 2) ── */
+.sd-image--stop {
+  background:
+    linear-gradient(180deg, #e8f4ff 0%, #c5dff5 50%, #b0d4ee 100%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0;
+}
+
+.sd-stop-scene {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.sds-sign-pole {
+  position: absolute;
+  left: 35%;
+  top: 15%;
+  width: 6px;
+  height: 55%;
+  background: #555;
+  border-radius: 3px;
+}
+
+.sds-sign {
+  position: absolute;
+  left: calc(35% - 32px);
+  top: 12%;
+  width: 80px;
+  background: var(--green);
+  border-radius: 6px;
+  padding: 8px 6px;
+  text-align: center;
+}
+
+.sds-sign-logo {
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: var(--charcoal);
+  line-height: 1;
+}
+
+.sds-sign-stop {
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: rgba(0,0,0,0.5);
+  margin-top: 3px;
+}
+
+.sds-shelter {
+  position: absolute;
+  right: 10%;
+  bottom: 20%;
+  width: 140px;
+}
+
+.sds-shelter-roof {
+  height: 12px;
+  background: rgba(0,230,77,0.7);
+  border-radius: 4px 4px 0 0;
+  border-bottom: 2px solid rgba(0,100,30,0.4);
+}
+
+.sds-shelter-body {
+  height: 60px;
+  background: rgba(255,255,255,0.4);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255,255,255,0.6);
+  border-top: none;
+}
+
+.sds-ground {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 20%;
+  background: linear-gradient(180deg, #6b8a6e 0%, #4a6b4d 100%);
+}
+
+.sds-incoming {
+  position: absolute;
+  bottom: 23%;
+  left: 8%;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--charcoal);
+  color: var(--green);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  white-space: nowrap;
+}
+
+/* ── Destination scene placeholder (Step 3) ── */
+.sd-image--destination {
+  background:
+    radial-gradient(ellipse at 50% 40%, rgba(0,230,77,0.2) 0%, transparent 65%),
+    linear-gradient(155deg, #001a0d 0%, #000d08 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sd-dest-scene {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+  padding: 40px;
+}
+
+.sdd-check {
+  font-size: 80px;
+  color: var(--green);
+  line-height: 1;
+}
+
+.sdd-text { display: flex; flex-direction: column; gap: 6px; }
+
+.sdd-arrived {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--white);
+}
+
+.sdd-time {
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.45);
+}
+
+.sdd-rate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  padding: 16px 24px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-md);
+}
+
+.sdd-rate span {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.5px;
+}
+
+.sdd-stars { font-size: 20px; letter-spacing: 2px; }
+
+/* ── Text side of detail sections ── */
+.sd-text {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sd-label--green { color: var(--green) !important; }
+
+.sd-heading {
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 900;
+  letter-spacing: -2.5px;
+  line-height: 1.05;
+  color: var(--charcoal);
+  margin: 0;
+}
+
+.sd-heading--light { color: var(--white); }
+
+.sd-body {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--mid-gray);
+  margin: 0;
+}
+
+.sd-body--light { color: rgba(255,255,255,0.55); }
+
+/* Detail points list */
+.sd-points {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.sd-points li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.sd-points li strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--charcoal);
+  margin-bottom: 2px;
+}
+
+.sd-points--light li strong { color: var(--white); }
+
+.sd-points li span {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--mid-gray);
+}
+
+.sd-points--light li span { color: rgba(255,255,255,0.45); }
+
+.sd-point-icon {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  background: rgba(0,230,77,0.08);
+  border: 1px solid rgba(0,230,77,0.15);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: var(--green-deeper);
+  margin-top: 1px;
+}
+
+.sd-point-icon--dark {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.10);
+  color: var(--green);
+}
+
+/* Responsive step details */
+@media (max-width: 1023px) {
+  .step-detail-inner { grid-template-columns: 1fr !important; gap: 48px; }
+  .step-detail-inner--img-left .sd-visual { order: -1; }
+}
+
+@media (max-width: 767px) {
+  .step-detail-section { padding: 72px 0; }
+  .sd-heading          { letter-spacing: -2px; }
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   4. FAQ ACCORDION
+   Per DESIGN.md §9: maxHeight JS, chevron 180°
+   ───────────────────────────────────────────────────────────── */
+
+.faq-section {
+  background: var(--white);
+}
+
+.faq-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 56px;
+}
+
+.faq-heading {
+  font-size: clamp(32px, 4.5vw, 56px);
+  font-weight: 900;
+  letter-spacing: -2.5px;
+  line-height: 1.05;
+  color: var(--charcoal);
+  margin: 0;
+}
+
+.faq-list {
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid var(--border);
+}
+
+/* FAQ item */
+.faq-item {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s;
+}
+
+.faq-item:hover { background: rgba(0,230,77,0.02); }
+
+/* Question button */
+.faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 24px 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--charcoal);
+  text-align: left;
+  gap: 16px;
+  transition: color 0.2s;
+}
+
+.faq-question:hover { color: var(--green-deeper); }
+
+.faq-item.open .faq-question { color: var(--green-deeper); }
+
+/* Chevron — DESIGN.md §9 exact spec */
+.faq-chevron {
+  font-size: 18px;
+  flex-shrink: 0;
+  transition: transform 0.3s var(--ease);
+  color: var(--mid-gray);
+}
+
+/* Chevron rotates 180° when open — DESIGN.md §9 */
+.faq-item.open .faq-chevron {
+  transform: rotate(180deg);
+  color: var(--green-deeper);
+}
+
+/* Answer: maxHeight 0 → scrollHeight (driven by JS) */
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s var(--ease);
+}
+
+.faq-answer-inner {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--mid-gray);
+  padding: 0 0 24px;
+  max-width: 620px;
+}
+
+/* FAQ CTA */
+.faq-cta {
+  text-align: center;
+  margin-top: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.faq-cta p {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--mid-gray);
+  margin: 0;
+}
+
+@media (max-width: 767px) {
+  .faq-header      { margin-bottom: 36px; }
+  .faq-question    { font-size: 14px; padding: 20px 0; }
+  .faq-answer-inner { font-size: 13px; }
+}

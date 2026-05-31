@@ -1,0 +1,434 @@
+/* =============================================================
+   GLYDE — css/pages/contact.css
+   §12 — Page Hero · Contact Info · Form · Corporate · Map
+   ============================================================= */
+
+/* ─────────────────────────────────────────────────────────────
+   1. PAGE HERO (Light)
+   ───────────────────────────────────────────────────────────── */
+.contact-hero {
+  position: relative;
+  background-color: var(--bg-light);
+  background-image: linear-gradient(to right, rgba(248, 248, 244, 1) 0%, rgba(248, 248, 244, 0.85) 40%, rgba(248, 248, 244, 0) 100%), url('../../assets/contact-hero.png');
+  background-size: cover;
+  background-position: center right;
+  overflow: hidden;
+  min-height: 45vh;
+  display: flex;
+  align-items: center;
+  padding-top: 72px; /* navbar offset */
+}
+
+.contact-hero-inner {
+  position: relative;
+  z-index: 1;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.contact-hero-content {
+  max-width: 700px;
+}
+
+/* Override breadcrumb for light bg */
+.contact-hero .hiw-breadcrumb a { color: var(--mid-gray); }
+.contact-hero .hiw-breadcrumb span { color: var(--dark-gray); }
+
+.contact-heading {
+  font-size: clamp(48px, 6vw, 88px);
+  font-weight: 900;
+  letter-spacing: -3px;
+  line-height: 1.0;
+  color: var(--charcoal);
+  margin: 16px 0 24px;
+}
+
+.contact-subtitle {
+  font-size: clamp(16px, 1.8vw, 20px);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--mid-gray);
+  max-width: 500px;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   2. MAIN CONTACT BLOCK (2-Col)
+   ───────────────────────────────────────────────────────────── */
+.contact-main-section {
+  background: var(--white);
+  padding: 100px 0;
+}
+
+.contact-main-inner {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 80px;
+  align-items: start;
+}
+
+
+/* ── LEFT: Contact Info ── */
+.contact-info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.contact-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.ci-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(0,230,77,0.1);
+  border: 1px solid rgba(0,230,77,0.2);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: var(--green-deeper);
+  flex-shrink: 0;
+}
+
+.ci-text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.ci-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--mid-gray);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ci-value {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--charcoal);
+  line-height: 1.5;
+}
+
+/* Social Links Row */
+.ci-social-links {
+  display: flex;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.social-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--bg-light);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: var(--charcoal);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.social-btn:hover {
+  background: var(--green);
+  border-color: var(--green);
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,230,77,0.3);
+}
+
+
+/* ── RIGHT: Contact Form ── */
+.contact-form-card {
+  background: var(--bg-light);
+  border-radius: var(--radius-xl);
+  padding: 48px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.03);
+}
+
+.cf-heading {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  color: var(--charcoal);
+  margin-bottom: 32px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.cf-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.cf-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cf-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--dark-gray);
+}
+
+.cf-label span {
+  font-weight: 400;
+  color: var(--mid-gray);
+}
+
+/* Inputs & Textarea */
+.cf-input,
+.cf-select,
+.cf-textarea {
+  width: 100%;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  font-family: var(--font);
+  font-size: 15px;
+  color: var(--charcoal);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  appearance: none; /* for select */
+}
+
+.cf-input::placeholder,
+.cf-textarea::placeholder {
+  color: #a0a0a0;
+}
+
+.cf-select:invalid {
+  color: #a0a0a0;
+}
+
+.cf-select option {
+  color: var(--charcoal);
+}
+
+.cf-input:focus,
+.cf-select:focus,
+.cf-textarea:focus {
+  outline: none;
+  border-color: var(--green);
+  box-shadow: 0 0 0 4px rgba(0,230,77,0.1);
+}
+
+.cf-textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+/* Custom dropdown arrow for select */
+.cf-select {
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%231E1E1A%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px top 50%;
+  background-size: 10px auto;
+}
+
+/* Submit Button */
+.cf-submit {
+  align-self: flex-start;
+  margin-top: 8px;
+  background: var(--charcoal);
+  color: var(--white);
+  padding: 16px 32px;
+  border-radius: var(--radius-md);
+  font-size: 15px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cf-submit:hover {
+  background: var(--green-deeper);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,100,30,0.2);
+}
+
+.cf-submit:disabled {
+  background: var(--green);
+  color: var(--white);
+  transform: none;
+  box-shadow: none;
+  cursor: default;
+  opacity: 0.9;
+}
+
+/* Success Message */
+.cf-success {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(0,230,77,0.1);
+  border: 1px solid rgba(0,230,77,0.2);
+  padding: 16px 20px;
+  border-radius: var(--radius-md);
+  margin-top: 16px;
+  opacity: 0;
+  transform: translateY(10px);
+  visibility: hidden;
+  transition: all 0.4s ease;
+}
+
+.cf-success.visible {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+}
+
+.cfs-icon {
+  font-size: 24px;
+  color: var(--green-deeper);
+}
+
+.cfs-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--charcoal);
+}
+
+@media (max-width: 991px) {
+  .contact-main-inner { grid-template-columns: 1fr; gap: 64px; }
+  .contact-info-list { flex-direction: row; flex-wrap: wrap; }
+  .contact-info-item { width: calc(50% - 20px); }
+}
+
+@media (max-width: 767px) {
+  .contact-info-item { width: 100%; }
+  .contact-form-card { padding: 32px 24px; }
+  .cf-row { grid-template-columns: 1fr; }
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   3. CORPORATE SECTION
+   ───────────────────────────────────────────────────────────── */
+.corporate-section {
+  background: var(--charcoal);
+  padding: 100px 0;
+}
+
+.corporate-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-lg);
+  padding: 64px;
+}
+
+.corp-left {
+  max-width: 600px;
+}
+
+.corp-left .label { color: var(--green); }
+
+.corp-heading {
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 900;
+  letter-spacing: -1.5px;
+  color: var(--white);
+  margin: 12px 0 16px;
+}
+
+.corp-body {
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(255,255,255,0.6);
+  margin: 0;
+}
+
+.corp-cta {
+  white-space: nowrap;
+}
+
+@media (max-width: 991px) {
+  .corporate-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 48px 32px;
+  }
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   4. MAP PLACEHOLDER
+   ───────────────────────────────────────────────────────────── */
+.contact-map-section {
+  padding: 0;
+}
+
+.map-placeholder {
+  width: 100%;
+  height: 450px;
+  background-image: url('../../assets/accra-map.png');
+  background-size: cover;
+  background-position: center;
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 40px 80px rgba(0,0,0,0.08);
+}
+
+.map-pin-anim {
+  position: relative;
+  color: var(--green);
+  font-size: 48px;
+  z-index: 2;
+}
+
+.pin-pulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  background: rgba(0,230,77,0.2);
+  border-radius: 50%;
+  z-index: -1;
+  animation: map-pulse 2s infinite;
+}
+
+@keyframes map-pulse {
+  0% { transform: translate(-50%, -50%) scale(0.5); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(2); opacity: 0; }
+}
+
+.map-overlay-text {
+  margin-top: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--charcoal);
+  background: var(--white);
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  z-index: 2;
+}

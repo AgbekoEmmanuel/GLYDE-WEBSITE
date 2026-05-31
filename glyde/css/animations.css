@@ -1,0 +1,480 @@
+/* =============================================================
+   GLYDE — animations.css
+   All reveal classes, stagger delays, page transition keyframes,
+   floating animations, ticker, bus float, card float, counters
+   ============================================================= */
+
+/* ─────────────────────────────────────────────────────────────
+   NOTE: The core .reveal* classes and stagger delays live in
+   base.css (§6). This file adds supplementary animation classes
+   used across pages, plus all @keyframes definitions.
+   ───────────────────────────────────────────────────────────── */
+
+
+/* ─────────────────────────────────────────────────────────────
+   1. REVEAL CLASSES
+   (Canonical definitions — mirrors base.css for specificity)
+   ───────────────────────────────────────────────────────────── */
+
+/* Base states — hidden before IntersectionObserver fires */
+.reveal {
+  opacity: 0;
+  transform: translateY(48px);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-48px);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(48px);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.92);
+}
+
+.reveal-fade {
+  opacity: 0;
+}
+
+/* Visible state — .in-view added by IntersectionObserver */
+.reveal.in-view,
+.reveal-left.in-view,
+.reveal-right.in-view,
+.reveal-scale.in-view,
+.reveal-fade.in-view {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity   var(--duration-slow) var(--ease-out),
+    transform var(--duration-slow) var(--ease-out);
+}
+
+/* Stagger delay helpers */
+.delay-1 { transition-delay: 0.2s !important; }
+.delay-2 { transition-delay: 0.4s !important; }
+.delay-3 { transition-delay: 0.6s !important; }
+.delay-4 { transition-delay: 0.4s !important; }
+.delay-5 { transition-delay: 0.5s !important; }
+.delay-6 { transition-delay: 0.6s !important; }
+
+
+/* ─────────────────────────────────────────────────────────────
+   2. HERO LOAD ENTRANCE (CSS keyframe, fires once on page load)
+   Stagger timing per DESIGN.md §7A
+   ───────────────────────────────────────────────────────────── */
+
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes heroSlideRight {
+  from {
+    opacity: 0;
+    transform: translateX(48px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Apply to hero children via utility classes */
+.anim-hero      { animation: heroFadeUp  0.6s var(--ease-out) both; }
+.anim-hero-fade { animation: heroFadeIn  0.6s var(--ease-out) both; }
+.anim-hero-right { animation: heroSlideRight 0.7s var(--ease-out) both; }
+
+/* Delay tokens for hero entrance stagger (ms → s) */
+.anim-delay-0   { animation-delay: 0ms; }
+.anim-delay-200 { animation-delay: 200ms; }
+.anim-delay-350 { animation-delay: 350ms; }
+.anim-delay-500 { animation-delay: 500ms; }
+.anim-delay-600 { animation-delay: 600ms; }
+.anim-delay-650 { animation-delay: 650ms; }
+.anim-delay-800 { animation-delay: 800ms; }
+.anim-delay-950 { animation-delay: 950ms; }
+.anim-delay-1000 { animation-delay: 1000ms; }
+.anim-delay-1200 { animation-delay: 1200ms; }
+.anim-delay-1400 { animation-delay: 1400ms; }
+
+
+/* ─────────────────────────────────────────────────────────────
+   3. BUS FLOAT ANIMATION (hero right column)
+   Per DESIGN.md §7A busFloat spec
+   ───────────────────────────────────────────────────────────── */
+@keyframes busFloat {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  40%       { transform: translateY(-14px) rotate(0.4deg); }
+  70%       { transform: translateY(-7px) rotate(-0.2deg); }
+}
+
+.bus-float {
+  animation: busFloat 6s ease-in-out infinite;
+  will-change: transform;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   4. CARD FLOAT ANIMATION (floating info cards in hero)
+   Per DESIGN.md §7A cardFloat spec
+   ───────────────────────────────────────────────────────────── */
+@keyframes cardFloat {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50%       { transform: translateY(-10px) rotate(0.5deg); }
+}
+
+.card-float {
+  animation: cardFloat 4s ease-in-out infinite;
+  will-change: transform;
+}
+
+.card-float-delayed {
+  animation: cardFloat 4s ease-in-out 2s infinite;
+  will-change: transform;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   5. TICKER / MARQUEE STRIP
+   Per DESIGN.md §7B
+   ───────────────────────────────────────────────────────────── */
+.ticker-wrap {
+  background: var(--green);
+  height: 48px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+.ticker-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: ticker 25s linear infinite;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.ticker-wrap:hover .ticker-track {
+  animation-play-state: paused;
+}
+
+.ticker-item {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--charcoal);
+  padding: 0 28px;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.ticker-dot {
+  width: 5px;
+  height: 5px;
+  background: var(--charcoal);
+  border-radius: 50%;
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); } /* content duplicated for seamless loop */
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   6. SCROLL HINT INDICATOR (hero bottom center)
+   Per DESIGN.md §7A
+   ───────────────────────────────────────────────────────────── */
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50%       { transform: translateY(8px); opacity: 0.6; }
+}
+
+.scroll-hint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  animation: heroFadeIn 0.6s var(--ease-out) 1.4s both;
+  transition: opacity 0.4s var(--ease);
+}
+
+.scroll-hint.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.scroll-hint-icon {
+  width: 28px;
+  height: 44px;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 14px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding-top: 8px;
+}
+
+.scroll-hint-icon::after {
+  content: '';
+  width: 4px;
+  height: 8px;
+  background: var(--charcoal);
+  border-radius: 2px;
+  animation: scrollBounce 1.8s ease-in-out infinite;
+}
+
+.scroll-hint-text {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--mid-gray);
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   7. LIVE BADGE PULSE (hero badge, routes page)
+   Extends base.css .live-dot
+   ───────────────────────────────────────────────────────────── */
+.live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: rgba(0, 230, 77, 0.10);
+  border: 1px solid rgba(0, 230, 77, 0.25);
+  border-radius: var(--radius-pill);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--green-deeper);
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   8. FEATURE CARD HOVER (Why Glyde section)
+   Per DESIGN.md §7C
+   ───────────────────────────────────────────────────────────── */
+.feature-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 36px 28px;
+  background: var(--white);
+  transition:
+    transform    0.35s var(--ease-out),
+    box-shadow   0.35s var(--ease-out),
+    border-color 0.35s var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--green);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.4s var(--ease-out);
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(0, 230, 77, 0.25);
+}
+
+.feature-card:hover::before {
+  transform: scaleX(1);
+}
+
+.feature-card-icon {
+  width: 52px;
+  height: 52px;
+  background: var(--green-pale);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  color: var(--green-deeper);
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   9. NAV CTA PULSE — repeated here for component isolation
+   ───────────────────────────────────────────────────────────── */
+@keyframes navPulse {
+  0%   { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.55); opacity: 0; }
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   10. PAGE TRANSITION — repeated here for component isolation
+       (canonical definition lives in base.css §17)
+   ───────────────────────────────────────────────────────────── */
+@keyframes pageSlideUp {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0%); }
+}
+
+@keyframes pageSlideOff {
+  from { transform: translateY(0%); }
+  to   { transform: translateY(-100%); }
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   11. PHONE / APP MOCKUP FLOAT
+   Per DESIGN.md §7I — uses same busFloat but 5s
+   ───────────────────────────────────────────────────────────── */
+.phone-float {
+  animation: busFloat 5s ease-in-out infinite;
+  will-change: transform;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   12. FAQ ACCORDION CHEVRON ROTATE
+   Per DESIGN.md §9
+   ───────────────────────────────────────────────────────────── */
+.faq-chevron {
+  transition: transform 0.3s var(--ease);
+  flex-shrink: 0;
+}
+
+.faq-item.open .faq-chevron {
+  transform: rotate(180deg);
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   13. CHECKLIST TICK ENTRANCE
+   Per DESIGN.md §11 — used on Safety page
+   ───────────────────────────────────────────────────────────── */
+@keyframes tickPop {
+  from { transform: scale(0) rotate(-10deg); opacity: 0; }
+  to   { transform: scale(1) rotate(0deg);   opacity: 1; }
+}
+
+.tick-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  background: var(--green);
+  border-radius: 50%;
+  color: var(--charcoal);
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+.tick-icon.animate-in {
+  animation: tickPop 0.4s var(--ease-out) both;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   14. ROUTE PATH STROKE ANIMATION (placeholder class)
+   Full GSAP implementation in routes.js
+   ───────────────────────────────────────────────────────────── */
+.route-path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  /* Animated via GSAP ScrollTrigger in routes.js */
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   15. CUSTOM SCROLL INDICATOR — routes / safety pages
+   ───────────────────────────────────────────────────────────── */
+@keyframes progressFill {
+  from { transform: scaleY(0); }
+  to   { transform: scaleY(1); }
+}
+
+.progress-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transition: background 0.3s var(--ease), transform 0.3s var(--ease);
+  cursor: pointer;
+}
+
+.progress-dot.active {
+  background: var(--green);
+  transform: scale(1.3);
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   16. GRADIENT GLOW ORBS (about page hero, how-it-works hero)
+   Pure CSS decorative glows, no images
+   ───────────────────────────────────────────────────────────── */
+.glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.glow-orb-green {
+  background: radial-gradient(circle, rgba(0, 230, 77, 0.18) 0%, transparent 70%);
+}
+
+.glow-orb-charcoal {
+  background: radial-gradient(circle, rgba(30, 30, 26, 0.4) 0%, transparent 70%);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   SHAKE ANIMATION — DESIGN.md §13
+   Used by form validation: add .shake class via JS, auto-removes
+   ───────────────────────────────────────────────────────────── */
+@keyframes shake {
+  0%,  100% { transform: translateX(0); }
+  20%        { transform: translateX(-6px); }
+  40%        { transform: translateX(6px); }
+  60%        { transform: translateX(-4px); }
+  80%        { transform: translateX(4px); }
+}
+
+.shake {
+  animation: shake 0.4s ease;
+  border-color: #FF4444 !important;
+}
+

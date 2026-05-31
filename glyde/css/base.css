@@ -1,0 +1,696 @@
+/* =============================================================
+   GLYDE — base.css
+   Variables · Resets · Typography · Layout Utilities · Reveals
+   ============================================================= */
+
+/* ─────────────────────────────────────────────────────────────
+   1. GOOGLE FONTS IMPORT
+   ───────────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+
+/* ─────────────────────────────────────────────────────────────
+   2. DESIGN TOKENS — CSS CUSTOM PROPERTIES
+   ───────────────────────────────────────────────────────────── */
+:root {
+
+  /* BRAND COLORS */
+  --green:        #00E64D;
+  --green-dark:   #00B33C;
+  --green-deeper: #007A29;
+  --green-mid:    #00CC44;
+  --green-light:  #80FFB3;
+  --green-pale:   #E8FFF1;
+  --green-faint:  #F2FFF7;
+
+  /* NEUTRALS */
+  --white:      #FFFFFF;
+  --off-white:  #F8F8F6;
+  --light-gray: #F2F2F0;
+  --border:     #E8E8E4;
+  --mid-gray:   #888880;
+  --dark-gray:  #444440;
+  --charcoal:   #1E1E1A;
+  --near-black: #111110;
+
+  /* TYPOGRAPHY */
+  --font: 'Poppins', sans-serif;
+
+  /* SPACING */
+  --section-pad: 120px 0;
+  --container:   1320px;
+  --gutter:      48px;
+
+  /* BORDER RADIUS */
+  --radius-sm:   8px;
+  --radius-md:   16px;
+  --radius-lg:   24px;
+  --radius-xl:   32px;
+  --radius-pill: 100px;
+
+  /* SHADOWS */
+  --shadow-sm:    0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-md:    0 8px 32px rgba(0, 0, 0, 0.08);
+  --shadow-lg:    0 24px 64px rgba(0, 0, 0, 0.10);
+  --shadow-green: 0 8px 28px rgba(0, 230, 77, 0.35);
+
+  /* EASING CURVES */
+  --ease:        cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* TRANSITION DURATIONS */
+  --duration-fast: 0.25s;
+  --duration-mid: 0.5s;
+  --duration-slow: 1.0s;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   3. GLOBAL RESETS
+   ───────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--charcoal);
+  background-color: var(--white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Remove list styles on ul/ol with a class attribute */
+ul[class],
+ol[class] {
+  list-style: none;
+}
+
+/* Inherit fonts for form elements */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove default button styling */
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* Remove default anchor styling */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Make images block elements by default */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Prevent overflow on text elements */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* Table resets */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   4. TYPOGRAPHY SYSTEM
+   ───────────────────────────────────────────────────────────── */
+
+/* ── Display ── */
+.display-xl {
+  font-family: var(--font);
+  font-size: clamp(64px, 9vw, 120px);
+  font-weight: 900;
+  letter-spacing: -4px;
+  line-height: 0.95;
+}
+
+.display-lg {
+  font-family: var(--font);
+  font-size: clamp(48px, 6vw, 88px);
+  font-weight: 900;
+  letter-spacing: -3px;
+  line-height: 1.0;
+}
+
+/* ── Headings ── */
+.h1 {
+  font-family: var(--font);
+  font-size: clamp(36px, 4vw, 56px);
+  font-weight: 800;
+  letter-spacing: -2px;
+  line-height: 1.1;
+}
+
+.h2 {
+  font-family: var(--font);
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 700;
+  letter-spacing: -1px;
+  line-height: 1.2;
+}
+
+.h3 {
+  font-family: var(--font);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  line-height: 1.3;
+}
+
+.h4 {
+  font-family: var(--font);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+/* ── Body ── */
+.body-lg {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.75;
+}
+
+.body-md {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+.body-sm {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.65;
+}
+
+/* ── Labels & Captions ── */
+.label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.caption {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   5. LAYOUT UTILITIES
+   ───────────────────────────────────────────────────────────── */
+
+/* Centered, max-width container with horizontal gutter */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+/* Section vertical spacing */
+.section {
+  padding: var(--section-pad);
+  position: relative;
+}
+
+/* Reduce gutter on smaller viewports */
+@media (max-width: 767px) {
+  :root {
+    --gutter: 24px;
+    --section-pad: 80px 0;
+  }
+}
+
+@media (max-width: 639px) {
+  :root {
+    --gutter: 16px;
+    --section-pad: 64px 0;
+  }
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   6. GLOBAL SCROLL REVEAL SYSTEM
+   Per DESIGN.md Section 6 — IntersectionObserver powered
+   ───────────────────────────────────────────────────────────── */
+
+/* ── Base states — hidden before intersection ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(48px);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-48px);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(48px);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.92);
+}
+
+.reveal-fade {
+  opacity: 0;
+}
+
+/* ── Visible state — added by IntersectionObserver ── */
+.reveal.in-view,
+.reveal-left.in-view,
+.reveal-right.in-view,
+.reveal-scale.in-view,
+.reveal-fade.in-view {
+  opacity: 1;
+  transform: none;
+  transition: opacity var(--duration-slow) var(--ease-out),
+              transform var(--duration-slow) var(--ease-out);
+}
+
+/* ── Stagger delay helpers ── */
+.delay-1 { transition-delay: 0.1s !important; }
+.delay-2 { transition-delay: 0.2s !important; }
+.delay-3 { transition-delay: 0.3s !important; }
+.delay-4 { transition-delay: 0.4s !important; }
+.delay-5 { transition-delay: 0.5s !important; }
+.delay-6 { transition-delay: 0.6s !important; }
+
+
+/* ─────────────────────────────────────────────────────────────
+   7. COLOUR UTILITY HELPERS
+   ───────────────────────────────────────────────────────────── */
+.text-green    { color: var(--green); }
+.text-white    { color: var(--white); }
+.text-charcoal { color: var(--charcoal); }
+.text-mid-gray { color: var(--mid-gray); }
+.text-dark-gray { color: var(--dark-gray); }
+
+.bg-white      { background-color: var(--white); }
+.bg-off-white  { background-color: var(--off-white); }
+.bg-light-gray { background-color: var(--light-gray); }
+.bg-green-pale { background-color: var(--green-pale); }
+.bg-green-faint { background-color: var(--green-faint); }
+.bg-charcoal   { background-color: var(--charcoal); }
+.bg-near-black { background-color: var(--near-black); }
+
+
+/* ─────────────────────────────────────────────────────────────
+   8. SECTION LABEL COMPONENT
+   Small ALL-CAPS tag above section headings (e.g. "/ WHY GLYDE")
+   ───────────────────────────────────────────────────────────── */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--green-dark);
+  margin-bottom: 16px;
+}
+
+.section-label::before {
+  content: '/';
+  color: var(--green);
+  font-weight: 900;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   9. BUTTON SYSTEM
+   ───────────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    transform var(--duration-fast) var(--ease),
+    box-shadow var(--duration-fast) var(--ease),
+    background var(--duration-fast) var(--ease),
+    color var(--duration-fast) var(--ease),
+    border-color var(--duration-fast) var(--ease);
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Primary — green fill */
+.btn-primary {
+  background: var(--green);
+  color: var(--charcoal);
+  border-color: var(--green);
+}
+
+.btn-primary:hover {
+  background: var(--green-dark);
+  border-color: var(--green-dark);
+  transform: translateY(-2px);
+}
+
+.btn-primary:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: none;
+}
+
+/* Secondary — outline */
+.btn-secondary {
+  background: transparent;
+  color: var(--charcoal);
+  border-color: var(--border);
+}
+
+.btn-secondary:hover {
+  border-color: var(--green);
+  color: var(--green-dark);
+  transform: translateY(-2px);
+}
+
+.btn-secondary:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Ghost — for dark backgrounds */
+.btn-ghost {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--white);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   10. LINK HOVER UNDERLINE DRAW
+   ───────────────────────────────────────────────────────────── */
+a.hover-line {
+  position: relative;
+}
+
+a.hover-line::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--green);
+  transition: width 0.3s var(--ease);
+}
+
+a.hover-line:hover::after {
+  width: 100%;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   11. CARD HOVER UTILITY
+   ───────────────────────────────────────────────────────────── */
+.card-hover {
+  transition:
+    transform 0.35s var(--ease-out),
+    box-shadow 0.35s var(--ease-out),
+    border-color 0.35s var(--ease);
+}
+
+.card-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(0, 230, 77, 0.3);
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   12. LIVE PULSE DOT
+   Used in badges: "● NOW OPERATING • ACCRA"
+   ───────────────────────────────────────────────────────────── */
+.live-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: var(--green);
+  border-radius: 50%;
+  animation: livePulse 2s ease infinite;
+  flex-shrink: 0;
+}
+
+@keyframes livePulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 230, 77, 0.5); }
+  50%       { box-shadow: 0 0 0 6px rgba(0, 230, 77, 0); }
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   13. FORM INPUT SHAKE ANIMATION (invalid state)
+   ───────────────────────────────────────────────────────────── */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-6px); }
+  40%       { transform: translateX(6px); }
+  60%       { transform: translateX(-4px); }
+  80%       { transform: translateX(4px); }
+}
+
+.shake {
+  animation: shake 0.4s var(--ease);
+  border-color: #FF4444 !important;
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   14. VISIBILITY UTILITIES
+   ───────────────────────────────────────────────────────────── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.hide-mobile  { display: block; }
+.show-mobile  { display: none; }
+
+@media (max-width: 767px) {
+  .hide-mobile { display: none; }
+  .show-mobile { display: block; }
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   15. FLEX & GRID QUICK HELPERS
+   ───────────────────────────────────────────────────────────── */
+.flex         { display: flex; }
+.flex-center  { display: flex; align-items: center; justify-content: center; }
+.flex-between { display: flex; align-items: center; justify-content: space-between; }
+.flex-col     { display: flex; flex-direction: column; }
+.gap-sm       { gap: 8px; }
+.gap-md       { gap: 16px; }
+.gap-lg       { gap: 24px; }
+.gap-xl       { gap: 48px; }
+
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+
+@media (max-width: 1023px) {
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 767px) {
+  .grid-2,
+  .grid-3,
+  .grid-4 { grid-template-columns: 1fr; }
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   16. CUSTOM CURSOR (desktop only — logic lives in animations.js)
+   ───────────────────────────────────────────────────────────── */
+@media (pointer: fine) {
+  body { cursor: none; }
+
+  .cursor-dot {
+    position: fixed;
+    top: -4px;
+    left: -4px;
+    width: 8px;
+    height: 8px;
+    background: var(--green);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    transition: transform 0.05s linear;
+    will-change: transform;
+  }
+
+  .cursor-follower {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 40px;
+    border: 2px solid rgba(0, 230, 77, 0.4);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99998;
+    transition:
+      width  0.3s var(--ease),
+      height 0.3s var(--ease),
+      border-color 0.3s var(--ease),
+      background   0.3s var(--ease);
+    will-change: transform;
+  }
+
+  .cursor-follower.grow {
+    width: 60px;
+    height: 60px;
+    border-color: var(--green);
+    background: rgba(0, 230, 77, 0.08);
+  }
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   17. PAGE TRANSITION OVERLAY
+   (per DESIGN.md Section 5)
+   ───────────────────────────────────────────────────────────── */
+#page-transition {
+  position: fixed;
+  inset: 0;
+  background: var(--green);
+  z-index: 9999;
+  transform: translateY(100%);
+  pointer-events: none;
+}
+
+#page-transition.active {
+  animation: pageSlideUp 0.4s var(--ease-in-out) forwards;
+}
+
+#page-transition.exit {
+  animation: pageSlideOff 0.5s var(--ease-out) forwards;
+}
+
+@keyframes pageSlideUp {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0%); }
+}
+
+@keyframes pageSlideOff {
+  from { transform: translateY(0%); }
+  to   { transform: translateY(-100%); }
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   18. SELECTION COLOUR
+   ───────────────────────────────────────────────────────────── */
+::selection {
+  background: var(--green);
+  color: var(--charcoal);
+}
+
+::-moz-selection {
+  background: var(--green);
+  color: var(--charcoal);
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   19. SCROLLBAR STYLING (webkit)
+   ───────────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--light-gray);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--green-mid);
+  border-radius: var(--radius-pill);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--green-dark);
+}
+
+
+/* ─────────────────────────────────────────────────────────────
+   20. RESPONSIVE BREAKPOINTS (reference — used across pages)
+   ───────────────────────────────────────────────────────────── */
+/*
+  Mobile first. Breakpoints:
+    < 640px   → Default (mobile)
+    ≥ 640px   → Small tablet
+    ≥ 768px   → Tablet
+    ≥ 1024px  → Desktop
+    ≥ 1280px  → Large desktop
+*/

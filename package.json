@@ -1,0 +1,12 @@
+{
+  "name": "glyde-app",
+  "version": "1.0.0",
+  "description": "Glyde static site",
+  "scripts": {
+    "dev": "live-server glyde"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "sharp": "^0.34.5"
+  }
+}

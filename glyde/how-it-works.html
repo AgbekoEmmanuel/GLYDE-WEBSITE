@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How it Works | GLYDE — Book, Board, Arrive</title>
+  <meta name="description" content="Discover how to use the GLYDE app to book your bus ride, board with ease, and arrive at your destination on time. It's simple, cashless, and reliable.">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  <meta property="og:title" content="How GLYDE Works — 3 Simple Steps">
+  <meta property="og:description" content="From your phone to your destination in minutes. No cash, no queues, no stress.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/pages/how-it-works.css">
+</head>
+<body>
+
+  <!-- Page Transition Overlay -->
+  <div id="page-transition" aria-hidden="true"></div>
+
+  <!-- Navbar (injected by nav.js) -->
+  <nav id="navbar" aria-label="Main navigation"></nav>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       PAGE HERO — DESIGN.md §9 — Dark charcoal bg, glow
+  ═══════════════════════════════════════════════════════════ -->
+  <section id="hiw-hero" class="hiw-hero" aria-labelledby="hiw-hero-heading">
+
+    <!-- Radial glow (CSS — no image) -->
+    <div class="hiw-hero-glow" aria-hidden="true"></div>
+
+    <!-- Watermark number -->
+    <div class="hiw-hero-watermark" aria-hidden="true">3</div>
+
+    <div class="container hiw-hero-inner">
+      <div class="hiw-hero-content">
+
+        <!-- Breadcrumb -->
+        <nav class="hiw-breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">How It Works</span>
+        </nav>
+
+        <!-- Label -->
+        <span class="label hiw-hero-label anim-hero anim-delay-0">/ RIDE IN 3 STEPS</span>
+
+        <!-- Heading -->
+        <h1 id="hiw-hero-heading" class="hiw-hero-heading anim-hero anim-delay-200">
+          Ride in<br><em>3 Steps.</em>
+        </h1>
+
+        <!-- Subtitle per CONTENT.md -->
+        <p class="hiw-hero-subtitle anim-hero anim-delay-400">
+          From your phone to your destination in minutes.
+          No cash, no queues, no stress.
+        </p>
+
+        <!-- Step overview pills -->
+        <div class="hiw-step-pills anim-hero anim-delay-600" aria-label="Step overview">
+          <div class="step-pill">
+            <span class="sp-num">01</span>
+            <span class="sp-label">Download &amp; Book</span>
+          </div>
+          <div class="step-pill-arrow" aria-hidden="true">→</div>
+          <div class="step-pill">
+            <span class="sp-num">02</span>
+            <span class="sp-label">Arrive &amp; Board</span>
+          </div>
+          <div class="step-pill-arrow" aria-hidden="true">→</div>
+          <div class="step-pill">
+            <span class="sp-num">03</span>
+            <span class="sp-label">Sit Back &amp; Arrive</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+  <!-- /hiw-hero -->
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       HORIZONTAL SCROLL STEPS — DESIGN.md §9
+       GSAP ScrollTrigger pin + horizontal x translate.
+       On mobile: vertical stack (GSAP disabled via matchMedia).
+  ═══════════════════════════════════════════════════════════ -->
+  <div class="steps-scroll-container" id="stepsScrollContainer" aria-label="3 steps walkthrough">
+    <div class="steps-track" id="stepsTrack">
+
+      <!-- ── Step Card 1: Download & Book ── -->
+      <div class="step-card" id="step-card-1" role="article" aria-label="Step 01: Download and Book">
+
+        <!-- Big faded number: 120px, rgba(0,230,77,0.12) -->
+        <div class="step-card-bg-num" aria-hidden="true">01</div>
+
+        <div class="step-card-content">
+          <div class="step-card-icon" aria-hidden="true">
+            <i class="ph ph-device-mobile-camera"></i>
+          </div>
+          <h2 class="step-card-title">Download &amp; Book</h2>
+          <p class="step-card-desc">
+            Open the GLYDE app, select your route and departure time,
+            pick your seat, and pay with Mobile Money or card.
+            Instant confirmation via SMS and in-app.
+          </p>
+          <ul class="step-card-points" aria-label="Step 1 sub-points">
+            <li><i class="ph ph-check-circle" aria-hidden="true"></i> Select route &amp; departure time</li>
+            <li><i class="ph ph-check-circle" aria-hidden="true"></i> Choose your seat</li>
+            <li><i class="ph ph-check-circle" aria-hidden="true"></i> Pay with Mobile Money or card</li>
+            <li><i class="ph ph-check-circle" aria-hidden="true"></i> Instant booking confirmation</li>
+          </ul>
+        </div>
+
+        <!-- Connector arrow to next card -->
+        <div class="step-connector" aria-hidden="true">
+          <span class="step-connector-line"></span>
+          <i class="ph ph-arrow-right"></i>
+        </div>
+
+      </div>
+      <!-- /step-card-1 -->
+
+      <!-- ── Step Card 2: Arrive & Board ── -->
+      <div class="step-card" id="step-card-2" role="article" aria-label="Step 02: Arrive and Board">
+
+        <div class="step-card-bg-num" aria-hidden="true">02</div>
+
+        <div class="step-card-content">
+          <div class="step-card-icon" aria-hidden="true">
+            <i class="ph ph-map-pin"></i>
+          </div>
+          <h2 class="step-card-title">Arrive &amp; Board</h2>
+          <p class="step-card-desc">
+            Head to your nearest GLYDE stop at your booked departure time.
+            Your digital pass lives in the app — just show it to the driver.
+            Buses depart on schedule. No last-minute scrambles.
+          </p>
+          <ul class="step-card-points" aria-label="Step 2 sub-points">
+            <li><i class="ph ph-check-circle" aria-hidden="true"></i> Find your nearest GLYDE stop</li>
+            <li><i class="ph ph-check-circle" aria-hidden="true"></i> Arrive at your departure time</li>
+            <li><i class="ph ph-check-circle" aria-hidden="true"></i> Show your digital pass to board</li>
+            <li><i class="ph ph-check-circle" aria-hidden="true"></i> Bus departs on time, every time</li>
+          </ul>
+        </div>
+
+        <!-- Connector arrow to next card -->
+        <div class="step-connector" aria-hidden="true">
+          <span class="step-connector-line"></span>
+          <i class="ph ph-arrow-right"></i>
+        </div>
+
+      </div>
+      <!-- /step-card-2 -->
+
+      <!-- ── Step Card 3: Sit Back & Arrive ── -->
+      <div class="step-card step-card--last" id="step-card-3" role="article" aria-label="Step 03: Sit Back and Arrive">
+
+        <div class="step-card-bg-num" aria-hidden="true">03</div>
+
+        <div class="step-card-content">
+          <div class="step-card-icon" aria-hidden="true">
+            <i class="ph ph-clock"></i>
+          </div>
+          <h2 class="step-card-title">Sit Back &amp; Arrive</h2>
+          <p class="step-card-desc">
+            GLYDE buses run on a fixed schedule across the full route.
+            Relax in a comfortable, air-conditioned seat. Track your
+            journey live in the app. Arrive as planned.
+          </p>
+          <ul class="step-card-points" aria-label="Step 3 sub-points">
+            <li><i class="ph ph-check-circle" aria-hidden="true"></i> Comfortable, air-conditioned seats</li>
+            <li><i class="ph ph-check-circle" aria-hidden="true"></i> Live journey tracking</li>
+            <li><i class="ph ph-check-circle" aria-hidden="true"></i> Arrive at your scheduled time</li>
+            <li><i class="ph ph-check-circle" aria-hidden="true"></i> Rate your ride after arrival</li>
+          </ul>
+        </div>
+
+        <!-- No connector on last card -->
+
+      </div>
+      <!-- /step-card-3 -->
+
+    </div>
+    <!-- /steps-track -->
+  </div>
+  <!-- /steps-scroll-container -->
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       STEP DETAIL SECTIONS — DESIGN.md §9
+       3 alternating full sections, each with clip-path reveal.
+       Step 1: mockup LEFT, text RIGHT
+       Step 2: text LEFT, image RIGHT
+       Step 3: image LEFT, text RIGHT
+  ═══════════════════════════════════════════════════════════ -->
+
+  <!-- ─── Step 1 Detail ─── -->
+  <section id="step-1-detail" class="step-detail-section" aria-labelledby="sd1-heading">
+    <div class="container step-detail-inner step-detail-inner--img-left">
+
+      <!-- LEFT: App mockup CSS placeholder -->
+      <div class="sd-visual sd-visual--clip" id="sd1-visual" role="img" aria-label="GLYDE mobile app">
+        <div class="sd-clip-wrap" id="sd1Clip">
+          <div class="sd-image sd-image--app">
+            <!-- CSS app mockup -->
+            <div class="sd-app-mockup">
+              <div class="sdm-shell">
+                <div class="sdm-notch" aria-hidden="true"></div>
+                <div class="sdm-screen">
+                  <div class="sdm-statusbar">
+                    <span>9:41</span>
+                    <span style="font-size:10px;">●●●</span>
+                  </div>
+                  <div class="sdm-content">
+                    <div class="sdm-logo">GLYDE</div>
+                    <div class="sdm-label">SELECT ROUTE</div>
+                    <div class="sdm-route-chip">
+                      <i class="ph ph-map-pin" aria-hidden="true"></i>
+                      Accra → Dodowa
+                    </div>
+                    <div class="sdm-label" style="margin-top:10px;">DEPARTURE TIME</div>
+                    <div class="sdm-time-grid" aria-label="Available departure times">
+                      <div class="sdm-time-chip sdm-time-chip--active">6:45 AM</div>
+                      <div class="sdm-time-chip">7:15 AM</div>
+                      <div class="sdm-time-chip">8:00 AM</div>
+                      <div class="sdm-time-chip">8:30 AM</div>
+                    </div>
+                    <div class="sdm-seat-row">
+                      <span class="sdm-seat sdm-seat--taken" aria-label="Seat taken"></span>
+                      <span class="sdm-seat sdm-seat--taken" aria-label="Seat taken"></span>
+                      <span class="sdm-seat sdm-seat--available" aria-label="Seat available"></span>
+                      <span class="sdm-seat sdm-seat--selected" aria-label="Seat selected"></span>
+                      <span class="sdm-seat sdm-seat--available" aria-label="Seat available"></span>
+                    </div>
+                    <div class="sdm-book-btn">Book Now — GHC 25</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /sd-visual -->
+
+      <!-- RIGHT: Text -->
+      <div class="sd-text reveal-right">
+        <span class="label">/ STEP 01</span>
+        <h2 id="sd1-heading" class="sd-heading">Download &amp; Book</h2>
+        <p class="sd-body">
+          Open the GLYDE app, select your route (Accra–Dodowa or Accra–Oyarifa),
+          choose your preferred departure time, and pick your seat. Pay securely
+          with Mobile Money (MTN, AirtelTigo, Telecel) or card. Receive instant
+          confirmation via SMS and in-app.
+        </p>
+        <ul class="sd-points" aria-label="Step 1 details">
+          <li>
+            <div class="sd-point-icon" aria-hidden="true"><i class="ph ph-device-mobile-camera"></i></div>
+            <div>
+              <strong>Open the app</strong>
+              <span>Available on iOS &amp; Android — coming soon</span>
+            </div>
+          </li>
+          <li>
+            <div class="sd-point-icon" aria-hidden="true"><i class="ph ph-map-trifold"></i></div>
+            <div>
+              <strong>Choose your route</strong>
+              <span>Accra–Dodowa or Accra–Oyarifa</span>
+            </div>
+          </li>
+          <li>
+            <div class="sd-point-icon" aria-hidden="true"><i class="ph ph-currency-circle-dollar"></i></div>
+            <div>
+              <strong>Pay securely</strong>
+              <span>MTN MoMo, AirtelTigo, Telecel Cash, or card</span>
+            </div>
+          </li>
+          <li>
+            <div class="sd-point-icon" aria-hidden="true"><i class="ph ph-check-circle"></i></div>
+            <div>
+              <strong>Instant confirmation</strong>
+              <span>Via SMS and in the app</span>
+            </div>
+          </li>
+        </ul>
+        <a href="index.html#waitlist" class="btn btn-primary">Join the Waitlist →</a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ─── Step 2 Detail ─── -->
+  <section id="step-2-detail" class="step-detail-section step-detail-section--dark" aria-labelledby="sd2-heading">
+    <div class="container step-detail-inner step-detail-inner--text-left">
+
+      <!-- LEFT: Text -->
+      <div class="sd-text reveal-left">
+        <span class="label sd-label--green">/ STEP 02</span>
+        <h2 id="sd2-heading" class="sd-heading sd-heading--light">Arrive &amp; Board</h2>
+        <p class="sd-body sd-body--light">
+          Head to your nearest GLYDE stop at your booked departure time.
+          Your digital pass lives in the app — just show it to the driver.
+          Buses depart on schedule. No last-minute scrambles.
+        </p>
+        <ul class="sd-points sd-points--light" aria-label="Step 2 details">
+          <li>
+            <div class="sd-point-icon sd-point-icon--dark" aria-hidden="true"><i class="ph ph-map-pin"></i></div>
+            <div>
+              <strong>Find your GLYDE stop</strong>
+              <span>Clearly marked, fixed locations</span>
+            </div>
+          </li>
+          <li>
+            <div class="sd-point-icon sd-point-icon--dark" aria-hidden="true"><i class="ph ph-clock"></i></div>
+            <div>
+              <strong>Arrive on time</strong>
+              <span>Buses depart exactly on schedule</span>
+            </div>
+          </li>
+          <li>
+            <div class="sd-point-icon sd-point-icon--dark" aria-hidden="true"><i class="ph ph-qr-code"></i></div>
+            <div>
+              <strong>Show your digital pass</strong>
+              <span>No printing needed — just your phone</span>
+            </div>
+          </li>
+          <li>
+            <div class="sd-point-icon sd-point-icon--dark" aria-hidden="true"><i class="ph ph-bus"></i></div>
+            <div>
+              <strong>Bus departs on time, every time</strong>
+              <span>No waiting for late passengers</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- RIGHT: Bus stop CSS placeholder with clip reveal -->
+      <div class="sd-visual sd-visual--clip" id="sd2-visual" role="img" aria-label="GLYDE bus stop">
+        <div class="sd-clip-wrap" id="sd2Clip">
+          <div class="sd-image sd-image--stop">
+            <!-- CSS bus stop illustration -->
+            <div class="sd-stop-scene" aria-hidden="true">
+              <!-- Sky background gradient handled by CSS -->
+              <!-- Bus stop sign -->
+              <div class="sds-sign-pole"></div>
+              <div class="sds-sign">
+                <div class="sds-sign-logo">GLYDE</div>
+                <div class="sds-sign-stop">BUS STOP</div>
+              </div>
+              <!-- Waiting area -->
+              <div class="sds-shelter">
+                <div class="sds-shelter-roof"></div>
+                <div class="sds-shelter-body"></div>
+              </div>
+              <!-- Stylized ground -->
+              <div class="sds-ground"></div>
+              <!-- Animated approaching bus indicator -->
+              <div class="sds-incoming">
+                <i class="ph ph-bus"></i>
+                <span>Bus arriving in 2 min</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ─── Step 3 Detail ─── -->
+  <section id="step-3-detail" class="step-detail-section" aria-labelledby="sd3-heading">
+    <div class="container step-detail-inner step-detail-inner--img-left">
+
+      <!-- LEFT: Destination CSS placeholder with clip reveal -->
+      <div class="sd-visual sd-visual--clip" id="sd3-visual" role="img" aria-label="Arriving at your destination">
+        <div class="sd-clip-wrap" id="sd3Clip">
+          <div class="sd-image sd-image--destination">
+            <!-- CSS destination scene -->
+            <div class="sd-dest-scene" aria-hidden="true">
+              <!-- Green checkmark centered -->
+              <div class="sdd-check">
+                <i class="ph ph-check-circle"></i>
+              </div>
+              <div class="sdd-text">
+                <div class="sdd-arrived">You've arrived.</div>
+                <div class="sdd-time">On time. Every time.</div>
+              </div>
+              <!-- Rating prompt -->
+              <div class="sdd-rate">
+                <span>Rate your ride</span>
+                <div class="sdd-stars">⭐⭐⭐⭐⭐</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Text -->
+      <div class="sd-text reveal-right">
+        <span class="label">/ STEP 03</span>
+        <h2 id="sd3-heading" class="sd-heading">Sit Back &amp; Arrive</h2>
+        <p class="sd-body">
+          GLYDE buses run on a fixed schedule across the full route. Relax in
+          a comfortable, air-conditioned seat. Track your journey live in the
+          app. Arrive at your destination as planned.
+        </p>
+        <ul class="sd-points" aria-label="Step 3 details">
+          <li>
+            <div class="sd-point-icon" aria-hidden="true"><i class="ph ph-wind"></i></div>
+            <div>
+              <strong>Air-conditioned comfort</strong>
+              <span>Every bus, every journey</span>
+            </div>
+          </li>
+          <li>
+            <div class="sd-point-icon" aria-hidden="true"><i class="ph ph-map-trifold"></i></div>
+            <div>
+              <strong>Live journey tracking</strong>
+              <span>Follow your route in real-time</span>
+            </div>
+          </li>
+          <li>
+            <div class="sd-point-icon" aria-hidden="true"><i class="ph ph-flag-checkered"></i></div>
+            <div>
+              <strong>Arrive on schedule</strong>
+              <span>No surprises, no delays</span>
+            </div>
+          </li>
+          <li>
+            <div class="sd-point-icon" aria-hidden="true"><i class="ph ph-star"></i></div>
+            <div>
+              <strong>Rate your ride</strong>
+              <span>Your feedback improves every journey</span>
+            </div>
+          </li>
+        </ul>
+        <a href="routes.html" class="btn btn-secondary" id="sd3-routes-link">Explore Our Routes →</a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       FAQ ACCORDION — DESIGN.md §9
+       8 questions from CONTENT.md Page 3
+       maxHeight JS expansion, chevron 180° rotation
+  ═══════════════════════════════════════════════════════════ -->
+  <section id="faq" class="faq-section section" aria-labelledby="faq-heading">
+    <div class="container">
+
+      <div class="faq-header reveal">
+        <span class="label">/ FREQUENTLY ASKED QUESTIONS</span>
+        <h2 id="faq-heading" class="faq-heading">Got questions?</h2>
+      </div>
+
+      <div class="faq-list" id="faqList" role="list">
+
+        <!-- Q1 -->
+        <div class="faq-item reveal" id="faq-1" role="listitem">
+          <button class="faq-question" id="faq-q1"
+                  aria-expanded="false"
+                  aria-controls="faq-a1">
+            <span>How do I pay for my ticket?</span>
+            <i class="ph ph-caret-down faq-chevron" aria-hidden="true"></i>
+          </button>
+          <div class="faq-answer" id="faq-a1" role="region" aria-labelledby="faq-q1">
+            <div class="faq-answer-inner">
+              You can pay using Mobile Money (MTN MoMo, AirtelTigo Money, Telecel Cash)
+              or by card through the GLYDE app. All payments are processed securely.
+            </div>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="faq-item reveal delay-1" id="faq-2" role="listitem">
+          <button class="faq-question" id="faq-q2"
+                  aria-expanded="false"
+                  aria-controls="faq-a2">
+            <span>Can I cancel or change my booking?</span>
+            <i class="ph ph-caret-down faq-chevron" aria-hidden="true"></i>
+          </button>
+          <div class="faq-answer" id="faq-a2" role="region" aria-labelledby="faq-q2">
+            <div class="faq-answer-inner">
+              Yes. You can cancel or change your booking up to 30 minutes before your
+              departure time. Cancellations within 30 minutes of departure are non-refundable.
+            </div>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="faq-item reveal delay-2" id="faq-3" role="listitem">
+          <button class="faq-question" id="faq-q3"
+                  aria-expanded="false"
+                  aria-controls="faq-a3">
+            <span>What happens if the bus is late?</span>
+            <i class="ph ph-caret-down faq-chevron" aria-hidden="true"></i>
+          </button>
+          <div class="faq-answer" id="faq-a3" role="region" aria-labelledby="faq-q3">
+            <div class="faq-answer-inner">
+              GLYDE operates on a fixed schedule. In the rare case of a delay, you'll be
+              notified via the app immediately with an updated arrival time.
+            </div>
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="faq-item reveal" id="faq-4" role="listitem">
+          <button class="faq-question" id="faq-q4"
+                  aria-expanded="false"
+                  aria-controls="faq-a4">
+            <span>How many seats are available per bus?</span>
+            <i class="ph ph-caret-down faq-chevron" aria-hidden="true"></i>
+          </button>
+          <div class="faq-answer" id="faq-a4" role="region" aria-labelledby="faq-q4">
+            <div class="faq-answer-inner">
+              Each GLYDE bus has a fixed passenger capacity. Once a departure is fully
+              booked, it shows as unavailable. We recommend booking in advance during
+              peak hours.
+            </div>
+          </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="faq-item reveal delay-1" id="faq-5" role="listitem">
+          <button class="faq-question" id="faq-q5"
+                  aria-expanded="false"
+                  aria-controls="faq-a5">
+            <span>Are the buses air-conditioned?</span>
+            <i class="ph ph-caret-down faq-chevron" aria-hidden="true"></i>
+          </button>
+          <div class="faq-answer" id="faq-a5" role="region" aria-labelledby="faq-q5">
+            <div class="faq-answer-inner">
+              Yes. All GLYDE buses are air-conditioned for passenger comfort.
+            </div>
+          </div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="faq-item reveal delay-2" id="faq-6" role="listitem">
+          <button class="faq-question" id="faq-q6"
+                  aria-expanded="false"
+                  aria-controls="faq-a6">
+            <span>Can I book for someone else?</span>
+            <i class="ph ph-caret-down faq-chevron" aria-hidden="true"></i>
+          </button>
+          <div class="faq-answer" id="faq-a6" role="region" aria-labelledby="faq-q6">
+            <div class="faq-answer-inner">
+              Yes. You can book a seat for another person. Their name and phone number
+              will be required at booking.
+            </div>
+          </div>
+        </div>
+
+        <!-- Q7 -->
+        <div class="faq-item reveal" id="faq-7" role="listitem">
+          <button class="faq-question" id="faq-q7"
+                  aria-expanded="false"
+                  aria-controls="faq-a7">
+            <span>What if I miss my bus?</span>
+            <i class="ph ph-caret-down faq-chevron" aria-hidden="true"></i>
+          </button>
+          <div class="faq-answer" id="faq-a7" role="region" aria-labelledby="faq-q7">
+            <div class="faq-answer-inner">
+              If you miss your scheduled departure, you can rebook on the next available
+              departure at the standard fare. Missed rides are non-refundable.
+            </div>
+          </div>
+        </div>
+
+        <!-- Q8 -->
+        <div class="faq-item reveal delay-1" id="faq-8" role="listitem">
+          <button class="faq-question" id="faq-q8"
+                  aria-expanded="false"
+                  aria-controls="faq-a8">
+            <span>When will the app be available?</span>
+            <i class="ph ph-caret-down faq-chevron" aria-hidden="true"></i>
+          </button>
+          <div class="faq-answer" id="faq-a8" role="region" aria-labelledby="faq-q8">
+            <div class="faq-answer-inner">
+              The GLYDE app is currently in final development and will be available on
+              iOS and Android soon. Join our waitlist to be notified first.
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!-- /faq-list -->
+
+      <!-- CTA below FAQ -->
+      <div class="faq-cta reveal">
+        <p>Still have questions?</p>
+        <a href="contact.html" class="btn btn-secondary" id="faq-contact-cta">Contact Us →</a>
+      </div>
+
+    </div>
+  </section>
+  <!-- /faq -->
+
+
+  <!-- Footer (injected by animations.js) -->
+  <footer id="footer" aria-label="Site footer"></footer>
+
+
+  <!-- ══════════════════════ SCRIPTS ══════════════════════ -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/pages/how-it-works.js"></script>
+</body>
+</html>

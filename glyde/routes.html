@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GLYDE Routes — Accra to Dodowa &amp; Oyarifa</title>
+  <meta name="description" content="GLYDE currently operates two routes: Accra–Dodowa and Accra–Oyarifa. View stops, schedules, and fares.">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/pages/routes.css">
+</head>
+<body>
+
+  <!-- Page Transition Overlay -->
+  <div id="page-transition" aria-hidden="true"></div>
+
+  <!-- Navbar (injected by nav.js) -->
+  <nav id="navbar" aria-label="Main navigation"></nav>
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       PAGE HERO — DESIGN.md §10 — Dark bg
+  ═══════════════════════════════════════════════════════════ -->
+  <section id="routes-hero" class="routes-hero" aria-labelledby="routes-hero-heading">
+    <div class="container routes-hero-inner">
+      <div class="routes-hero-content">
+
+        <!-- Breadcrumb -->
+        <nav class="hiw-breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">Routes</span>
+        </nav>
+
+        <h1 id="routes-hero-heading" class="routes-hero-heading anim-hero anim-delay-0">
+          Our Routes
+        </h1>
+
+        <div class="routes-hero-badge anim-hero anim-delay-200">
+          <span class="live-dot" aria-hidden="true"></span>
+          2 Active Routes
+        </div>
+
+        <p class="routes-hero-subtitle anim-hero anim-delay-400">
+          Scheduled, reliable, and expanding. Here's where we operate today.
+        </p>
+
+      </div>
+    </div>
+  </section>
+  <!-- /routes-hero -->
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       ROUTE DETAIL CARDS — DESIGN.md §10
+  ═══════════════════════════════════════════════════════════ -->
+  <section class="route-cards-section" aria-label="Route Details">
+    <div class="container route-cards-inner">
+
+      <!-- ── Route 1: Accra–Dodowa ── -->
+      <div id="route-dodowa" class="route-card-full reveal">
+        
+        <!-- Header -->
+        <div class="route-card-header">
+          <div class="rc-header-left">
+            <h2 class="rc-title">Accra &rarr; Dodowa</h2>
+            <span class="rc-badge">ACTIVE</span>
+          </div>
+          <div class="rc-header-right">
+            <div class="rc-stat">
+              <i class="ph ph-clock"></i> ~45 minutes
+            </div>
+            <div class="rc-stat">
+              <i class="ph ph-path"></i> ~42 km
+            </div>
+          </div>
+        </div>
+
+        <!-- Body -->
+        <div class="route-card-body">
+          
+          <!-- Left: Stop Timeline -->
+          <div class="rc-body-left">
+            <h3 class="rc-col-title">Route Stops</h3>
+            <div class="stop-timeline">
+              <div class="stop-line" aria-hidden="true"></div>
+              
+              <div class="stop-item">
+                <div class="stop-dot stop-dot--start"></div>
+                <div class="stop-info">
+                  <span class="stop-name">Accra</span>
+                  <span class="stop-note">Start</span>
+                </div>
+              </div>
+              
+              <div class="stop-item">
+                <div class="stop-dot"></div>
+                <div class="stop-info">
+                  <span class="stop-name">Airport</span>
+                </div>
+              </div>
+              
+              <div class="stop-item">
+                <div class="stop-dot"></div>
+                <div class="stop-info">
+                  <span class="stop-name">Madina</span>
+                </div>
+              </div>
+              
+              <div class="stop-item">
+                <div class="stop-dot"></div>
+                <div class="stop-info">
+                  <span class="stop-name">Adenta Barrier</span>
+                </div>
+              </div>
+              
+              <div class="stop-item">
+                <div class="stop-dot stop-dot--end"></div>
+                <div class="stop-info">
+                  <span class="stop-name">Dodowa</span>
+                  <span class="stop-note">End</span>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+
+          <!-- Right: Route Info Grid -->
+          <div class="rc-body-right">
+             <h3 class="rc-col-title">Route Info</h3>
+             <div class="rc-info-grid">
+               <div class="rc-info-item">
+                 <span class="rc-info-label">Direction</span>
+                 <span class="rc-info-value">Bidirectional</span>
+               </div>
+               <div class="rc-info-item">
+                 <span class="rc-info-label">Operating Hours</span>
+                 <span class="rc-info-value">6:00 AM – 9:00 PM</span>
+               </div>
+               <div class="rc-info-item">
+                 <span class="rc-info-label">Frequency</span>
+                 <span class="rc-info-value">Every 30 minutes</span>
+               </div>
+               <div class="rc-info-item">
+                 <span class="rc-info-label">Days</span>
+                 <span class="rc-info-value">Monday – Sunday</span>
+               </div>
+               <div class="rc-info-item rc-info-item--full">
+                 <span class="rc-info-label">Fare</span>
+                 <span class="rc-info-value">Competitive. Shown in-app at booking.</span>
+               </div>
+             </div>
+             
+             <a href="index.html#waitlist" class="btn btn-secondary rc-cta">Join Waitlist for this Route</a>
+          </div>
+
+        </div>
+      </div>
+      <!-- /route-dodowa -->
+
+      <!-- ── Route 2: Accra–Oyarifa ── -->
+      <div id="route-oyarifa" class="route-card-full reveal delay-1">
+        
+        <!-- Header -->
+        <div class="route-card-header">
+          <div class="rc-header-left">
+            <h2 class="rc-title">Accra &rarr; Oyarifa</h2>
+            <span class="rc-badge">ACTIVE</span>
+          </div>
+          <div class="rc-header-right">
+            <div class="rc-stat">
+              <i class="ph ph-clock"></i> ~35 minutes
+            </div>
+            <div class="rc-stat">
+              <i class="ph ph-path"></i> ~32 km
+            </div>
+          </div>
+        </div>
+
+        <!-- Body -->
+        <div class="route-card-body">
+          
+          <!-- Left: Stop Timeline -->
+          <div class="rc-body-left">
+            <h3 class="rc-col-title">Route Stops</h3>
+            <div class="stop-timeline">
+              <div class="stop-line" aria-hidden="true"></div>
+              
+              <div class="stop-item">
+                <div class="stop-dot stop-dot--start"></div>
+                <div class="stop-info">
+                  <span class="stop-name">Accra</span>
+                  <span class="stop-note">Start</span>
+                </div>
+              </div>
+              
+              <div class="stop-item">
+                <div class="stop-dot"></div>
+                <div class="stop-info">
+                  <span class="stop-name">Airport</span>
+                </div>
+              </div>
+              
+              <div class="stop-item">
+                <div class="stop-dot"></div>
+                <div class="stop-info">
+                  <span class="stop-name">University of Ghana — Legon</span>
+                </div>
+              </div>
+              
+              <div class="stop-item">
+                <div class="stop-dot"></div>
+                <div class="stop-info">
+                  <span class="stop-name">Adenta</span>
+                </div>
+              </div>
+              
+              <div class="stop-item">
+                <div class="stop-dot stop-dot--end"></div>
+                <div class="stop-info">
+                  <span class="stop-name">Oyarifa</span>
+                  <span class="stop-note">End</span>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+
+          <!-- Right: Route Info Grid -->
+          <div class="rc-body-right">
+             <h3 class="rc-col-title">Route Info</h3>
+             <div class="rc-info-grid">
+               <div class="rc-info-item">
+                 <span class="rc-info-label">Direction</span>
+                 <span class="rc-info-value">Bidirectional</span>
+               </div>
+               <div class="rc-info-item">
+                 <span class="rc-info-label">Operating Hours</span>
+                 <span class="rc-info-value">6:00 AM – 9:00 PM</span>
+               </div>
+               <div class="rc-info-item">
+                 <span class="rc-info-label">Frequency</span>
+                 <span class="rc-info-value">Every 30 minutes</span>
+               </div>
+               <div class="rc-info-item">
+                 <span class="rc-info-label">Days</span>
+                 <span class="rc-info-value">Monday – Sunday</span>
+               </div>
+               <div class="rc-info-item rc-info-item--full">
+                 <span class="rc-info-label">Fare</span>
+                 <span class="rc-info-value">Competitive. Shown in-app at booking.</span>
+               </div>
+             </div>
+
+             <a href="index.html#waitlist" class="btn btn-secondary rc-cta">Join Waitlist for this Route</a>
+          </div>
+
+        </div>
+      </div>
+      <!-- /route-oyarifa -->
+
+    </div>
+  </section>
+  <!-- /route-cards-section -->
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       ROUTE MAP — DESIGN.md §10
+  ═══════════════════════════════════════════════════════════ -->
+  <section id="route-map" class="route-map-section section" aria-label="Route Map">
+    <div class="container">
+      <div class="route-map-header reveal">
+        <span class="label">/ SYSTEM MAP</span>
+        <h2 class="map-heading">Greater Accra Network</h2>
+      </div>
+
+      <div class="map-container reveal delay-1" id="networkMap">
+        <!-- Stylized SVG Map -->
+        <svg viewBox="0 0 800 600" class="network-svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice">
+          
+          <!-- Stylized Coastline / Region Outline -->
+          <path d="M 50 550 Q 200 500 400 520 T 750 500" stroke="rgba(0,0,0,0.1)" stroke-width="2" fill="none"/>
+          <path d="M -50 300 Q 150 150 400 100 T 850 200 L 850 650 L -50 650 Z" fill="rgba(0,230,77,0.02)"/>
+
+          <!-- Map Grid -->
+          <g stroke="rgba(0,0,0,0.03)" stroke-width="1">
+            <line x1="0" y1="100" x2="800" y2="100"/>
+            <line x1="0" y1="200" x2="800" y2="200"/>
+            <line x1="0" y1="300" x2="800" y2="300"/>
+            <line x1="0" y1="400" x2="800" y2="400"/>
+            <line x1="0" y1="500" x2="800" y2="500"/>
+            <line x1="200" y1="0" x2="200" y2="600"/>
+            <line x1="400" y1="0" x2="400" y2="600"/>
+            <line x1="600" y1="0" x2="600" y2="600"/>
+          </g>
+
+          <!-- Central Hub: Accra -->
+          <circle cx="300" cy="450" r="12" fill="var(--charcoal)"/>
+          <circle cx="300" cy="450" r="6" fill="var(--green)"/>
+          <text x="320" y="455" class="svg-label">Accra (Hub)</text>
+
+          <!-- Route 1: Dodowa -->
+          <!-- Path length ~ 500 for stroke dash array -->
+          <path id="path-dodowa" class="svg-route-path" 
+                d="M 300 450 L 350 380 L 450 300 L 520 200 L 600 100" />
+          
+          <circle cx="350" cy="380" r="6" class="svg-stop"/>
+          <text x="365" y="385" class="svg-label">Airport</text>
+          
+          <circle cx="450" cy="300" r="6" class="svg-stop"/>
+          <text x="465" y="305" class="svg-label">Madina</text>
+          
+          <circle cx="520" cy="200" r="6" class="svg-stop"/>
+          <text x="535" y="205" class="svg-label">Adenta</text>
+
+          <circle cx="600" cy="100" r="10" fill="var(--charcoal)"/>
+          <text x="620" y="105" class="svg-label svg-label--bold">Dodowa</text>
+
+          <!-- Route 2: Oyarifa -->
+          <!-- Path length ~ 400 -->
+          <path id="path-oyarifa" class="svg-route-path" 
+                d="M 300 450 L 330 350 L 400 250 L 460 180 L 520 80" />
+
+          <!-- Airport is shared -->
+          <circle cx="400" cy="250" r="6" class="svg-stop"/>
+          <text x="415" y="255" class="svg-label">Legon</text>
+
+          <!-- Adenta is shared, skip text to avoid overlap -->
+          <circle cx="460" cy="180" r="6" class="svg-stop"/>
+          
+          <circle cx="520" cy="80" r="10" fill="var(--charcoal)"/>
+          <text x="540" y="85" class="svg-label svg-label--bold">Oyarifa</text>
+
+        </svg>
+      </div>
+    </div>
+  </section>
+  <!-- /route-map -->
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       SCHEDULE TABLE — DESIGN.md §10
+  ═══════════════════════════════════════════════════════════ -->
+  <section id="schedule" class="schedule-section section" aria-labelledby="schedule-heading">
+    <div class="container">
+      
+      <div class="schedule-header reveal">
+        <span class="label">/ DEPARTURE TIMES</span>
+        <h2 id="schedule-heading" class="schedule-heading">Sample Schedules</h2>
+        <p class="schedule-subtitle">Current active departure times from Accra. Full live schedules are available in the GLYDE app.</p>
+      </div>
+
+      <div class="schedule-table-wrap reveal delay-1">
+        <table class="schedule-table">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Route</th>
+              <th>Direction</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>6:00 AM</td>
+              <td><strong>Accra &rarr; Dodowa</strong></td>
+              <td>Outbound</td>
+              <td><span class="status-badge status-active">Active</span></td>
+            </tr>
+            <tr>
+              <td>6:00 AM</td>
+              <td><strong>Accra &rarr; Oyarifa</strong></td>
+              <td>Outbound</td>
+              <td><span class="status-badge status-active">Active</span></td>
+            </tr>
+            <tr>
+              <td>6:30 AM</td>
+              <td><strong>Accra &rarr; Dodowa</strong></td>
+              <td>Outbound</td>
+              <td><span class="status-badge status-active">Active</span></td>
+            </tr>
+            <tr>
+              <td>6:30 AM</td>
+              <td><strong>Accra &rarr; Oyarifa</strong></td>
+              <td>Outbound</td>
+              <td><span class="status-badge status-active">Active</span></td>
+            </tr>
+            <tr>
+              <td>7:00 AM</td>
+              <td><strong>Accra &rarr; Dodowa</strong></td>
+              <td>Outbound</td>
+              <td><span class="status-badge status-active">Active</span></td>
+            </tr>
+            <tr>
+              <td>7:00 AM</td>
+              <td><strong>Accra &rarr; Oyarifa</strong></td>
+              <td>Outbound</td>
+              <td><span class="status-badge status-active">Active</span></td>
+            </tr>
+            <tr>
+              <td>7:30 AM</td>
+              <td><strong>Accra &rarr; Dodowa</strong></td>
+              <td>Outbound</td>
+              <td><span class="status-badge status-active">Active</span></td>
+            </tr>
+            <tr>
+              <td>7:30 AM</td>
+              <td><strong>Accra &rarr; Oyarifa</strong></td>
+              <td>Outbound</td>
+              <td><span class="status-badge status-active">Active</span></td>
+            </tr>
+            <tr>
+              <td>8:00 AM</td>
+              <td><strong>Accra &rarr; Dodowa</strong></td>
+              <td>Outbound</td>
+              <td><span class="status-badge status-active">Active</span></td>
+            </tr>
+          </tbody>
+        </table>
+        
+
+      </div>
+
+    </div>
+  </section>
+  <!-- /schedule -->
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       COMING SOON TEASER — CONTENT.md Page 4
+  ═══════════════════════════════════════════════════════════ -->
+  <section id="coming-soon-routes" class="teaser-section section" aria-labelledby="teaser-heading">
+    <div class="container teaser-inner reveal">
+       
+       <h2 id="teaser-heading" class="teaser-heading">Expanding across Greater Accra.</h2>
+       <p class="teaser-body">We're already planning our next routes. Sign up to be notified when we open a route near you.</p>
+
+       <div class="teaser-routes">
+         <div class="teaser-card">Accra &rarr; Tema</div>
+         <div class="teaser-card">Accra &rarr; Kasoa</div>
+         <div class="teaser-card">Accra &rarr; Nsawam</div>
+       </div>
+
+       <a href="contact.html" class="btn btn-secondary">Suggest a Route &rarr;</a>
+
+    </div>
+  </section>
+  <!-- /coming-soon-routes -->
+
+  <!-- Footer (injected by animations.js) -->
+  <footer id="footer" aria-label="Site footer"></footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/pages/routes.js"></script>
+</body>
+</html>

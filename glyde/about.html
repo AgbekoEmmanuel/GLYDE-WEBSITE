@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About GLYDE — Our Story & Mission</title>
+  <meta name="description" content="GLYDE is building Ghana's first tech-enabled scheduled bus network. Learn about our mission, story, and values.">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/pages/about.css">
+</head>
+<body>
+
+  <!-- PAGE TRANSITION OVERLAY -->
+  <div class="page-transition" id="page-transition"></div>
+
+  <!-- NAVBAR (Injected via JS) -->
+  <div id="navbar"></div>
+
+  <!-- 1. PAGE HERO -->
+  <header class="about-hero">
+    <div class="container about-hero-inner">
+      <h1 class="about-hero-title anim-hero" style="transition-delay: 0.1s">Who We Are</h1>
+      <p class="about-hero-subtitle anim-hero" style="transition-delay: 0.2s">
+        A team with a big mission — making commuting in Accra safer, faster, and more dignified.
+      </p>
+    </div>
+  </header>
+
+  <!-- 2. MISSION BLOCK -->
+  <section class="mission-section reveal">
+    <div class="container">
+      <blockquote class="mission-quote">
+        "We're building Ghana's first tech-enabled scheduled bus network — where every ride is safe, on time, and worth it."
+      </blockquote>
+      <div class="mission-stats">
+        <div class="m-stat reveal-scale delay-1">
+          <span class="m-stat-value">2026</span>
+          <span class="m-stat-label">Year Founded</span>
+        </div>
+        <div class="m-stat reveal-scale delay-2">
+          <span class="m-stat-value">Accra</span>
+          <span class="m-stat-label">Where We Started</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. STORY SECTION -->
+  <section class="story-section">
+    <div class="container">
+      <div class="story-grid">
+        <div class="story-content reveal-left">
+          <span class="section-tag">/ Our Story</span>
+          <h2 class="story-heading">We've been stuck in the same traffic.</h2>
+          <div class="story-paragraphs">
+            <p>
+              GLYDE was born from a simple frustration — the daily chaos of commuting in Accra. Overloaded trotros, unpredictable waits, and zero accountability. We knew there had to be a better way.
+            </p>
+            <p>
+              We started by asking commuters what they actually needed: reliability, safety, and a price they could afford. Not a luxury product. Not a premium service. Just a good, dependable bus that shows up when it says it will.
+            </p>
+            <p>
+              So we built it. A tech-enabled bus network with scheduled departures, app-based booking, vetted drivers, and a commitment to safety at every level. Starting with Accra, growing with Ghana.
+            </p>
+          </div>
+        </div>
+
+        <div class="story-visual reveal-right delay-1">
+          <!-- CSS gradient placeholder + hover badge -->
+          <div class="story-image-wrap" role="img" aria-label="Accra, Ghana — GLYDE's home city">
+            <div class="story-badge">
+              <span class="sb-title">GLYDE</span>
+              <span class="sb-subtitle">Made in Accra</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. VALUES GRID -->
+  <section class="values-section">
+    <div class="container">
+      <div class="values-header reveal">
+        <span class="section-tag">/ What We Stand For</span>
+        <h2 class="values-heading">Our values aren't on a wall. They're on the road.</h2>
+      </div>
+
+      <div class="values-grid">
+        <!-- Value 1 -->
+        <div class="value-card reveal delay-1">
+          <div class="value-emoji" aria-hidden="true">🛡️</div>
+          <h3 class="value-title">Safety First</h3>
+          <p class="value-desc">Every decision, every route, every driver — safety is the first filter.</p>
+        </div>
+        <!-- Value 2 -->
+        <div class="value-card reveal delay-2">
+          <div class="value-emoji" aria-hidden="true">⏰</div>
+          <h3 class="value-title">Reliability</h3>
+          <p class="value-desc">We run on schedule. If we say 6:45, we mean 6:45.</p>
+        </div>
+        <!-- Value 3 -->
+        <div class="value-card reveal delay-3">
+          <div class="value-emoji" aria-hidden="true">📱</div>
+          <h3 class="value-title">Tech-Driven</h3>
+          <p class="value-desc">Technology isn't a gimmick. It's how we serve you better every day.</p>
+        </div>
+        <!-- Value 4 -->
+        <div class="value-card reveal delay-1">
+          <div class="value-emoji" aria-hidden="true">🤝</div>
+          <h3 class="value-title">Respect</h3>
+          <p class="value-desc">Every passenger deserves to be treated with dignity. Full stop.</p>
+        </div>
+        <!-- Value 5 -->
+        <div class="value-card reveal delay-2">
+          <div class="value-emoji" aria-hidden="true"><img src="assets/ghana%20flag.jpg" alt="Ghana flag" style="height: 1.5em; border-radius: 4px; vertical-align: middle;"></div>
+          <h3 class="value-title">Built for Ghana</h3>
+          <p class="value-desc">We're not copying another market. We're solving Accra's specific problems.</p>
+        </div>
+        <!-- Value 6 -->
+        <div class="value-card reveal delay-3">
+          <div class="value-emoji" aria-hidden="true">🌱</div>
+          <h3 class="value-title">Built to Grow</h3>
+          <p class="value-desc">We start small and get it right. Then we scale.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- FOOTER (Injected via JS) -->
+  <footer class="site-footer" id="footer"></footer>
+
+  <!-- Scripts -->
+  <script src="js/nav.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/pages/about.js"></script>
+</body>
+</html>

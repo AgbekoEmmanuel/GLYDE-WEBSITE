@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact GLYDE — Get in Touch</title>
+  <meta name="description" content="Questions, partnerships, route suggestions or feedback — we'd love to hear from you. Contact GLYDE today.">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/pages/contact.css">
+</head>
+<body class="contact-page">
+
+  <div id="page-transition" aria-hidden="true"></div>
+
+  <nav id="navbar" aria-label="Main navigation"></nav>
+
+  <!-- ═══════════════════════════════════════════════════════
+       PAGE HERO (Light) — DESIGN.md §12
+  ═══════════════════════════════════════════════════════════ -->
+  <section id="contact-hero" class="contact-hero section" aria-labelledby="contact-heading">
+    <div class="container contact-hero-inner">
+      <div class="contact-hero-content">
+        <nav class="hiw-breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">Contact</span>
+        </nav>
+        <h1 id="contact-heading" class="contact-heading anim-hero anim-delay-0">Let's Talk</h1>
+        <p class="contact-subtitle anim-hero anim-delay-200">
+          Questions, feedback, partnerships, or just wanting to say hi — we're here.
+        </p>
+      </div>
+    </div>
+  </section>
+  <!-- /contact-hero -->
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       MAIN CONTACT BLOCK (2-Col Layout) — DESIGN.md §12
+  ═══════════════════════════════════════════════════════════ -->
+  <section id="contact-main" class="contact-main-section section">
+    <div class="container contact-main-inner">
+
+      <!-- LEFT: Contact Info -->
+      <div class="cm-left reveal-left">
+        
+        <div class="contact-info-list">
+          
+          <div class="contact-info-item">
+            <div class="ci-icon"><i class="ph ph-phone"></i></div>
+            <div class="ci-text">
+              <span class="ci-label">Call Us</span>
+              <span class="ci-value">+233 XX XXX XXXX</span>
+            </div>
+          </div>
+          
+          <div class="contact-info-item">
+            <div class="ci-icon"><i class="ph ph-envelope-simple"></i></div>
+            <div class="ci-text">
+              <span class="ci-label">Email Us</span>
+              <span class="ci-value">hello@glyde.com.gh</span>
+            </div>
+          </div>
+          
+          <div class="contact-info-item">
+            <div class="ci-icon"><i class="ph ph-map-pin"></i></div>
+            <div class="ci-text">
+              <span class="ci-label">Find Us</span>
+              <span class="ci-value">Accra, Ghana</span>
+            </div>
+          </div>
+          
+          <div class="contact-info-item">
+            <div class="ci-icon"><i class="ph ph-clock"></i></div>
+            <div class="ci-text">
+              <span class="ci-label">Hours</span>
+              <span class="ci-value">Monday – Friday, 8:00 AM – 6:00 PM</span>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <div class="ci-icon"><i class="ph ph-share-network"></i></div>
+            <div class="ci-text">
+              <span class="ci-label">Follow Us</span>
+              <div class="ci-social-links">
+                <a href="#" class="social-btn" aria-label="Instagram"><i class="ph ph-instagram-logo"></i></a>
+                <a href="#" class="social-btn" aria-label="Twitter"><i class="ph ph-twitter-logo"></i></a>
+                <a href="#" class="social-btn" aria-label="LinkedIn"><i class="ph ph-linkedin-logo"></i></a>
+                <a href="#" class="social-btn" aria-label="WhatsApp"><i class="ph ph-whatsapp-logo"></i></a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- RIGHT: Contact Form -->
+      <div class="cm-right reveal-right delay-1">
+        <div class="contact-form-card" id="contactFormCard">
+          <h2 class="cf-heading">Send us a message</h2>
+          
+          <form class="contact-form" id="contactForm" novalidate aria-label="Contact form">
+            
+            <div class="cf-row">
+              <div class="cf-group">
+                <label for="cf-name" class="cf-label">Full Name</label>
+                <input type="text" id="cf-name" class="cf-input" placeholder="Kwame Mensah" required>
+              </div>
+              <div class="cf-group">
+                <label for="cf-email" class="cf-label">Email Address</label>
+                <input type="email" id="cf-email" class="cf-input" placeholder="kwame@example.com" required>
+              </div>
+            </div>
+
+            <div class="cf-row">
+              <div class="cf-group">
+                <label for="cf-phone" class="cf-label">Phone Number <span>(optional)</span></label>
+                <input type="tel" id="cf-phone" class="cf-input" placeholder="+233...">
+              </div>
+              <div class="cf-group">
+                <label for="cf-subject" class="cf-label">Subject</label>
+                <select id="cf-subject" class="cf-select" required>
+                  <option value="" disabled selected>Select a subject...</option>
+                  <option value="General Enquiry">General Enquiry</option>
+                  <option value="Route Suggestion">Route Suggestion</option>
+                  <option value="Partnership / Corporate">Partnership / Corporate</option>
+                  <option value="Driver Application">Driver Application</option>
+                  <option value="Complaint / Feedback">Complaint / Feedback</option>
+                  <option value="Media / Press">Media / Press</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="cf-group">
+              <label for="cf-message" class="cf-label">Message</label>
+              <textarea id="cf-message" class="cf-textarea" placeholder="How can we help?" minlength="20" required></textarea>
+            </div>
+
+            <button type="submit" class="cf-submit btn" id="cfSubmitBtn">
+              <span class="cf-submit-text">Send Message &rarr;</span>
+            </button>
+
+            <!-- Success State -->
+            <div class="cf-success" id="cfSuccess" aria-hidden="true">
+              <div class="cfs-icon"><i class="ph ph-check-circle"></i></div>
+              <div class="cfs-text">Message received! We'll get back to you within 24 hours.</div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <!-- /contact-main -->
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       CORPORATE SECTION — CONTENT.md Page 6
+  ═══════════════════════════════════════════════════════════ -->
+  <section id="corporate" class="corporate-section section" aria-labelledby="corporate-heading">
+    <div class="container corporate-inner reveal">
+      
+      <div class="corp-left">
+        <span class="label">/ CORPORATE &amp; FLEET</span>
+        <h2 id="corporate-heading" class="corp-heading">Moving your team?</h2>
+        <p class="corp-body">GLYDE offers dedicated corporate transport solutions for businesses that need reliable, scheduled staff transport across our routes. Get in touch to discuss a custom arrangement.</p>
+      </div>
+
+      <div class="corp-right">
+        <button class="btn btn-primary corp-cta" id="corpCtaBtn">Talk to our corporate team &rarr;</button>
+      </div>
+
+    </div>
+  </section>
+  <!-- /corporate -->
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       MAP PLACEHOLDER — DESIGN.md §12
+  ═══════════════════════════════════════════════════════════ -->
+  <section id="contact-map" class="contact-map-section section" aria-label="Office Location Map">
+    <div class="container">
+      <div class="map-placeholder reveal delay-1">
+        <div class="map-pin-anim">
+          <div class="pin-pulse"></div>
+          <i class="ph-fill ph-map-pin"></i>
+        </div>
+        <div class="map-overlay-text">Accra, Ghana</div>
+      </div>
+    </div>
+  </section>
+  <!-- /contact-map -->
+
+  <footer id="footer" aria-label="Site footer"></footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/pages/contact.js"></script>
+</body>
+</html>
