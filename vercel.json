@@ -1,5 +1,10 @@
 {
   "framework": null,
   "buildCommand": null,
-  "outputDirectory": "glyde"
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/glyde/$1"
+    }
+  ]
 }
