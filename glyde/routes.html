@@ -283,63 +283,7 @@
       </div>
 
       <div class="map-container reveal delay-1" id="networkMap">
-        <!-- Stylized SVG Map -->
-        <svg viewBox="0 0 800 600" class="network-svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice">
-          
-          <!-- Stylized Coastline / Region Outline -->
-          <path d="M 50 550 Q 200 500 400 520 T 750 500" stroke="rgba(0,0,0,0.1)" stroke-width="2" fill="none"/>
-          <path d="M -50 300 Q 150 150 400 100 T 850 200 L 850 650 L -50 650 Z" fill="rgba(0,230,77,0.02)"/>
-
-          <!-- Map Grid -->
-          <g stroke="rgba(0,0,0,0.03)" stroke-width="1">
-            <line x1="0" y1="100" x2="800" y2="100"/>
-            <line x1="0" y1="200" x2="800" y2="200"/>
-            <line x1="0" y1="300" x2="800" y2="300"/>
-            <line x1="0" y1="400" x2="800" y2="400"/>
-            <line x1="0" y1="500" x2="800" y2="500"/>
-            <line x1="200" y1="0" x2="200" y2="600"/>
-            <line x1="400" y1="0" x2="400" y2="600"/>
-            <line x1="600" y1="0" x2="600" y2="600"/>
-          </g>
-
-          <!-- Central Hub: Accra -->
-          <circle cx="300" cy="450" r="12" fill="var(--charcoal)"/>
-          <circle cx="300" cy="450" r="6" fill="var(--green)"/>
-          <text x="320" y="455" class="svg-label">Accra (Hub)</text>
-
-          <!-- Route 1: Dodowa -->
-          <!-- Path length ~ 500 for stroke dash array -->
-          <path id="path-dodowa" class="svg-route-path" 
-                d="M 300 450 L 350 380 L 450 300 L 520 200 L 600 100" />
-          
-          <circle cx="350" cy="380" r="6" class="svg-stop"/>
-          <text x="365" y="385" class="svg-label">Airport</text>
-          
-          <circle cx="450" cy="300" r="6" class="svg-stop"/>
-          <text x="465" y="305" class="svg-label">Madina</text>
-          
-          <circle cx="520" cy="200" r="6" class="svg-stop"/>
-          <text x="535" y="205" class="svg-label">Adenta</text>
-
-          <circle cx="600" cy="100" r="10" fill="var(--charcoal)"/>
-          <text x="620" y="105" class="svg-label svg-label--bold">Dodowa</text>
-
-          <!-- Route 2: Oyarifa -->
-          <!-- Path length ~ 400 -->
-          <path id="path-oyarifa" class="svg-route-path" 
-                d="M 300 450 L 330 350 L 400 250 L 460 180 L 520 80" />
-
-          <!-- Airport is shared -->
-          <circle cx="400" cy="250" r="6" class="svg-stop"/>
-          <text x="415" y="255" class="svg-label">Legon</text>
-
-          <!-- Adenta is shared, skip text to avoid overlap -->
-          <circle cx="460" cy="180" r="6" class="svg-stop"/>
-          
-          <circle cx="520" cy="80" r="10" fill="var(--charcoal)"/>
-          <text x="540" y="85" class="svg-label svg-label--bold">Oyarifa</text>
-
-        </svg>
+        <img src="assets/accra-map.png" alt="Map of Accra, Ghana" style="width: 100%; height: auto; display: block;">
       </div>
     </div>
   </section>
