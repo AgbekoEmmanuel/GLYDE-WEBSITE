@@ -537,108 +537,84 @@
   text-align: center;
 }
 
-/* ── Bus stop scene placeholder (Step 2) ── */
-.sd-image--stop {
-  background:
-    linear-gradient(180deg, #e8f4ff 0%, #c5dff5 50%, #b0d4ee 100%);
+/* ── Digital Pass mockup (Step 2) ── */
+.sd-image--pass {
+  background: linear-gradient(155deg, #001a0d 0%, #000d08 100%);
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
-  padding: 0;
+  padding: 32px;
 }
 
-.sd-stop-scene {
-  width: 100%;
-  height: 100%;
-  position: relative;
+.sdm-screen--pass {
+  background: #f8f9fa; /* Light theme for the boarding pass */
+  padding: 44px 16px 20px;
+}
+
+.sdm-screen--pass .sdm-statusbar {
+  color: var(--charcoal);
+}
+
+.sdm-pass-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.08);
 }
 
-.sds-sign-pole {
-  position: absolute;
-  left: 35%;
-  top: 15%;
-  width: 6px;
-  height: 55%;
-  background: #555;
-  border-radius: 3px;
-}
-
-.sds-sign {
-  position: absolute;
-  left: calc(35% - 32px);
-  top: 12%;
-  width: 80px;
-  background: var(--green);
-  border-radius: 6px;
-  padding: 8px 6px;
+.sdm-pass-header {
   text-align: center;
 }
 
-.sds-sign-logo {
+.sdm-pass-title {
   font-size: 10px;
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 2px;
-  color: var(--charcoal);
-  line-height: 1;
+  color: var(--mid-gray);
+  margin-top: 4px;
 }
 
-.sds-sign-stop {
-  font-size: 7px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  color: rgba(0,0,0,0.5);
-  margin-top: 3px;
-}
-
-.sds-shelter {
-  position: absolute;
-  right: 10%;
-  bottom: 20%;
-  width: 140px;
-}
-
-.sds-shelter-roof {
-  height: 12px;
-  background: rgba(0,230,77,0.7);
-  border-radius: 4px 4px 0 0;
-  border-bottom: 2px solid rgba(0,100,30,0.4);
-}
-
-.sds-shelter-body {
-  height: 60px;
-  background: rgba(255,255,255,0.4);
-  backdrop-filter: blur(4px);
-  border: 1px solid rgba(255,255,255,0.6);
-  border-top: none;
-}
-
-.sds-ground {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 20%;
-  background: linear-gradient(180deg, #6b8a6e 0%, #4a6b4d 100%);
-}
-
-.sds-incoming {
-  position: absolute;
-  bottom: 23%;
-  left: 8%;
+.sdm-pass-qr {
   display: flex;
-  align-items: center;
-  gap: 6px;
-  background: var(--charcoal);
-  color: var(--green);
-  font-size: 10px;
+  justify-content: center;
+  padding: 16px;
+  background: var(--white);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 12px;
+}
+
+.sdm-pass-qr i {
+  font-size: 110px;
+  color: var(--charcoal);
+}
+
+.sdm-pass-details {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-top: 2px dashed rgba(0,0,0,0.08);
+  padding-top: 16px;
+}
+
+.sdm-pass-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+}
+
+.sdm-pass-row span {
+  color: var(--mid-gray);
+  font-weight: 500;
+}
+
+.sdm-pass-row strong {
+  color: var(--charcoal);
   font-weight: 700;
-  padding: 6px 10px;
-  border-radius: var(--radius-pill);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  white-space: nowrap;
 }
 
 /* ── Destination scene placeholder (Step 3) ── */

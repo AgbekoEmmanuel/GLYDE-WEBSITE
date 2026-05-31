@@ -498,3 +498,13 @@
   font-weight: 600;
   font-size: 16px;
 }
+
+.teaser-section .btn-secondary {
+  color: var(--white);
+}
+
+.teaser-section .btn-secondary:hover {
+  background: var(--white);
+  color: var(--charcoal);
+  border-color: var(--white);
+}
