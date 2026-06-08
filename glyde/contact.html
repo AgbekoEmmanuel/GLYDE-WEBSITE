@@ -113,22 +113,22 @@
             <div class="cf-row">
               <div class="cf-group">
                 <label for="cf-name" class="cf-label">Full Name</label>
-                <input type="text" id="cf-name" class="cf-input" placeholder="Kwame Mensah" required>
+                <input type="text" id="cf-name" name="name" class="cf-input" placeholder="Kwame Mensah" required>
               </div>
               <div class="cf-group">
                 <label for="cf-email" class="cf-label">Email Address</label>
-                <input type="email" id="cf-email" class="cf-input" placeholder="kwame@example.com" required>
+                <input type="email" id="cf-email" name="email" class="cf-input" placeholder="kwame@example.com" required>
               </div>
             </div>
 
             <div class="cf-row">
               <div class="cf-group">
                 <label for="cf-phone" class="cf-label">Phone Number <span>(optional)</span></label>
-                <input type="tel" id="cf-phone" class="cf-input" placeholder="+233...">
+                <input type="tel" id="cf-phone" name="phone" class="cf-input" placeholder="+233...">
               </div>
               <div class="cf-group">
                 <label for="cf-subject" class="cf-label">Subject</label>
-                <select id="cf-subject" class="cf-select" required>
+                <select id="cf-subject" name="subject" class="cf-select" required>
                   <option value="" disabled selected>Select a subject...</option>
                   <option value="General Enquiry">General Enquiry</option>
                   <option value="Route Suggestion">Route Suggestion</option>
@@ -143,7 +143,7 @@
 
             <div class="cf-group">
               <label for="cf-message" class="cf-label">Message</label>
-              <textarea id="cf-message" class="cf-textarea" placeholder="How can we help?" minlength="20" required></textarea>
+              <textarea id="cf-message" name="message" class="cf-textarea" placeholder="How can we help?" minlength="20" required></textarea>
             </div>
 
             <button type="submit" class="cf-submit btn" id="cfSubmitBtn">
