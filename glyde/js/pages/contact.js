@@ -67,40 +67,8 @@
       submitBtn.disabled = true;
       if (btnText) btnText.textContent = 'Sending...';
 
-      const formData = new FormData(form);
-
-      fetch('https://formsubmit.co/ajax/info@glydegh.com', {
-        method: 'POST',
-        body: formData,
-      })
-      .then(response => response.json())
-      .then(data => {
-        if (data.success) {
-          if (btnText) btnText.textContent = 'Message Sent';
-          successMsg.classList.add('visible');
-          form.reset();
-          
-          // Reset border colors
-          inputs.forEach(input => input.style.borderColor = '');
-          
-          // Re-enable button after a bit
-          setTimeout(() => {
-            submitBtn.disabled = false;
-            if (btnText) btnText.innerHTML = 'Send Message &rarr;';
-            successMsg.classList.remove('visible');
-          }, 5000);
-        } else {
-          throw new Error('Form submission failed');
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        if (btnText) btnText.textContent = 'Error Sending';
-        setTimeout(() => {
-          submitBtn.disabled = false;
-          if (btnText) btnText.innerHTML = 'Send Message &rarr;';
-        }, 3000);
-      });
+      // Let the browser submit the form to the action URL
+      form.submit();
     });
 
     // Reset red border on input
