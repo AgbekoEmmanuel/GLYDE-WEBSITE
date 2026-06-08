@@ -19,34 +19,19 @@
   const transition = document.getElementById('page-transition');
 
   /**
-   * Navigate to a new page with the green overlay transition.
+   * Navigate to a new page without transition.
    * @param {string} url - destination URL
    */
   function navigateTo(url) {
-    if (!transition) {
-      window.location.href = url;
-      return;
-    }
-    transition.classList.remove('exit');
-    transition.classList.add('active');   // slides up from bottom (0.4s)
-
-    setTimeout(() => {
-      window.location.href = url;
-    }, 400);
+    window.location.href = url;
   }
 
   // Expose globally so page-specific scripts can call it
   window.navigateTo = navigateTo;
 
-  // On page load — fire exit animation (slide upward off screen)
+  // On page load
   function initPageTransitionExit() {
-    if (!transition) return;
-
-    transition.classList.add('exit');     // slides up and off screen (0.5s)
-
-    setTimeout(() => {
-      transition.classList.remove('active', 'exit');
-    }, 600);
+    // Transition removed
   }
 
   // Intercept all internal nav links for transition
@@ -341,7 +326,7 @@
             </div>
             <div class="footer-contact-item">
               <span class="footer-contact-label">Email Us</span>
-              <a href="mailto:hello@glyde.com.gh" class="footer-contact-value">hello@glyde.com.gh</a>
+              <a href="mailto:info@glydegh.com" class="footer-contact-value">info@glydegh.com</a>
             </div>
             <div class="footer-contact-item">
               <span class="footer-contact-label">Find Us</span>
@@ -366,7 +351,7 @@
             &copy; 2025 GLYDE. All rights reserved.
           </span>
           <span class="footer-bottom-badge">
-            Made with 🇬🇭 in Accra
+           Made in Ghana
           </span>
           <div class="footer-bottom-right">
             <a href="#">Privacy Policy</a>

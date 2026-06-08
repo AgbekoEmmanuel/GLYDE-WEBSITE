@@ -335,7 +335,7 @@ Role: —
 ```
 
 **OR use this placeholder text:**
-"Team profiles coming soon. For now, you can reach us at hello@glyde.com.gh"
+"Team profiles coming soon. For now, you can reach us at info@glydegh.com"
 
 ---
 
@@ -678,7 +678,7 @@ Value: +233 XX XXX XXXX (placeholder)
 
 **Email:**
 Label: Email Us
-Value: hello@glyde.com.gh (placeholder)
+Value: info@glydegh.com (placeholder)
 
 **Address:**
 Label: Find Us
