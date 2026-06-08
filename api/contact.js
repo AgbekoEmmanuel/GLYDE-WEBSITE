@@ -43,7 +43,7 @@ export default async function handler(req, res) {
       to: [email],
       subject: 'We received your message!',
       html: `
-        <div style="font-family: 'Helvetica Neue', Arial, sans-serif; color: #333; max-width: 600px; line-height: 1.6; margin: 0 auto; padding: 20px;">
+        <div style="font-family: 'Helvetica Neue', Arial, sans-serif; color: #333; max-width: 600px; line-height: 1.6; padding: 20px 0;">
           <h2 style="color: #1a1a1a; font-weight: 600;">Hi ${name},</h2>
           <p>Thank you for reaching out to GLYDE.</p>
           <p>We've safely received your message regarding <strong>${subject || 'your enquiry'}</strong>. A member of our team will review it and get back to you as soon as possible.</p>
@@ -52,8 +52,8 @@ export default async function handler(req, res) {
           
           <table cellpadding="0" cellspacing="0" border="0" style="margin-top: 30px; border-top: 1px solid #eaeaea; padding-top: 20px; width: 100%;">
             <tr>
-              <td width="50" style="padding-right: 15px; border-right: 2px solid #2ECC71; vertical-align: top;">
-                <h1 style="margin: 0; color: #1a1a1a; font-size: 24px; font-weight: 900; letter-spacing: -1px;">GLYDE</h1>
+              <td width="70" style="padding-right: 15px; border-right: 2px solid #2ECC71; vertical-align: top;">
+                <img src="https://www.glydegh.com/assets/logo.svg" alt="GLYDE Logo" width="60" style="display: block; max-width: 60px;">
               </td>
               <td style="padding-left: 15px; vertical-align: top;">
                 <p style="margin: 0; font-weight: bold; color: #1a1a1a; font-size: 16px;">The GLYDE Team</p>
