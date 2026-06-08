@@ -67,8 +67,43 @@
       submitBtn.disabled = true;
       if (btnText) btnText.textContent = 'Sending...';
 
-      // Let the browser submit the form to the action URL
-      form.submit();
+      const formData = new FormData(form);
+
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+      })
+      .then(async (response) => {
+        let json = await response.json();
+        if (response.status == 200) {
+          if (btnText) btnText.textContent = 'Message Sent';
+          successMsg.classList.add('visible');
+          form.reset();
+          
+          inputs.forEach(input => input.style.borderColor = '');
+          
+          setTimeout(() => {
+            submitBtn.disabled = false;
+            if (btnText) btnText.innerHTML = 'Send Message &rarr;';
+            successMsg.classList.remove('visible');
+          }, 5000);
+        } else {
+          console.log(response);
+          if (btnText) btnText.textContent = 'Error Sending';
+          setTimeout(() => {
+            submitBtn.disabled = false;
+            if (btnText) btnText.innerHTML = 'Send Message &rarr;';
+          }, 3000);
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        if (btnText) btnText.textContent = 'Error Sending';
+        setTimeout(() => {
+          submitBtn.disabled = false;
+          if (btnText) btnText.innerHTML = 'Send Message &rarr;';
+        }, 3000);
+      });
     });
 
     // Reset red border on input
