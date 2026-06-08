@@ -19,7 +19,12 @@ export default async function handler(req, res) {
     // 1. Send the notification email to GLYDE
     await resend.emails.send({
       from: 'GLYDE Website <no-reply@glydegh.com>', // MUST be a verified domain on Resend
-      to: ['info@glydegh.com'],
+      to: [
+        'info@glydegh.com',
+        'emmanuel.agbeko@glydegh.com',
+        'jabez.clottey@glydegh.com',
+        'lawrence.benson@glydegh.com'
+      ],
       subject: `New Contact Form Submission: ${subject || 'General Enquiry'}`,
       html: `
         <h2>New Message from GLYDE Website</h2>
