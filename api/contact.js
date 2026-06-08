@@ -43,12 +43,28 @@ export default async function handler(req, res) {
       to: [email],
       subject: 'We received your message!',
       html: `
-        <div style="font-family: sans-serif; color: #333;">
-          <h2>Hi ${name},</h2>
+        <div style="font-family: 'Helvetica Neue', Arial, sans-serif; color: #333; max-width: 600px; line-height: 1.6; margin: 0 auto; padding: 20px;">
+          <h2 style="color: #1a1a1a; font-weight: 600;">Hi ${name},</h2>
           <p>Thank you for reaching out to GLYDE.</p>
-          <p>We've received your message regarding <strong>${subject || 'your enquiry'}</strong> and our team will get back to you shortly.</p>
+          <p>We've safely received your message regarding <strong>${subject || 'your enquiry'}</strong>. A member of our team will review it and get back to you as soon as possible.</p>
           <br>
-          <p>Best regards,<br>The GLYDE Team</p>
+          <p>Best regards,</p>
+          
+          <table cellpadding="0" cellspacing="0" border="0" style="margin-top: 30px; border-top: 1px solid #eaeaea; padding-top: 20px; width: 100%;">
+            <tr>
+              <td width="50" style="padding-right: 15px; border-right: 2px solid #2ECC71; vertical-align: top;">
+                <h1 style="margin: 0; color: #1a1a1a; font-size: 24px; font-weight: 900; letter-spacing: -1px;">GLYDE</h1>
+              </td>
+              <td style="padding-left: 15px; vertical-align: top;">
+                <p style="margin: 0; font-weight: bold; color: #1a1a1a; font-size: 16px;">The GLYDE Team</p>
+                <p style="margin: 2px 0 0; color: #666; font-size: 14px;">Move Smarter Across Accra</p>
+                <p style="margin: 6px 0 0; font-size: 14px;">
+                  <a href="https://www.glydegh.com" style="color: #2ECC71; text-decoration: none; font-weight: 500;">www.glydegh.com</a> &nbsp;|&nbsp; 
+                  <a href="mailto:info@glydegh.com" style="color: #2ECC71; text-decoration: none; font-weight: 500;">info@glydegh.com</a>
+                </p>
+              </td>
+            </tr>
+          </table>
         </div>
       `
     });
