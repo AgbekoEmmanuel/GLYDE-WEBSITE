@@ -495,10 +495,7 @@
             aria-label="Accra to Dodowa route">
             <div class="route-card-header">
               <div class="route-badge">ACTIVE</div>
-              <div class="route-duration">
-                <i class="ph ph-clock" aria-hidden="true"></i>
-                ~45 min
-              </div>
+              
             </div>
             <h3 class="route-name">Accra <span class="route-arrow" aria-hidden="true">→</span> Dodowa</h3>
             <div class="route-stops" aria-label="Stops: Accra, Airport, Madina, Adenta, Dodowa">
@@ -528,14 +525,7 @@
               </div>
             </div>
             <div class="route-meta">
-              <div class="route-meta-item">
-                <i class="ph ph-repeat" aria-hidden="true"></i>
-                Every 30 min
-              </div>
-              <div class="route-meta-item">
-                <i class="ph ph-sun" aria-hidden="true"></i>
-                6:00 AM – 9:00 PM
-              </div>
+            
             </div>
           </div>
 
@@ -544,10 +534,7 @@
             aria-label="Accra to Oyarifa route">
             <div class="route-card-header">
               <div class="route-badge">ACTIVE</div>
-              <div class="route-duration">
-                <i class="ph ph-clock" aria-hidden="true"></i>
-                ~35 min
-              </div>
+            
             </div>
             <h3 class="route-name">Accra <span class="route-arrow" aria-hidden="true">→</span> Oyarifa</h3>
             <div class="route-stops" aria-label="Stops: Accra, Airport, Legon, Adenta, Oyarifa">
@@ -577,14 +564,7 @@
               </div>
             </div>
             <div class="route-meta">
-              <div class="route-meta-item">
-                <i class="ph ph-repeat" aria-hidden="true"></i>
-                Every 30 min
-              </div>
-              <div class="route-meta-item">
-                <i class="ph ph-sun" aria-hidden="true"></i>
-                6:00 AM – 9:00 PM
-              </div>
+            
             </div>
           </div>
 
@@ -703,31 +683,68 @@
         <div class="waitlist-card reveal delay-1">
           <form class="waitlist-form" id="waitlistForm" novalidate aria-label="Join waitlist form">
 
-            <!-- Row 1: Name -->
+            <!-- Row 1: Contact -->
             <div class="wf-row">
               <div class="wf-field">
-                <label for="wf-first-name" class="wf-label">First Name <span style="color: red;">*</span></label>
-                <input type="text" id="wf-first-name" name="firstName" class="wf-input" placeholder="Your first name"
-                  autocomplete="given-name" required>
-              </div>
-              <div class="wf-field">
-                <label for="wf-last-name" class="wf-label">Last Name <span style="color: red;">*</span></label>
-                <input type="text" id="wf-last-name" name="lastName" class="wf-input" placeholder="Your last name"
-                  autocomplete="family-name" required>
-              </div>
-            </div>
-
-            <!-- Row 2: Contact -->
-            <div class="wf-row">
-              <div class="wf-field">
-                <label for="wf-phone" class="wf-label">Phone Number <span style="color: red;">*</span></label>
+                <label for="wf-phone" class="wf-label">Phone Number</label>
                 <input type="tel" id="wf-phone" name="phone" class="wf-input" placeholder="+233 XX XXX XXXX"
-                  autocomplete="tel" required>
+                  autocomplete="tel">
               </div>
               <div class="wf-field">
                 <label for="wf-email" class="wf-label">Email Address <span style="color: red;">*</span></label>
                 <input type="email" id="wf-email" name="email" class="wf-input" placeholder="your@email.com"
                   autocomplete="email" required>
+              </div>
+            </div>
+
+            <!-- Row 2: Worktype & Office Location -->
+            <div class="wf-row">
+              <div class="wf-field">
+                <label for="wf-worktype" class="wf-label">What is your worktype? <span style="color: red;">*</span></label>
+                <div class="wf-select-wrap">
+                  <select id="wf-worktype" name="worktype" class="wf-input wf-select" required onchange="toggleOtherWorktype(this.value)">
+                    <option value="" disabled selected>Select worktype</option>
+                    <option value="Private sector worker (Corporate)">Private sector worker (Corporate)</option>
+                    <option value="Public sector worker">Public sector worker</option>
+                    <option value="Student">Student</option>
+                    <option value="other">Other</option>
+                  </select>
+                  <i class="ph ph-caret-down wf-select-icon" aria-hidden="true"></i>
+                </div>
+              </div>
+              <div class="wf-field">
+                <label for="wf-office-location" class="wf-label">Office Location <span style="color: red;">*</span></label>
+                <div class="wf-select-wrap">
+                  <select id="wf-office-location" name="officeLocation" class="wf-input wf-select" required onchange="toggleOtherOfficeLocation(this.value)">
+                    <option value="" disabled selected>Select office location</option>
+                    <option value="Airport area">Airport area</option>
+                    <option value="Accra Central">Accra Central</option>
+                    <option value="Circle">Circle</option>
+                    <option value="East Legon">East Legon</option>
+                    <option value="Cantonments">Cantonments</option>
+                    <option value="Dzorwulu">Dzorwulu</option>
+                    <option value="Tema">Tema</option>
+                    <option value="Spintex">Spintex</option>
+                    <option value="other">Other</option>
+                  </select>
+                  <i class="ph ph-caret-down wf-select-icon" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 2b: Other Worktype (hidden by default) -->
+            <div class="wf-row wf-row--full" id="wf-other-worktype-row" style="display: none; margin-top: 24px;">
+              <div class="wf-field">
+                <label for="wf-other-worktype" class="wf-label">Please specify your worktype <span style="color: red;">*</span></label>
+                <input type="text" id="wf-other-worktype" name="otherWorktype" class="wf-input" placeholder="Enter worktype" autocomplete="off">
+              </div>
+            </div>
+
+            <!-- Row 2c: Other Office Location (hidden by default) -->
+            <div class="wf-row wf-row--full" id="wf-other-office-location-row" style="display: none; margin-top: 24px;">
+              <div class="wf-field">
+                <label for="wf-other-office-location" class="wf-label">Please specify your office location <span style="color: red;">*</span></label>
+                <input type="text" id="wf-other-office-location" name="otherOfficeLocation" class="wf-input" placeholder="Enter office location" autocomplete="off">
               </div>
             </div>
 
@@ -774,6 +791,32 @@
                   toInput.required = false;
                   fromInput.value = '';
                   toInput.value = '';
+                }
+              }
+
+              function toggleOtherWorktype(value) {
+                const otherRow = document.getElementById('wf-other-worktype-row');
+                const otherInput = document.getElementById('wf-other-worktype');
+                if (value === 'other') {
+                  otherRow.style.display = 'flex';
+                  otherInput.required = true;
+                } else {
+                  otherRow.style.display = 'none';
+                  otherInput.required = false;
+                  otherInput.value = '';
+                }
+              }
+
+              function toggleOtherOfficeLocation(value) {
+                const otherRow = document.getElementById('wf-other-office-location-row');
+                const otherInput = document.getElementById('wf-other-office-location');
+                if (value === 'other') {
+                  otherRow.style.display = 'flex';
+                  otherInput.required = true;
+                } else {
+                  otherRow.style.display = 'none';
+                  otherInput.required = false;
+                  otherInput.value = '';
                 }
               }
             </script>
