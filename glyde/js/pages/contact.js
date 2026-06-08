@@ -68,10 +68,12 @@
       if (btnText) btnText.textContent = 'Sending...';
 
       const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
 
-      fetch('https://api.web3forms.com/submit', {
+      fetch('/api/contact', {
         method: 'POST',
-        body: formData
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
       })
       .then(async (response) => {
         let json = await response.json();
