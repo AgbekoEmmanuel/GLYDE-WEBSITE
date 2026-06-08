@@ -827,27 +827,15 @@
             and more — all in one app. Launching on iOS and Android.
           </p>
 
-          <!-- Store buttons (disabled — tooltip on hover) -->
-          <div class="app-store-row">
-            <button class="app-store-btn" id="app-ios-btn" aria-label="Download on Apple App Store — Coming Soon"
-              disabled>
-              <i class="ph ph-apple-logo" aria-hidden="true"></i>
-              <div class="asb-text">
-                <span class="asb-small">Download on the</span>
-                <span class="asb-big">App Store</span>
-              </div>
-              <div class="app-store-tooltip">Coming soon</div>
-            </button>
+          <!-- Store buttons -->
+          <div class="app-store-row" style="display: flex; gap: 16px; flex-wrap: wrap;">
+            <a href="#" class="app-store-link" style="opacity: 0.5; cursor: not-allowed;" onclick="event.preventDefault();" title="Coming soon">
+              <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" style="height: 48px; width: auto;">
+            </a>
 
-            <button class="app-store-btn" id="app-android-btn" aria-label="Get it on Google Play — Coming Soon"
-              disabled>
-              <i class="ph ph-google-play-logo" aria-hidden="true"></i>
-              <div class="asb-text">
-                <span class="asb-small">Get it on</span>
-                <span class="asb-big">Google Play</span>
-              </div>
-              <div class="app-store-tooltip">Coming soon</div>
-            </button>
+            <a href="#" class="app-store-link" style="opacity: 0.5; cursor: not-allowed;" onclick="event.preventDefault();" title="Coming soon">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play" style="height: 48px; width: auto;">
+            </a>
           </div>
 
           <!-- Notify me mini-form -->
