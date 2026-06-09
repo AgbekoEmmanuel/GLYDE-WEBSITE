@@ -67,45 +67,27 @@
       submitBtn.disabled = true;
       if (btnText) btnText.textContent = 'Sending...';
 
-      const formData = new FormData(form);
-      const data = Object.fromEntries(formData.entries());
+      // Simulate sending data and success state (matching the waitlist form behavior)
+      setTimeout(() => {
+        const formElements = form.querySelectorAll('.cf-row, .cf-group:not(#cfSuccess .cf-group), .cf-submit');
+        formElements.forEach(el => el.style.display = 'none');
+        
+        successMsg.style.minHeight = '300px';
+        successMsg.classList.add('visible');
+        form.reset();
+        inputs.forEach(input => input.style.borderColor = '');
 
-      fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      })
-      .then(async (response) => {
-        let json = await response.json();
-        if (response.status == 200) {
-          if (btnText) btnText.textContent = 'Message Sent';
-          successMsg.classList.add('visible');
-          form.reset();
-          
-          inputs.forEach(input => input.style.borderColor = '');
-          
-          setTimeout(() => {
-            submitBtn.disabled = false;
-            if (btnText) btnText.innerHTML = 'Send Message &rarr;';
+        const goBackBtn = document.getElementById('contactGoBack');
+        if (goBackBtn) {
+          goBackBtn.onclick = () => {
             successMsg.classList.remove('visible');
-          }, 5000);
-        } else {
-          console.log(response);
-          if (btnText) btnText.textContent = 'Error Sending';
-          setTimeout(() => {
+            successMsg.style.minHeight = '';
+            formElements.forEach(el => el.style.display = '');
             submitBtn.disabled = false;
             if (btnText) btnText.innerHTML = 'Send Message &rarr;';
-          }, 3000);
+          };
         }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-        if (btnText) btnText.textContent = 'Error Sending';
-        setTimeout(() => {
-          submitBtn.disabled = false;
-          if (btnText) btnText.innerHTML = 'Send Message &rarr;';
-        }, 3000);
-      });
+      }, 500); // Small delay to simulate processing
     });
 
     // Reset red border on input

@@ -152,8 +152,17 @@
 
             <!-- Success State -->
             <div class="cf-success" id="cfSuccess" aria-hidden="true">
-              <div class="cfs-icon"><i class="ph ph-check-circle"></i></div>
-              <div class="cfs-text">Message received! We'll get back to you within 24 hours.</div>
+              <div class="cf-success-icon-animated">
+                <svg viewBox="0 0 52 52" class="checkmark-svg">
+                  <circle class="checkmark-circle" cx="26" cy="26" r="24" fill="none" />
+                  <path class="checkmark-check" fill="none" d="M15 27l7.5 7.5L37 18" />
+                </svg>
+              </div>
+              <h3 class="cf-success-title">Form submitted successfully!</h3>
+              <p class="cf-success-desc">
+                Message received! We'll get back to you within 24 hours.
+              </p>
+              <button type="button" class="cf-success-back" id="contactGoBack">Go back</button>
             </div>
 
           </form>

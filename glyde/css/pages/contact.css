@@ -273,37 +273,93 @@
   opacity: 0.9;
 }
 
-/* Success Message */
+/* Success Message Replacement */
 .cf-success {
-  display: flex;
+  display: none;
+  flex-direction: column;
   align-items: center;
-  gap: 12px;
-  background: rgba(0,230,77,0.1);
-  border: 1px solid rgba(0,230,77,0.2);
-  padding: 16px 20px;
-  border-radius: var(--radius-md);
-  margin-top: 16px;
-  opacity: 0;
-  transform: translateY(10px);
-  visibility: hidden;
-  transition: all 0.4s ease;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;
 }
 
 .cf-success.visible {
-  opacity: 1;
-  transform: translateY(0);
-  visibility: visible;
+  display: flex;
+  animation: successPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
-.cfs-icon {
-  font-size: 24px;
-  color: var(--green-deeper);
+.cf-success-icon-animated {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 24px;
 }
 
-.cfs-text {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--charcoal);
+.checkmark-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.cf-success.visible .checkmark-circle {
+  stroke-dasharray: 151px;
+  stroke-dashoffset: 151px;
+  stroke-width: 3;
+  stroke: var(--green);
+  animation: drawCircle 0.4s cubic-bezier(0.65, 0, 0.45, 1) 0.2s forwards;
+}
+
+.cf-success.visible .checkmark-check {
+  stroke-dasharray: 36px;
+  stroke-dashoffset: 36px;
+  stroke-width: 3;
+  stroke: var(--green);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  animation: drawCheck 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.6s forwards;
+}
+
+@keyframes drawCircle {
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes drawCheck {
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes successPop {
+  0% { opacity: 0; transform: scale(0.9); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.cf-success-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--green);
+  margin: 0 0 16px;
+}
+
+.cf-success-desc {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--mid-gray);
+  margin: 0 0 32px;
+}
+
+.cf-success-back {
+  background: none;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  color: #7b61ff;
+  cursor: pointer;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.cf-success-back:hover {
+  opacity: 0.8;
+  text-decoration: underline;
 }
 
 @media (max-width: 991px) {
