@@ -697,21 +697,8 @@
               </div>
             </div>
 
-            <!-- Row 2: Worktype & Office Location -->
+            <!-- Row 2: Office Location & Frustration -->
             <div class="wf-row">
-              <div class="wf-field">
-                <label for="wf-worktype" class="wf-label">What is your worktype? <span style="color: red;">*</span></label>
-                <div class="wf-select-wrap">
-                  <select id="wf-worktype" name="worktype" class="wf-input wf-select" required onchange="toggleOtherWorktype(this.value)">
-                    <option value="" disabled selected>Select worktype</option>
-                    <option value="Private sector worker (Corporate)">Private sector worker (Corporate)</option>
-                    <option value="Public sector worker">Public sector worker</option>
-                    <option value="Student">Student</option>
-                    <option value="other">Other</option>
-                  </select>
-                  <i class="ph ph-caret-down wf-select-icon" aria-hidden="true"></i>
-                </div>
-              </div>
               <div class="wf-field">
                 <label for="wf-office-location" class="wf-label">Office Location <span style="color: red;">*</span></label>
                 <div class="wf-select-wrap">
@@ -730,21 +717,32 @@
                   <i class="ph ph-caret-down wf-select-icon" aria-hidden="true"></i>
                 </div>
               </div>
-            </div>
-
-            <!-- Row 2b: Other Worktype (hidden by default) -->
-            <div class="wf-row wf-row--full" id="wf-other-worktype-row" style="display: none; margin-top: 24px;">
               <div class="wf-field">
-                <label for="wf-other-worktype" class="wf-label">Please specify your worktype <span style="color: red;">*</span></label>
-                <input type="text" id="wf-other-worktype" name="otherWorktype" class="wf-input" placeholder="Enter worktype" autocomplete="off">
+                <label for="wf-frustration" class="wf-label">What is your biggest frustration with commuting? <span style="color: red;">*</span></label>
+                <div class="wf-select-wrap">
+                  <select id="wf-frustration" name="frustration" class="wf-input wf-select" required>
+                    <option value="" disabled selected>Select frustration</option>
+                    <option value="Long travel time">Long travel time</option>
+                    <option value="Waiting for transport">Waiting for transport</option>
+                    <option value="Transport cost">Transport cost</option>
+                    <option value="Lack of comfort">Lack of comfort</option>
+                    <option value="Stress">Stress</option>
+                    <option value="Safety concerns">Safety concerns</option>
+                  </select>
+                  <i class="ph ph-caret-down wf-select-icon" aria-hidden="true"></i>
+                </div>
               </div>
             </div>
 
-            <!-- Row 2c: Other Office Location (hidden by default) -->
-            <div class="wf-row wf-row--full" id="wf-other-office-location-row" style="display: none; margin-top: 24px;">
+            <!-- Row 2b: Other Office Location (hidden by default) -->
+            <div class="wf-row" id="wf-other-office-location-row" style="display: none; margin-top: 24px;">
               <div class="wf-field">
-                <label for="wf-other-office-location" class="wf-label">Please specify your office location <span style="color: red;">*</span></label>
-                <input type="text" id="wf-other-office-location" name="otherOfficeLocation" class="wf-input" placeholder="Enter office location" autocomplete="off">
+                <label for="wf-other-office-from" class="wf-label">From <span style="color: red;">*</span></label>
+                <input type="text" id="wf-other-office-from" name="otherOfficeFrom" class="wf-input" placeholder="Home Location" autocomplete="off">
+              </div>
+              <div class="wf-field">
+                <label for="wf-other-office-to" class="wf-label">To <span style="color: red;">*</span></label>
+                <input type="text" id="wf-other-office-to" name="otherOfficeTo" class="wf-input" placeholder="Office Location" autocomplete="off">
               </div>
             </div>
 
@@ -794,29 +792,21 @@
                 }
               }
 
-              function toggleOtherWorktype(value) {
-                const otherRow = document.getElementById('wf-other-worktype-row');
-                const otherInput = document.getElementById('wf-other-worktype');
-                if (value === 'other') {
-                  otherRow.style.display = 'flex';
-                  otherInput.required = true;
-                } else {
-                  otherRow.style.display = 'none';
-                  otherInput.required = false;
-                  otherInput.value = '';
-                }
-              }
 
               function toggleOtherOfficeLocation(value) {
                 const otherRow = document.getElementById('wf-other-office-location-row');
-                const otherInput = document.getElementById('wf-other-office-location');
+                const fromInput = document.getElementById('wf-other-office-from');
+                const toInput = document.getElementById('wf-other-office-to');
                 if (value === 'other') {
                   otherRow.style.display = 'flex';
-                  otherInput.required = true;
+                  fromInput.required = true;
+                  toInput.required = true;
                 } else {
                   otherRow.style.display = 'none';
-                  otherInput.required = false;
-                  otherInput.value = '';
+                  fromInput.required = false;
+                  toInput.required = false;
+                  fromInput.value = '';
+                  toInput.value = '';
                 }
               }
             </script>
@@ -833,7 +823,18 @@
 
             <!-- Success message (hidden by default) -->
             <div class="wf-success" id="waitlistSuccess" aria-live="polite" aria-hidden="true">
-              ✅&nbsp;You're on the list! We'll be in touch soon.
+              <div class="wf-success-icon-animated">
+                <svg viewBox="0 0 52 52" class="checkmark-svg">
+                  <circle class="checkmark-circle" cx="26" cy="26" r="24" fill="none" />
+                  <path class="checkmark-check" fill="none" d="M15 27l7.5 7.5L37 18" />
+                </svg>
+              </div>
+              <h3 class="wf-success-title">Form submitted successfully!</h3>
+              <p class="wf-success-desc">
+                Thank you! The form has been submitted successfully.<br>
+                We will reply to you soon!
+              </p>
+              <button type="button" class="wf-success-back" id="waitlistGoBack">Go back</button>
             </div>
 
           </form>

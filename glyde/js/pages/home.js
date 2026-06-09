@@ -361,17 +361,36 @@
 
       if (!valid) return;
 
-      // Success state per DESIGN.md §7H
-      const submitText = btn.querySelector('.wf-submit-text');
-      submitText.textContent = '✓ You\'re on the list!';
-      btn.disabled = true;
-      btn.style.cursor = 'default';
-      btn.style.opacity = '0.85';
+      // Hide all form rows and the privacy note
+      const rows = form.querySelectorAll('.wf-row');
+      rows.forEach(row => row.style.display = 'none');
+      
+      const privacyNote = document.querySelector('.wf-privacy');
+      if (privacyNote) privacyNote.style.display = 'none';
 
       if (success) {
+        success.style.minHeight = '300px'; // Keep card height consistent
         success.classList.add('visible');
         success.removeAttribute('aria-hidden');
-        success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        
+        const goBackBtn = document.getElementById('waitlistGoBack');
+        if (goBackBtn) {
+          goBackBtn.onclick = () => {
+            success.classList.remove('visible');
+            success.setAttribute('aria-hidden', 'true');
+            form.reset();
+            
+            // Restore visibility
+            rows.forEach(row => row.style.display = '');
+            if (privacyNote) privacyNote.style.display = '';
+            
+            // Re-hide "other" fields
+            const otherOffice = document.getElementById('wf-other-office-location-row');
+            if (otherOffice) otherOffice.style.display = 'none';
+            const otherRoute = document.getElementById('wf-other-route-row');
+            if (otherRoute) otherRoute.style.display = 'none';
+          };
+        }
       }
     });
   }
