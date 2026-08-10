@@ -1,12 +1,12 @@
 import { readFileSync, existsSync } from 'fs';
 import path from 'path';
+import { Redis } from '@upstash/redis';
 
 const IS_LOCAL = !process.env.UPSTASH_REDIS_REST_URL;
 const LOCAL_DB_PATH = path.join(process.cwd(), '.local-waitlist-db.json');
 
 let redis;
 if (!IS_LOCAL) {
-  const { Redis } = await import('@upstash/redis');
   redis = new Redis({
     url: process.env.UPSTASH_REDIS_REST_URL,
     token: process.env.UPSTASH_REDIS_REST_TOKEN,

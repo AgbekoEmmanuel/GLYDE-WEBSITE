@@ -2,6 +2,7 @@ import { Resend } from 'resend';
 import { createHash, randomBytes } from 'crypto';
 import { readFileSync, writeFileSync, existsSync } from 'fs';
 import path from 'path';
+import { Redis } from '@upstash/redis';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -14,7 +15,6 @@ const LOCAL_DB_PATH = path.join(process.cwd(), '.local-waitlist-db.json');
 
 let redis;
 if (!IS_LOCAL) {
-  const { Redis } = await import('@upstash/redis');
   redis = new Redis({
     url: process.env.UPSTASH_REDIS_REST_URL,
     token: process.env.UPSTASH_REDIS_REST_TOKEN,
