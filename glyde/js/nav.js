@@ -11,7 +11,9 @@
      CONSTANTS
   ─────────────────────────────────────────────────────────── */
   const SCROLL_THRESHOLD = 60; // px before navbar shrinks
-  const CURRENT_PAGE     = window.location.pathname.split('/').pop() || 'index.html';
+  let CURRENT_PAGE       = window.location.pathname.split('/').pop() || 'index.html';
+  CURRENT_PAGE           = CURRENT_PAGE.replace('.html', '');
+  if (CURRENT_PAGE === 'index' || CURRENT_PAGE === '') CURRENT_PAGE = 'home';
 
   /* ───────────────────────────────────────────────────────────
      INJECT NAVBAR HTML
@@ -130,13 +132,12 @@
   ─────────────────────────────────────────────────────────── */
   function setActiveLink() {
     const linksMap = {
-      'index.html'       : 'nav-home',
-      ''                 : 'nav-home',   // root URL
-      'about.html'       : 'nav-about',
-      'how-it-works.html': 'nav-hiw',
-      'routes.html'      : 'nav-routes',
-      'safety.html'      : 'nav-safety',
-      'contact.html'     : 'nav-contact',
+      'home'         : 'nav-home',
+      'about'        : 'nav-about',
+      'how-it-works' : 'nav-hiw',
+      'routes'       : 'nav-routes',
+      'safety'       : 'nav-safety',
+      'contact'      : 'nav-contact',
     };
 
     const activeId = linksMap[CURRENT_PAGE];
@@ -150,9 +151,13 @@
 
     // Also mark in overlay (same hrefs)
     document.querySelectorAll('.nav-overlay-links a').forEach(link => {
-      const href = link.getAttribute('href');
-      if (href && href.replace('#', '').split('/').pop() === CURRENT_PAGE) {
-        link.classList.add('active');
+      let href = link.getAttribute('href');
+      if (href) {
+        let cleanHref = href.replace('#', '').split('/').pop().replace('.html', '');
+        if (cleanHref === 'index' || cleanHref === '') cleanHref = 'home';
+        if (cleanHref === CURRENT_PAGE) {
+          link.classList.add('active');
+        }
       }
     });
   }
