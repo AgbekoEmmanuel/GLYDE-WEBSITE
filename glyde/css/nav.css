@@ -186,6 +186,22 @@
   box-shadow: none;
 }
 
+.nav-cta--refer {
+  background: transparent;
+  color: var(--charcoal);
+  border: 1.5px solid var(--charcoal);
+  padding: 8.5px 18px; /* Slightly less padding to account for border */
+}
+
+.nav-cta--refer:hover {
+  background: rgba(26, 26, 26, 0.05); /* Very light charcoal */
+  box-shadow: none;
+}
+
+.nav-cta--refer:active {
+  background: rgba(26, 26, 26, 0.1);
+}
+
 
 
 /* ─────────────────────────────────────────────────────────────
@@ -322,13 +338,26 @@
 .nav-overlay.open .nav-overlay-links li:nth-child(5) a { transition-delay: 0.25s; }
 .nav-overlay.open .nav-overlay-links li:nth-child(6) a { transition-delay: 0.30s; }
 
-/* CTA inside overlay */
-.nav-overlay-cta {
+/* Container for mobile CTAs */
+.nav-overlay-ctas {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
   margin-top: 40px;
-  padding: 14px 40px;
+  width: 100%;
+  max-width: 320px;
+}
+
+.nav-overlay-cta {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 24px;
   background: var(--green);
   color: var(--charcoal);
-  font-size: 16px;
+  font-family: var(--font);
+  font-size: 15px;
   font-weight: 700;
   border-radius: var(--radius-pill);
   text-decoration: none;
@@ -349,6 +378,16 @@
 
 .nav-overlay-cta:hover {
   background: var(--green-dark);
+}
+
+.nav-overlay-cta--refer {
+  background: transparent;
+  color: var(--white);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+}
+
+.nav-overlay-cta--refer:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 /* Overlay close (X) button in top right */
@@ -376,8 +415,8 @@
 
 /* Overlay social row */
 .nav-overlay-social {
-  position: absolute;
-  bottom: 40px;
+  position: relative;
+  margin-top: 40px;
   display: flex;
   gap: 20px;
 }

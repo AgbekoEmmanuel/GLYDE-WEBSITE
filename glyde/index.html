@@ -1036,6 +1036,35 @@
   </section>
   <!-- /refer-earn -->
 
+  <!-- ═══════════════════════════════════════════════════════
+       LEADERBOARD SECTION
+       Displays top 20 waitlist members sorted by points
+  ═══════════════════════════════════════════════════════════ -->
+  <section id="leaderboard" class="leaderboard-section section" aria-labelledby="leaderboard-heading">
+    <div class="container">
+      <div class="leaderboard-header reveal">
+        <span class="label">/ TOP REFERRERS</span>
+        <h2 id="leaderboard-heading" class="leaderboard-heading">
+          Waitlist Leaderboard
+        </h2>
+        <p class="leaderboard-subheading">
+          The top 20 riders securing priority access and exclusive discounts.
+        </p>
+      </div>
+
+      <div class="leaderboard-container reveal delay-1">
+        <div class="leaderboard-list" id="leaderboard-list" aria-live="polite">
+          <!-- Rows injected by home.js -->
+          <div class="leaderboard-loading">
+            <i class="ph ph-spinner-gap spin" aria-hidden="true"></i> Loading Leaderboard...
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /leaderboard -->
+
+
 
   <!-- ═══════════════════════════════════════════════════════
        APP DOWNLOAD SECTION — DESIGN.md §7I
