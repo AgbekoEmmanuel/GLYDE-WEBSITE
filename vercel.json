@@ -1,14 +1,4 @@
 {
-  "framework": null,
-  "buildCommand": null,
-  "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/api/$1"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/glyde/$1"
-    }
-  ]
+  "cleanUrls": true,
+  "trailingSlash": false
 }
