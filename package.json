@@ -3,13 +3,15 @@
   "version": "1.0.0",
   "description": "Glyde static site",
   "scripts": {
-    "dev": "live-server glyde"
+    "dev": "live-server glyde",
+    "start": "vercel dev"
   },
   "devDependencies": {
     "live-server": "^1.2.2",
     "sharp": "^0.34.5"
   },
   "dependencies": {
+    "@upstash/redis": "^1.38.2",
     "resend": "^6.12.4"
   }
 }

@@ -679,9 +679,24 @@
           </p>
         </div>
 
+        <!-- Referral Banner (shown when ?ref= param is in URL) -->
+        <div class="wf-referral-banner" id="referralBanner" style="display:none;" aria-live="polite">
+          <i class="ph ph-gift" aria-hidden="true"></i>
+          <span id="referralBannerText">You were invited to join GLYDE!</span>
+        </div>
+
         <!-- Form card -->
         <div class="waitlist-card reveal delay-1">
           <form class="waitlist-form" id="waitlistForm" novalidate aria-label="Join waitlist form">
+
+            <!-- Row 0: Name -->
+            <div class="wf-row wf-row--full">
+              <div class="wf-field">
+                <label for="wf-name" class="wf-label">Full Name <span style="color: red;">*</span></label>
+                <input type="text" id="wf-name" name="name" class="wf-input" placeholder="Your full name"
+                  autocomplete="name" required>
+              </div>
+            </div>
 
             <!-- Row 1: Contact -->
             <div class="wf-row">
@@ -792,7 +807,6 @@
                 }
               }
 
-
               function toggleOtherOfficeLocation(value) {
                 const otherRow = document.getElementById('wf-other-office-location-row');
                 const fromInput = document.getElementById('wf-other-office-from');
@@ -810,18 +824,34 @@
                 }
               }
             </script>
-            <div style="display: none;">
 
+            <!-- Row 4: Referral Code (optional, pre-filled from URL) -->
+            <div class="wf-row wf-row--full" id="wf-referral-row">
+              <div class="wf-field">
+                <label for="wf-referral-code" class="wf-label">
+                  <i class="ph ph-gift" aria-hidden="true" style="margin-right:6px;"></i>Referral Code
+                  <span class="wf-label-optional">(optional)</span>
+                </label>
+                <input type="text" id="wf-referral-code" name="referralCode" class="wf-input"
+                  placeholder="e.g. GLYDE-A3X9K" autocomplete="off" maxlength="11"
+                  style="text-transform:uppercase;letter-spacing:2px;">
+              </div>
             </div>
 
-            <!-- Row 4: Submit -->
+            <!-- Row 5: Submit -->
             <div class="wf-row wf-row--full" style="margin-top: 24px;">
               <button type="submit" class="wf-submit" id="waitlistSubmit">
                 <span class="wf-submit-text">Join the Waitlist&nbsp;&rarr;</span>
               </button>
             </div>
 
-            <!-- Success message (hidden by default) -->
+            <!-- Error message -->
+            <div class="wf-error" id="waitlistError" aria-live="polite" style="display:none;">
+              <i class="ph ph-warning-circle" aria-hidden="true"></i>
+              <span id="waitlistErrorText"></span>
+            </div>
+
+            <!-- Success state (hidden by default, shown after API success) -->
             <div class="wf-success" id="waitlistSuccess" aria-live="polite" aria-hidden="true">
               <div class="wf-success-icon-animated">
                 <svg viewBox="0 0 52 52" class="checkmark-svg">
@@ -829,12 +859,36 @@
                   <path class="checkmark-check" fill="none" d="M15 27l7.5 7.5L37 18" />
                 </svg>
               </div>
-              <h3 class="wf-success-title">Form submitted successfully!</h3>
+              <h3 class="wf-success-title">You're on the list! 🎉</h3>
               <p class="wf-success-desc">
-                Thank you! The form has been submitted successfully.<br>
-                We will reply to you soon!
+                Check your inbox — your confirmation and referral code are on their way.
               </p>
-              <button type="button" class="wf-success-back" id="waitlistGoBack">Go back</button>
+
+              <!-- Referral code display -->
+              <div class="wf-referral-box">
+                <p class="wf-referral-box-label">Your Referral Code</p>
+                <div class="wf-referral-code-row">
+                  <span class="wf-referral-code-display" id="successReferralCode">GLYDE-XXXXX</span>
+                  <button type="button" class="wf-copy-btn" id="copyCodeBtn" aria-label="Copy referral code">
+                    <i class="ph ph-copy" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <p class="wf-referral-box-hint">Share this code or your link to earn +10 points per referral</p>
+              </div>
+
+              <!-- Share actions -->
+              <div class="wf-share-row">
+                <button type="button" class="wf-share-btn wf-share-btn--link" id="copyLinkBtn">
+                  <i class="ph ph-link" aria-hidden="true"></i>
+                  Copy Link
+                </button>
+                <a class="wf-share-btn wf-share-btn--whatsapp" id="shareWhatsappBtn" href="#" target="_blank" rel="noopener">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                  WhatsApp
+                </a>
+              </div>
+
+              <button type="button" class="wf-success-back" id="waitlistGoBack">Submit another response</button>
             </div>
 
           </form>
@@ -850,6 +904,137 @@
     </div>
   </section>
   <!-- /waitlist -->
+
+
+  <!-- ═══════════════════════════════════════════════════════
+       REFER & EARN SECTION
+       Explains referral program + "Get My Code" lookup for
+       existing members who want their link again
+  ═══════════════════════════════════════════════════════════ -->
+  <section id="refer-earn" class="refer-section section" aria-labelledby="refer-heading">
+    <div class="container">
+
+      <!-- Header -->
+      <div class="refer-header reveal">
+        <span class="label">/ REFER &amp; EARN</span>
+        <h2 id="refer-heading" class="refer-heading">
+          Bring friends.<br>Earn your spot.
+        </h2>
+        <p class="refer-subheading">
+          Share GLYDE and earn points for every friend who joins the waitlist.
+          The more you share, the higher you climb.
+        </p>
+      </div>
+
+      <!-- 3-Step How-It-Works row -->
+      <div class="refer-steps">
+
+        <div class="refer-step reveal delay-1" id="refer-step-1">
+          <div class="refer-step-icon" aria-hidden="true">
+            <i class="ph ph-share-network"></i>
+          </div>
+          <div class="refer-step-num" aria-hidden="true">01</div>
+          <h3 class="refer-step-title">Share your link</h3>
+          <p class="refer-step-body">
+            After joining, you get a unique referral link and code.
+            Share it on WhatsApp, socials — anywhere.
+          </p>
+        </div>
+
+        <div class="refer-step-connector" aria-hidden="true">
+          <i class="ph ph-arrow-right"></i>
+        </div>
+
+        <div class="refer-step reveal delay-2" id="refer-step-2">
+          <div class="refer-step-icon" aria-hidden="true">
+            <i class="ph ph-users-three"></i>
+          </div>
+          <div class="refer-step-num" aria-hidden="true">02</div>
+          <h3 class="refer-step-title">Friends join</h3>
+          <p class="refer-step-body">
+            When they sign up using your link or code,
+            they're added to the waitlist under your referral.
+          </p>
+        </div>
+
+        <div class="refer-step-connector" aria-hidden="true">
+          <i class="ph ph-arrow-right"></i>
+        </div>
+
+        <div class="refer-step reveal delay-3" id="refer-step-3">
+          <div class="refer-step-icon" aria-hidden="true">
+            <i class="ph ph-star"></i>
+          </div>
+          <div class="refer-step-num" aria-hidden="true">03</div>
+          <h3 class="refer-step-title">Earn +10 points</h3>
+          <p class="refer-step-body">
+            You get +10 points per referral, notified by email.
+            Points = discounts of up to 100% on your first few rides when GLYDE launches. 
+          </p>
+        </div>
+
+      </div>
+      <!-- /refer-steps -->
+
+      <!-- Bottom row: CTA + existing member lookup -->
+      <div class="refer-bottom reveal delay-2">
+
+        <!-- Left: join CTA for new visitors -->
+        <div class="refer-cta-box">
+          <div class="refer-cta-icon" aria-hidden="true">
+            <i class="ph ph-gift"></i>
+          </div>
+          <h3 class="refer-cta-title">Not on the waitlist yet?</h3>
+          <p class="refer-cta-body">
+            Join now and get your personal referral code instantly.
+            Start earning points from day one.
+          </p>
+          <a href="#waitlist" class="btn btn-primary refer-join-btn" id="refer-join-cta">
+            Join &amp; Get My Code&nbsp;&rarr;
+          </a>
+        </div>
+
+        <!-- Divider -->
+        <div class="refer-divider" aria-hidden="true">
+          <span>or</span>
+        </div>
+
+        <!-- Right: existing member lookup -->
+        <div class="refer-lookup-box">
+          <div class="refer-cta-icon" aria-hidden="true">
+            <i class="ph ph-envelope-open"></i>
+          </div>
+          <h3 class="refer-cta-title">Already on the list?</h3>
+          <p class="refer-cta-body">
+            Enter your email and we'll resend your referral code
+            and link straight to your inbox.
+          </p>
+          <form class="refer-lookup-form" id="referLookupForm" novalidate aria-label="Get referral code form">
+            <div class="refer-lookup-row">
+              <input
+                type="email"
+                id="refer-lookup-email"
+                name="email"
+                class="refer-lookup-input"
+                placeholder="your@email.com"
+                autocomplete="email"
+                required
+              >
+              <button type="submit" class="refer-lookup-btn" id="referLookupSubmit">
+                <span class="refer-lookup-btn-text">Send My Code</span>
+                <i class="ph ph-paper-plane-tilt" aria-hidden="true"></i>
+              </button>
+            </div>
+            <p class="refer-lookup-note" id="referLookupNote" aria-live="polite"></p>
+          </form>
+        </div>
+
+      </div>
+      <!-- /refer-bottom -->
+
+    </div>
+  </section>
+  <!-- /refer-earn -->
 
 
   <!-- ═══════════════════════════════════════════════════════

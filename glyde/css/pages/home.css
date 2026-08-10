@@ -1956,3 +1956,490 @@
   .phone-shell { width: 200px; height: 400px; }
   .phone-notch { width: 70px; height: 22px; }
 }
+
+
+/* =============================================================
+   REFERRAL SYSTEM STYLES
+   ============================================================= */
+
+/* ── Referral Banner ─────────────────────────────────────────── */
+.wf-referral-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #e8fff1 0%, #d4fce5 100%);
+  border: 1.5px solid rgba(0,230,77,0.4);
+  border-radius: 12px;
+  padding: 14px 20px;
+  margin-bottom: 24px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #006b22;
+  animation: bannerSlideIn 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+
+.wf-referral-banner i {
+  font-size: 22px;
+  color: var(--green);
+  flex-shrink: 0;
+}
+
+@keyframes bannerSlideIn {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Optional label tag ──────────────────────────────────────── */
+.wf-label-optional {
+  font-size: 12px;
+  font-weight: 400;
+  color: #888;
+  margin-left: 6px;
+}
+
+/* ── Error message ───────────────────────────────────────────── */
+.wf-error {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: #fff5f5;
+  border: 1.5px solid #ffb3b3;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-top: 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #c0392b;
+  animation: fadeInUp 0.3s ease both;
+}
+
+.wf-error i {
+  font-size: 20px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ── Referral code box in success state ──────────────────────── */
+.wf-referral-box {
+  background: linear-gradient(135deg, #e8fff1 0%, #d4fce5 100%);
+  border: 2px solid rgba(0,230,77,0.5);
+  border-radius: 16px;
+  padding: 20px 24px;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.wf-referral-box-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #555;
+  margin: 0 0 10px;
+}
+
+.wf-referral-code-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.wf-referral-code-display {
+  font-size: clamp(22px, 5vw, 30px);
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: var(--charcoal);
+  font-family: var(--font);
+}
+
+.wf-copy-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  border: 1.5px solid rgba(0,230,77,0.5);
+  background: white;
+  color: var(--green);
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+  flex-shrink: 0;
+}
+
+.wf-copy-btn:hover {
+  background: var(--green);
+  color: white;
+  transform: scale(1.05);
+}
+
+.wf-referral-box-hint {
+  font-size: 13px;
+  color: #666;
+  margin: 0;
+}
+
+/* ── Share row buttons ───────────────────────────────────────── */
+.wf-share-row {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.wf-share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 20px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  text-decoration: none;
+  border: none;
+  font-family: var(--font);
+}
+
+.wf-share-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+.wf-share-btn--link {
+  background: var(--charcoal);
+  color: white;
+}
+
+.wf-share-btn--whatsapp {
+  background: #25D366;
+  color: white;
+}
+
+/* ── Mobile responsive ───────────────────────────────────────── */
+@media (max-width: 480px) {
+  .wf-referral-code-display { font-size: 20px; letter-spacing: 2px; }
+  .wf-share-row { flex-direction: column; align-items: stretch; }
+  .wf-share-btn { justify-content: center; }
+}
+
+
+/* =============================================================
+   REFER & EARN SECTION
+   ============================================================= */
+
+/* ── Section shell ───────────────────────────────────────────── */
+.refer-section {
+  background: var(--charcoal);
+  color: var(--white);
+  padding: var(--section-pad) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle grid pattern background */
+.refer-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,230,77,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,230,77,0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+
+/* ── Header ──────────────────────────────────────────────────── */
+.refer-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.refer-header .label {
+  color: var(--green);
+  opacity: 0.85;
+}
+
+.refer-heading {
+  font-family: var(--font);
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.1;
+  letter-spacing: -1.5px;
+  margin: 12px 0 16px;
+}
+
+.refer-subheading {
+  font-size: 17px;
+  color: rgba(255,255,255,0.6);
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ── 3-Step row ──────────────────────────────────────────────── */
+.refer-steps {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 64px;
+  position: relative;
+  z-index: 1;
+}
+
+.refer-step {
+  flex: 1;
+  max-width: 280px;
+  text-align: center;
+  padding: 36px 28px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 20px;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.refer-step:hover {
+  background: rgba(0,230,77,0.07);
+  transform: translateY(-4px);
+}
+
+.refer-step-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  background: rgba(0,230,77,0.12);
+  border: 1.5px solid rgba(0,230,77,0.3);
+  border-radius: 18px;
+  margin-bottom: 12px;
+  font-size: 28px;
+  color: var(--green);
+}
+
+.refer-step-num {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--green);
+  margin-bottom: 8px;
+  opacity: 0.7;
+}
+
+.refer-step-title {
+  font-family: var(--font);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+  margin: 0 0 10px;
+}
+
+.refer-step-body {
+  font-size: 14px;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.refer-step-connector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 8px;
+  margin-top: -8px;
+  color: var(--green);
+  font-size: 22px;
+  opacity: 0.4;
+  flex-shrink: 0;
+  align-self: center;
+}
+
+/* ── Bottom split: join CTA + lookup ─────────────────────────── */
+.refer-bottom {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 0;
+  align-items: stretch;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 24px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.refer-cta-box,
+.refer-lookup-box {
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.refer-cta-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  background: rgba(0,230,77,0.12);
+  border-radius: 14px;
+  font-size: 24px;
+  color: var(--green);
+  margin-bottom: 4px;
+}
+
+.refer-cta-title {
+  font-family: var(--font);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--white);
+  margin: 0;
+}
+
+.refer-cta-body {
+  font-size: 14px;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.6;
+  margin: 0;
+  flex: 1;
+}
+
+.refer-join-btn {
+  margin-top: 8px;
+  align-self: flex-start;
+}
+
+/* ── Vertical divider ────────────────────────────────────────── */
+.refer-divider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 0 24px;
+}
+
+.refer-divider::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: rgba(255,255,255,0.08);
+}
+
+.refer-divider span {
+  position: relative;
+  background: var(--charcoal);
+  color: rgba(255,255,255,0.3);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 8px 0;
+}
+
+/* ── Inline lookup form ──────────────────────────────────────── */
+.refer-lookup-form {
+  width: 100%;
+  margin-top: 4px;
+}
+
+.refer-lookup-row {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.refer-lookup-input {
+  flex: 1;
+  height: 48px;
+  padding: 0 16px;
+  background: rgba(255,255,255,0.07);
+  border: 1.5px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+  color: var(--white);
+  font-family: var(--font);
+  font-size: 14px;
+  transition: border-color 0.2s, background 0.2s;
+  outline: none;
+}
+
+.refer-lookup-input::placeholder { color: rgba(255,255,255,0.3); }
+
+.refer-lookup-input:focus {
+  border-color: var(--green);
+  background: rgba(0,230,77,0.06);
+}
+
+.refer-lookup-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0 20px;
+  background: var(--green);
+  color: var(--charcoal);
+  border: none;
+  border-radius: 10px;
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.2s, transform 0.15s;
+  flex-shrink: 0;
+}
+
+.refer-lookup-btn:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.refer-lookup-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.refer-lookup-note {
+  font-size: 13px;
+  margin: 10px 0 0;
+  min-height: 20px;
+  transition: color 0.2s;
+}
+
+.refer-lookup-note--success { color: var(--green); }
+.refer-lookup-note--error   { color: #ff6b6b; }
+
+/* ── Mobile responsive ───────────────────────────────────────── */
+@media (max-width: 900px) {
+  .refer-steps {
+    flex-direction: column;
+    align-items: center;
+  }
+  .refer-step { max-width: 100%; width: 100%; }
+  .refer-step-connector { transform: rotate(90deg); padding: 8px 0; }
+  .refer-bottom { grid-template-columns: 1fr; }
+  .refer-divider {
+    flex-direction: row;
+    padding: 0 40px;
+  }
+  .refer-divider::before {
+    top: 50%; bottom: auto; left: 0; right: 0;
+    width: auto; height: 1px;
+  }
+  .refer-divider span { padding: 0 16px; }
+}
+
+@media (max-width: 600px) {
+  .refer-cta-box, .refer-lookup-box { padding: 32px 24px; }
+  .refer-lookup-row { flex-direction: column; }
+  .refer-lookup-btn { width: 100%; justify-content: center; }
+}

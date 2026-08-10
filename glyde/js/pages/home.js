@@ -333,23 +333,54 @@
 
 
   /* ═══════════════════════════════════════════════════════════
-     7. §7H WAITLIST FORM — submission handler
-     Per DESIGN.md §7H spec:
-     - No page reload on submit
-     - Button text changes to "✓ You're on the list!"
-     - Success message fades in below button
+     7. §7H WAITLIST FORM — referral-aware submission handler
+     - Reads ?ref= from URL → pre-fills code, shows banner
+     - POSTs to /api/waitlist
+     - On success: shows referral code, copy + WhatsApp share
+     - On 409: shows "already on list" error with specific message
   ═══════════════════════════════════════════════════════════ */
   function initWaitlistForm() {
-    const form    = document.getElementById('waitlistForm');
-    const btn     = document.getElementById('waitlistSubmit');
-    const success = document.getElementById('waitlistSuccess');
+    const form       = document.getElementById('waitlistForm');
+    const btn        = document.getElementById('waitlistSubmit');
+    const successEl  = document.getElementById('waitlistSuccess');
+    const errorEl    = document.getElementById('waitlistError');
+    const errorText  = document.getElementById('waitlistErrorText');
 
     if (!form) return;
 
-    form.addEventListener('submit', (e) => {
+    // ── Read ?ref= from URL and pre-fill code field ──────────────
+    const urlParams = new URLSearchParams(window.location.search);
+    const refParam  = urlParams.get('ref');
+    const refInput  = document.getElementById('wf-referral-code');
+    const banner    = document.getElementById('referralBanner');
+    const bannerText = document.getElementById('referralBannerText');
+
+    if (refParam && refInput) {
+      refInput.value = refParam.toUpperCase();
+
+      // Validate the code with the API and show a friendly banner
+      fetch(`/api/check-referral?code=${encodeURIComponent(refParam)}`)
+        .then(r => r.json())
+        .then(data => {
+          if (data.valid && banner) {
+            banner.style.display = 'flex';
+            if (bannerText) {
+              bannerText.textContent = data.referrerFirstName
+                ? `${data.referrerFirstName} invited you to join GLYDE! 🎉`
+                : 'You were invited to join GLYDE!';
+            }
+          }
+        })
+        .catch(() => {
+          // Silently ignore — code still stays pre-filled
+        });
+    }
+
+    // ── Form submit ──────────────────────────────────────────────
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      // Validate: shake invalid fields per DESIGN.md §13
+      // Client-side validation — shake empty required fields
       const inputs = form.querySelectorAll('[required]');
       let valid = true;
       inputs.forEach(input => {
@@ -358,48 +389,156 @@
           shakeInput(input);
         }
       });
-
       if (!valid) return;
 
-      // Hide all form rows and the privacy note
-      const rows = form.querySelectorAll('.wf-row');
-      rows.forEach(row => row.style.display = 'none');
-      
-      const privacyNote = document.querySelector('.wf-privacy');
-      if (privacyNote) privacyNote.style.display = 'none';
+      // Collect form data
+      const formData = {
+        name:            form.querySelector('[name="name"]')?.value.trim(),
+        email:           form.querySelector('[name="email"]')?.value.trim(),
+        phone:           form.querySelector('[name="phone"]')?.value.trim(),
+        route:           form.querySelector('[name="route"]')?.value,
+        officeLocation:  form.querySelector('[name="officeLocation"]')?.value,
+        frustration:     form.querySelector('[name="frustration"]')?.value,
+        otherOfficeFrom: form.querySelector('[name="otherOfficeFrom"]')?.value.trim(),
+        otherOfficeTo:   form.querySelector('[name="otherOfficeTo"]')?.value.trim(),
+        from:            form.querySelector('[name="from"]')?.value.trim(),
+        to:              form.querySelector('[name="to"]')?.value.trim(),
+        referralCode:    form.querySelector('[name="referralCode"]')?.value.trim(),
+      };
 
-      if (success) {
-        success.style.minHeight = '300px'; // Keep card height consistent
-        success.classList.add('visible');
-        success.removeAttribute('aria-hidden');
-        
-        const goBackBtn = document.getElementById('waitlistGoBack');
-        if (goBackBtn) {
-          goBackBtn.onclick = () => {
-            success.classList.remove('visible');
-            success.setAttribute('aria-hidden', 'true');
-            form.reset();
-            
-            // Restore visibility
-            rows.forEach(row => row.style.display = '');
-            if (privacyNote) privacyNote.style.display = '';
-            
-            // Re-hide "other" fields
-            const otherOffice = document.getElementById('wf-other-office-location-row');
-            if (otherOffice) otherOffice.style.display = 'none';
-            const otherRoute = document.getElementById('wf-other-route-row');
-            if (otherRoute) otherRoute.style.display = 'none';
-          };
+      // Show loading state
+      if (btn) {
+        btn.disabled = true;
+        btn.querySelector('.wf-submit-text').textContent = 'Joining…';
+      }
+      if (errorEl) errorEl.style.display = 'none';
+
+      try {
+        const response = await fetch('/api/waitlist', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData),
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          // ── SUCCESS ────────────────────────────────────────────
+          _showWaitlistSuccess(form, successEl, result);
+
+        } else {
+          // ── API ERROR ──────────────────────────────────────────
+          if (btn) {
+            btn.disabled = false;
+            btn.querySelector('.wf-submit-text').innerHTML = 'Join the Waitlist&nbsp;&rarr;';
+          }
+          const msg = result.message || result.error || 'Something went wrong. Please try again.';
+          if (errorEl && errorText) {
+            errorText.textContent = msg;
+            errorEl.style.display = 'flex';
+            errorEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
+        }
+
+      } catch (err) {
+        console.error('Waitlist submit error:', err);
+        if (btn) {
+          btn.disabled = false;
+          btn.querySelector('.wf-submit-text').innerHTML = 'Join the Waitlist&nbsp;&rarr;';
+        }
+        if (errorEl && errorText) {
+          errorText.textContent = 'Network error. Please check your connection and try again.';
+          errorEl.style.display = 'flex';
         }
       }
     });
+  }
+
+  function _showWaitlistSuccess(form, successEl, result) {
+    // Hide form rows + privacy note
+    const rows = form.querySelectorAll('.wf-row');
+    rows.forEach(row => row.style.display = 'none');
+    const privacyNote = document.querySelector('.wf-privacy');
+    if (privacyNote) privacyNote.style.display = 'none';
+    const banner = document.getElementById('referralBanner');
+    if (banner) banner.style.display = 'none';
+    if (document.getElementById('waitlistError')) {
+      document.getElementById('waitlistError').style.display = 'none';
+    }
+
+    // Populate referral code
+    const codeDisplay = document.getElementById('successReferralCode');
+    if (codeDisplay && result.referralCode) {
+      codeDisplay.textContent = result.referralCode;
+    }
+
+    // Wire up copy code button
+    const copyCodeBtn = document.getElementById('copyCodeBtn');
+    if (copyCodeBtn && result.referralCode) {
+      copyCodeBtn.onclick = () => {
+        navigator.clipboard.writeText(result.referralCode).then(() => {
+          copyCodeBtn.innerHTML = '<i class="ph ph-check" aria-hidden="true"></i>';
+          setTimeout(() => {
+            copyCodeBtn.innerHTML = '<i class="ph ph-copy" aria-hidden="true"></i>';
+          }, 2000);
+        });
+      };
+    }
+
+    // Wire up copy link button
+    const copyLinkBtn = document.getElementById('copyLinkBtn');
+    if (copyLinkBtn && result.referralLink) {
+      copyLinkBtn.onclick = () => {
+        navigator.clipboard.writeText(result.referralLink).then(() => {
+          copyLinkBtn.innerHTML = '<i class="ph ph-check" aria-hidden="true"></i> Copied!';
+          setTimeout(() => {
+            copyLinkBtn.innerHTML = '<i class="ph ph-link" aria-hidden="true"></i> Copy Link';
+          }, 2000);
+        });
+      };
+    }
+
+    // Wire up WhatsApp share
+    const waBtn = document.getElementById('shareWhatsappBtn');
+    if (waBtn && result.referralLink) {
+      const waMsg = encodeURIComponent(
+        `Hey! I just joined the GLYDE waitlist — Ghana's first app-based bus service! Join using my referral link and we both move up the list 🚌\n\n${result.referralLink}`
+      );
+      waBtn.href = `https://wa.me/?text=${waMsg}`;
+    }
+
+    // Show success panel
+    if (successEl) {
+      successEl.classList.add('visible');
+      successEl.removeAttribute('aria-hidden');
+
+      const goBackBtn = document.getElementById('waitlistGoBack');
+      if (goBackBtn) {
+        goBackBtn.onclick = () => {
+          successEl.classList.remove('visible');
+          successEl.setAttribute('aria-hidden', 'true');
+          form.reset();
+          rows.forEach(row => row.style.display = '');
+          if (privacyNote) privacyNote.style.display = '';
+          const otherOffice = document.getElementById('wf-other-office-location-row');
+          if (otherOffice) otherOffice.style.display = 'none';
+          const otherRoute = document.getElementById('wf-other-route-row');
+          if (otherRoute) otherRoute.style.display = 'none';
+          // Reset submit button
+          const btn = document.getElementById('waitlistSubmit');
+          if (btn) {
+            btn.disabled = false;
+            btn.querySelector('.wf-submit-text').innerHTML = 'Join the Waitlist&nbsp;&rarr;';
+          }
+        };
+      }
+    }
   }
 
   /* shakeInput — DESIGN.md §13 exact spec */
   function shakeInput(input) {
     input.classList.add('shake');
     setTimeout(() => input.classList.remove('shake'), 500);
-    // Reset on next user input
     input.addEventListener('input', () => {
       input.style.borderColor = '';
     }, { once: true });
@@ -441,6 +580,128 @@
     initServiceCards();
     initRouteMap();
     initWaitlistForm();
+    initAppNotifyForm();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+})();        // Re-hide "other" fields
+            const otherOffice = document.getElementById('wf-other-office-location-row');
+            if (otherOffice) otherOffice.style.display = 'none';
+            const otherRoute = document.getElementById('wf-other-route-row');
+            if (otherRoute) otherRoute.style.display = 'none';
+          };
+        }
+      }
+    });
+  }
+
+  /* shakeInput — DESIGN.md §13 exact spec */
+  function shakeInput(input) {
+    input.classList.add('shake');
+    setTimeout(() => input.classList.remove('shake'), 500);
+    // Reset on next user input
+    input.addEventListener('input', () => {
+      input.style.borderColor = '';
+    }, { once: true });
+  }
+
+
+  /* ═══════════════════════════════════════════════════════════
+     8.5 REFER LOOKUP FORM — "Get My Code" for existing members
+  ═══════════════════════════════════════════════════════════ */
+  function initReferLookupForm() {
+    const form  = document.getElementById('referLookupForm');
+    const input = document.getElementById('refer-lookup-email');
+    const btn   = document.getElementById('referLookupSubmit');
+    const note  = document.getElementById('referLookupNote');
+
+    if (!form) return;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = input?.value.trim();
+      if (!email) { shakeInput(input); return; }
+
+      // Loading state
+      if (btn) {
+        btn.disabled = true;
+        btn.querySelector('.refer-lookup-btn-text').textContent = 'Sending…';
+      }
+      if (note) { note.textContent = ''; note.className = 'refer-lookup-note'; }
+
+      try {
+        const res = await fetch('/api/resend-code', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email })
+        });
+        const data = await res.json();
+
+        if (res.ok && data.success) {
+          if (note) {
+            note.textContent = '✓ Check your inbox — your code is on its way!';
+            note.className = 'refer-lookup-note refer-lookup-note--success';
+          }
+          if (input) input.value = '';
+        } else {
+          throw new Error(data.error || 'Error');
+        }
+      } catch {
+        if (note) {
+          note.textContent = 'Something went wrong. Please try again.';
+          note.className = 'refer-lookup-note refer-lookup-note--error';
+        }
+      } finally {
+        if (btn) {
+          btn.disabled = false;
+          btn.querySelector('.refer-lookup-btn-text').textContent = 'Send My Code';
+        }
+      }
+    });
+  }
+
+
+  /* ═══════════════════════════════════════════════════════════
+     8. §7I APP NOTIFY FORM — launch notification handler
+  ═══════════════════════════════════════════════════════════ */
+  function initAppNotifyForm() {
+    const form = document.getElementById('appNotifyForm');
+    const btn  = document.getElementById('app-notify-submit');
+    const inp  = document.getElementById('app-notify-email');
+
+    if (!form) return;
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!inp?.value.trim()) return;
+
+      btn.innerHTML = '✓ Noted!';
+      btn.disabled  = true;
+      btn.style.opacity = '0.75';
+      inp.disabled  = true;
+      inp.style.opacity = '0.5';
+    });
+  }
+
+
+  /* ═══════════════════════════════════════════════════════════
+     9. INIT
+  ═══════════════════════════════════════════════════════════ */
+  function init() {
+    initParallaxWatermark();
+    initHeroParallax();
+    initStatsCounter();
+    initCompareSection();
+    initRevealSection();
+    initServiceCards();
+    initRouteMap();
+    initWaitlistForm();
+    initReferLookupForm();
     initAppNotifyForm();
   }
 
