@@ -658,49 +658,6 @@
   }
 
 
-  /* ═══════════════════════════════════════════════════════════
-     9. LEADERBOARD — Fetch and render top referrers
-  ═══════════════════════════════════════════════════════════ */
-  async function initLeaderboard() {
-    const listEl = document.getElementById('leaderboard-list');
-    if (!listEl) return;
-
-    try {
-      const res = await fetch('/api/leaderboard');
-      const data = await res.json();
-
-      if (!res.ok || !data.success) {
-        throw new Error(data.error || 'Failed to load leaderboard');
-      }
-
-      if (!data.leaderboard || data.leaderboard.length === 0) {
-        listEl.innerHTML = '<div class="leaderboard-empty">No one has joined the leaderboard yet. Be the first!</div>';
-        return;
-      }
-
-      // Generate rows
-      listEl.innerHTML = data.leaderboard.map(user => {
-        let rankClass = 'lb-rank';
-        if (user.rank === 1) rankClass += ' lb-rank-1';
-        else if (user.rank === 2) rankClass += ' lb-rank-2';
-        else if (user.rank === 3) rankClass += ' lb-rank-3';
-
-        const rankIcon = user.rank <= 3 ? '<i class="ph-fill ph-trophy"></i>' : user.rank;
-
-        return `
-          <div class="lb-row">
-            <div class="${rankClass}">${rankIcon}</div>
-            <div class="lb-name">${user.name}</div>
-            <div class="lb-points">${user.points} pts</div>
-          </div>
-        `;
-      }).join('');
-
-    } catch (error) {
-      console.error('Leaderboard error:', error);
-      listEl.innerHTML = '<div class="leaderboard-error">Unable to load leaderboard at this time.</div>';
-    }
-  }
 
   /* ═══════════════════════════════════════════════════════════
      10. INIT
@@ -716,7 +673,6 @@
     initWaitlistForm();
     initReferLookupForm();
     initAppNotifyForm();
-    initLeaderboard();
   }
 
   if (document.readyState === 'loading') {
