@@ -67,7 +67,7 @@ Across Accra.
 ```
 🟢 NEXT DEPARTURE
 6:45 AM  →  7:35 AM
-Accra Central → Dodowa
+Accra Central → Oyibi
 [Book Now]
 ```
 
@@ -91,7 +91,7 @@ Based on early pilot feedback
 
 ### TICKER STRIP
 ```
-APP-BASED BOOKING  ●  ACCRA–DODOWA  ●  ACCRA–OYARIFA  ●  VETTED DRIVERS  ●  SAFETY CERTIFIED  ●  SCHEDULED DEPARTURES  ●  BOOK IN SECONDS  ●
+APP-BASED BOOKING  ●  ACCRA–OYIBI  ●  ACCRA–OYARIFA  ●  VETTED DRIVERS  ●  SAFETY CERTIFIED  ●  SCHEDULED DEPARTURES  ●  BOOK IN SECONDS  ●
 ```
 
 ---
@@ -189,13 +189,13 @@ Icon: clock
 
 **Heading:** "Two routes. More coming."
 
-**Body:** "We currently operate the Accra–Dodowa and Accra–Oyarifa corridors, with plans to expand across Greater Accra."
+**Body:** "We currently operate the Accra–Oyibi and Accra–Oyarifa corridors, with plans to expand across Greater Accra."
 
 **Route Card 1:**
 - Badge: `ACTIVE`
-- Name: `Accra → Dodowa`
+- Name: `Accra → Oyibi`
 - Duration: `~45 min`
-- Stops: Accra → Airport → Madina → Adenta → Dodowa
+- Stops: Accra → Airport → Madina → Adenta → Oyibi
 - Frequency: Every 30 min
 - Hours: 6:00 AM – 9:00 PM
 
@@ -226,7 +226,7 @@ Icon: clock
 4. Email Address (placeholder: "your@email.com")
 5. Preferred Route (dropdown):
    - Select your route
-   - Accra – Dodowa
+   - Accra – Oyibi
    - Accra – Oyarifa
    - Both Routes
    - Other (I'll tell you later)
@@ -365,7 +365,7 @@ Placeholder logos / "Partner logos coming soon"
 **Title:** "Download & Book"
 
 **Detailed description:**
-"Open the GLYDE app, select your route (Accra–Dodowa or Accra–Oyarifa), choose your preferred departure time, and pick your seat. Pay securely with Mobile Money (MTN, AirtelTigo, Telecel) or card. Receive instant confirmation via SMS and in-app."
+"Open the GLYDE app, select your route (Accra–Oyibi or Accra–Oyarifa), choose your preferred departure time, and pick your seat. Pay securely with Mobile Money (MTN, AirtelTigo, Telecel) or card. Receive instant confirmation via SMS and in-app."
 
 **Sub-points:**
 - Select route and departure time
@@ -455,23 +455,23 @@ Placeholder logos / "Partner logos coming soon"
 
 ---
 
-### ROUTE 1 — ACCRA–DODOWA
+### ROUTE 1 — ACCRA–OYIBI
 
-**Route Name:** Accra → Dodowa
+**Route Name:** Accra → Oyibi
 **Direction:** Bidirectional (morning inbound, evening outbound)
 **Badge:** `ACTIVE`
 **Estimated Duration:** ~45 minutes
 **Distance:** ~42 km
 
-**Stops (Accra → Dodowa direction):**
+**Stops (Accra → Oyibi direction):**
 1. Accra (Start)
 2. Airport
 3. Madina
 4. Adenta Barrier
-5. Dodowa (End)
+5. Oyibi (End)
 
-**Stops (Dodowa → Accra direction):**
-1. Dodowa (Start)
+**Stops (Oyibi → Accra direction):**
+1. Oyibi (Start)
 2. Adenta Barrier
 3. Madina
 4. Airport
@@ -481,7 +481,7 @@ Placeholder logos / "Partner logos coming soon"
 **Frequency:** Every 30 minutes
 **Days:** Monday – Sunday
 
-**Sample Departure Times (Accra → Dodowa):**
+**Sample Departure Times (Accra → Oyibi):**
 6:00 AM | 6:30 AM | 7:00 AM | 7:30 AM | 8:00 AM | 8:30 AM | 9:00 AM
 ... continuing every 30 min until...
 8:00 PM | 8:30 PM | 9:00 PM
@@ -765,7 +765,7 @@ Links: Instagram | Twitter/X | LinkedIn | WhatsApp
 ### Home Page
 ```html
 <title>GLYDE — Move Smarter Across Accra</title>
-<meta name="description" content="Ghana's first app-based scheduled bus service. Book your seat on the Accra–Dodowa and Accra–Oyarifa routes. Safe, on time, every time.">
+<meta name="description" content="Ghana's first app-based scheduled bus service. Book your seat on the Accra–Oyibi and Accra–Oyarifa routes. Safe, on time, every time.">
 <meta property="og:title" content="GLYDE — Move Smarter Across Accra">
 <meta property="og:description" content="Book your seat. Track your bus. Arrive on time.">
 ```
@@ -784,8 +784,8 @@ Links: Instagram | Twitter/X | LinkedIn | WhatsApp
 
 ### Routes
 ```html
-<title>GLYDE Routes — Accra to Dodowa & Oyarifa</title>
-<meta name="description" content="GLYDE currently operates two routes: Accra–Dodowa and Accra–Oyarifa. View stops, schedules, and fares.">
+<title>GLYDE Routes — Accra to Oyibi & Oyarifa</title>
+<meta name="description" content="GLYDE currently operates two routes: Accra–Oyibi and Accra–Oyarifa. View stops, schedules, and fares.">
 ```
 
 ### Safety
@@ -812,7 +812,7 @@ Links: Instagram | Twitter/X | LinkedIn | WhatsApp
 | accra-road.jpg | Accra road / traffic scene for full-bleed reveal | "Accra commuters" |
 | app-mockup.png | Phone screen with GLYDE app UI | "GLYDE mobile app" |
 | bus-interior.jpg | Clean interior of a GLYDE bus | "Inside a GLYDE bus" |
-| dodowa-terminus.jpg | Dodowa or end-of-route imagery | "Dodowa route terminus" |
+| oyibi-terminus.jpg | Oyibi or end-of-route imagery | "Oyibi route terminus" |
 
 ---
 

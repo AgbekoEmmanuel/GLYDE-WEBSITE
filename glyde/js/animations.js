@@ -220,7 +220,7 @@
 
     const items = [
       'App-Based Booking',
-      'Accra–Dodowa',
+      'Accra–Oyibi',
       'Accra–Oyarifa',
       'Vetted Drivers',
       'Safety Certified',
@@ -309,7 +309,7 @@
           <nav aria-label="Route links">
             <p class="footer-col-title">Routes</p>
             <ul class="footer-links" role="list">
-              <li><a href="routes.html#dodowa" class="hover-line">Accra → Dodowa</a></li>
+              <li><a href="routes.html#oyibi" class="hover-line">Accra → Oyibi</a></li>
               <li><a href="routes.html#oyarifa" class="hover-line">Accra → Oyarifa</a></li>
               <li><a href="routes.html#schedule" class="hover-line">View Schedules</a></li>
               <li><a href="routes.html#coming-soon-routes" class="hover-line">Coming Soon</a></li>

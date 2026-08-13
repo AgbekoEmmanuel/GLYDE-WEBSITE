@@ -349,7 +349,7 @@ Card 1 (top right of bus):
 ```
 [Live dot] NEXT DEPARTURE
 6:45 AM
-Accra → Dodowa
+Accra → Oyibi
 ```
 - White card, `border-radius: 16px`, `box-shadow: var(--shadow-lg)`
 - Floats with animation-delay: 0s, cycle 4s
@@ -410,7 +410,7 @@ Position: Immediately after hero, before next section.
 Background: --green (solid)
 Height: 48px
 Content (repeating): 
-  APP-BASED BOOKING  ●  ACCRA–DODOWA  ●  ACCRA–OYARIFA  ●  SAFETY FIRST  ●  100% SCHEDULED  ●  
+  APP-BASED BOOKING  ●  ACCRA–OYIBI  ●  ACCRA–OYARIFA  ●  SAFETY FIRST  ●  100% SCHEDULED  ●  
 ```
 
 Animation: infinite horizontal scroll left, 25s duration linear
@@ -675,7 +675,7 @@ Dots update as you scroll through cards. Active dot is `--green`, inactive `rgba
 
 Route cards: visual cards showing the two routes with stop lists (see Content.md)
 
-Map SVG: Hand-drawn style dotted line connecting stops from Accra → Dodowa and Accra → Oyarifa. Animated dashed stroke on scroll:
+Map SVG: Hand-drawn style dotted line connecting stops from Accra → Oyibi and Accra → Oyarifa. Animated dashed stroke on scroll:
 ```javascript
 gsap.fromTo('.route-path', 
   { strokeDashoffset: 1000 },
@@ -704,7 +704,7 @@ Form layout (inside green-bordered card):
 ```
 Row 1: [First Name]    [Last Name]
 Row 2: [Phone Number]  [Email Address]
-Row 3: [Preferred Route — dropdown: Accra–Dodowa | Accra–Oyarifa | Both]
+Row 3: [Preferred Route — dropdown: Accra–Oyibi | Accra–Oyarifa | Both]
 Row 4: [JOIN THE WAITLIST → button, full width, green]
 ```
 
@@ -887,7 +887,7 @@ Live badge: "2 Active Routes"
 Each route card structure:
 ```
 [Card header — dark bg with route name + badge]
-  Route: Accra → Dodowa  |  ~45 min  |  6am–9pm
+  Route: Accra → Oyibi  |  ~45 min  |  6am–9pm
 [Card body — white bg]
   [Left: vertical stop timeline]    [Right: route info grid]
 ```
@@ -902,7 +902,7 @@ Each route card structure:
 │
 ● Adenta
 │
-● Dodowa  ← end dot (charcoal, large)
+● Oyibi  ← end dot (charcoal, large)
 ```
 
 CSS for timeline:
@@ -927,7 +927,7 @@ CSS for timeline:
 ### Route Map Section
 Full-width SVG map (stylized, not Google Maps) showing:
 - Greater Accra outline
-- Two dotted route lines from Accra out to Dodowa and Oyarifa
+- Two dotted route lines from Accra out to Oyibi and Oyarifa
 - Stop markers as circles
 - Animated stroke dash on scroll (same technique as 7G)
 - Map background: very light green `rgba(0,230,77,0.04)`
