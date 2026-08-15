@@ -686,7 +686,7 @@ Value: Accra, Ghana (full address TBD)
 
 **Hours:**
 Label: Hours
-Value: Monday – Friday, 8:00 AM – 6:00 PM
+Value: Monday – Friday, 4:30 AM – 10:00 PM
 
 **Social:**
 Label: Follow Us

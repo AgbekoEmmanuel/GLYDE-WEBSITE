@@ -334,7 +334,7 @@
             </div>
             <div class="footer-contact-item">
               <span class="footer-contact-label">Hours</span>
-              <span class="footer-contact-value">Mon – Fri, 8:00 AM – 6:00 PM</span>
+              <span class="footer-contact-value">Mon – Fri, 4:30 AM – 10:00 PM</span>
             </div>
           </div>
 
