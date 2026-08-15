@@ -224,7 +224,6 @@
       'Accra–Oyarifa',
       'Vetted Drivers',
       'Safety Certified',
-      'Scheduled Departures',
       'Book in Seconds',
       '100% App-Based',
     ];
@@ -311,7 +310,6 @@
             <ul class="footer-links" role="list">
               <li><a href="routes.html#oyibi" class="hover-line">Accra → Oyibi</a></li>
               <li><a href="routes.html#oyarifa" class="hover-line">Accra → Oyarifa</a></li>
-              <li><a href="routes.html#schedule" class="hover-line">View Schedules</a></li>
               <li><a href="routes.html#coming-soon-routes" class="hover-line">Coming Soon</a></li>
               <li><a href="contact.html" class="hover-line">Suggest a Route →</a></li>
             </ul>
