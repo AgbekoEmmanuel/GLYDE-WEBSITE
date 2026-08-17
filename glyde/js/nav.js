@@ -47,10 +47,10 @@
 
         <!-- Right side: CTA + Hamburger -->
         <div class="nav-right">
-          <a href="index.html#refer-earn" class="nav-cta nav-cta--refer" id="nav-cta-refer" aria-label="Refer & Earn">
+          <a href="${CURRENT_PAGE === 'home' ? '#refer-earn' : 'index.html#refer-earn'}" class="nav-cta nav-cta--refer" id="nav-cta-refer" aria-label="Refer & Earn">
             Refer a Friend
           </a>
-          <a href="index.html#waitlist" class="nav-cta" id="nav-cta-btn" aria-label="Join the GLYDE waitlist">
+          <a href="${CURRENT_PAGE === 'home' ? '#waitlist' : 'index.html#waitlist'}" class="nav-cta" id="nav-cta-btn" aria-label="Join the GLYDE waitlist">
             Waitlist&nbsp;&rarr;
           </a>
           <button
@@ -88,10 +88,10 @@
         </ul>
 
         <div class="nav-overlay-ctas">
-          <a href="index.html#refer-earn" class="nav-overlay-cta nav-overlay-cta--refer">
+          <a href="${CURRENT_PAGE === 'home' ? '#refer-earn' : 'index.html#refer-earn'}" class="nav-overlay-cta nav-overlay-cta--refer">
             Refer a Friend
           </a>
-          <a href="index.html#waitlist" class="nav-overlay-cta">
+          <a href="${CURRENT_PAGE === 'home' ? '#waitlist' : 'index.html#waitlist'}" class="nav-overlay-cta">
             Waitlist &rarr;
           </a>
         </div>

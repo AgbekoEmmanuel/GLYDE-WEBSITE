@@ -539,7 +539,7 @@
 
 /* ── Digital Pass mockup (Step 2) ── */
 .sd-image--pass {
-  background: linear-gradient(155deg, #001a0d 0%, #000d08 100%);
+  background: var(--white);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -619,9 +619,7 @@
 
 /* ── Destination scene placeholder (Step 3) ── */
 .sd-image--destination {
-  background:
-    radial-gradient(ellipse at 50% 40%, rgba(0,230,77,0.2) 0%, transparent 65%),
-    linear-gradient(155deg, #001a0d 0%, #000d08 100%);
+  background: var(--white);
   display: flex;
   align-items: center;
   justify-content: center;
