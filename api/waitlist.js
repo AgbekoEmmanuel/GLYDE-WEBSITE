@@ -125,11 +125,19 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   try {
-    const {
+    let {
       name, email, phone, route, officeLocation, frustration,
-      otherOfficeFrom, otherOfficeTo, from: routeFrom, to: routeTo,
+      otherOfficeLocation, from: routeFrom, to: routeTo,
       referralCode: incomingRefCode
     } = req.body;
+
+    if (officeLocation === 'other' && otherOfficeLocation) {
+      officeLocation = `Other: ${otherOfficeLocation.trim()}`;
+    }
+    if (route === 'other' && (routeFrom || routeTo)) {
+      route = `Other: ${(routeFrom || '').trim()} to ${(routeTo || '').trim()}`;
+      route = route.replace(/ to $/, '').trim(); // Handle case where 'to' is missing
+    }
 
     if (!name || !email || !route || !officeLocation || !frustration) {
       return res.status(400).json({ error: 'Missing required fields' });
@@ -187,8 +195,7 @@ export default async function handler(req, res) {
       route,
       officeLocation,
       frustration,
-      otherOfficeFrom: otherOfficeFrom || '',
-      otherOfficeTo: otherOfficeTo || '',
+      otherOfficeLocation: otherOfficeLocation || '',
       routeFrom: routeFrom || '',
       routeTo: routeTo || '',
       referralCode: newRefCode,
