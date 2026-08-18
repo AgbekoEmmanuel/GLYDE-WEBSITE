@@ -7,24 +7,12 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 const SITE_URL = process.env.SITE_URL || 'https://glydegh.com';
 
 // ─── DB abstraction (mirrors waitlist.js) ─────────────────────
-const IS_LOCAL = !process.env.UPSTASH_REDIS_REST_URL;
-const LOCAL_DB_PATH = path.join(process.cwd(), '.local-waitlist-db.json');
-
-let redis;
-if (!IS_LOCAL) {
-  redis = new Redis({
-    url: process.env.UPSTASH_REDIS_REST_URL,
-    token: process.env.UPSTASH_REDIS_REST_TOKEN,
-  });
-}
-
-function localRead() {
-  if (!existsSync(LOCAL_DB_PATH)) return {};
-  try { return JSON.parse(readFileSync(LOCAL_DB_PATH, 'utf-8')); } catch { return {}; }
-}
+const redis = new Redis({
+  url: process.env.UPSTASH_REDIS_REST_URL,
+  token: process.env.UPSTASH_REDIS_REST_TOKEN,
+});
 
 async function dbGet(key) {
-  if (IS_LOCAL) return localRead()[key] ?? null;
   return redis.get(key);
 }
 

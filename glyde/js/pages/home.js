@@ -502,7 +502,11 @@
     const waBtn = document.getElementById('shareWhatsappBtn');
     if (waBtn && result.referralLink) {
       const waMsg = encodeURIComponent(
-        `Hey! I just joined the GLYDE waitlist — Ghana's app-based bus service! Join using my referral link and we both move up the list 🚌\n\n${result.referralLink}`
+        `Hey! I just joined the GLYDE waitlist — Ghana’s app-based bus service!` +
+        `\n\nJoin using my referral link and earn 10 points for every friend you refer.` +
+        ` The more points you earn, the more ride discounts you unlock when GLYDE launches.` +
+        `\n\nMy referral link: ${result.referralLink}` +
+        `\n\nRefer. Earn. Save. Ride GLYDE!`
       );
       waBtn.href = `https://wa.me/?text=${waMsg}`;
     }

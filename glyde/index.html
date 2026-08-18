@@ -741,6 +741,10 @@
                   </select>
                   <i class="ph ph-caret-down wf-select-icon" aria-hidden="true"></i>
                 </div>
+                <!-- Other Office Location (hidden by default) -->
+                <div id="wf-other-office-location-row" style="display: none; margin-top: 16px;">
+                  <input type="text" id="wf-other-office-location" name="otherOfficeLocation" class="wf-input" placeholder="Enter office location" autocomplete="off">
+                </div>
               </div>
               <div class="wf-field">
                 <label for="wf-frustration" class="wf-label">What is your biggest frustration with commuting? <span style="color: red;">*</span></label>
@@ -756,14 +760,6 @@
                   </select>
                   <i class="ph ph-caret-down wf-select-icon" aria-hidden="true"></i>
                 </div>
-              </div>
-            </div>
-
-            <!-- Row 2b: Other Office Location (hidden by default) -->
-            <div class="wf-row wf-row--full" id="wf-other-office-location-row" style="display: none; margin-top: 24px;">
-              <div class="wf-field">
-                <label for="wf-other-office-location" class="wf-label">Location <span style="color: red;">*</span></label>
-                <input type="text" id="wf-other-office-location" name="otherOfficeLocation" class="wf-input" placeholder="Enter office location" autocomplete="off">
               </div>
             </div>
 
@@ -815,18 +811,14 @@
 
               function toggleOtherOfficeLocation(value) {
                 const otherRow = document.getElementById('wf-other-office-location-row');
-                const fromInput = document.getElementById('wf-other-office-from');
-                const toInput = document.getElementById('wf-other-office-to');
+                const locationInput = document.getElementById('wf-other-office-location');
                 if (value === 'other') {
-                  otherRow.style.display = 'flex';
-                  fromInput.required = true;
-                  toInput.required = true;
+                  otherRow.style.display = 'block';
+                  locationInput.required = true;
                 } else {
                   otherRow.style.display = 'none';
-                  fromInput.required = false;
-                  toInput.required = false;
-                  fromInput.value = '';
-                  toInput.value = '';
+                  locationInput.required = false;
+                  locationInput.value = '';
                 }
               }
             </script>
