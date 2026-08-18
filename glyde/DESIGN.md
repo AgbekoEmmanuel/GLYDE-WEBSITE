@@ -777,7 +777,7 @@ Social icon hover: background changes to `--green`, slight scale up.
 ### Mission Block (Green tint)
 - Background: `--green-pale`
 - Centered large italic quote:
-  > *"We're building Ghana's first tech-enabled scheduled bus network — where every ride is safe, on time, and worth it."*
+  > *"We're building the tech-enabled scheduled bus network — where every ride is safe, on time, and worth it."*
 - Below quote: two founder stats side by side
 
 ### Story Section (2-col)

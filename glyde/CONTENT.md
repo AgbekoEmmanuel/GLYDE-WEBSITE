@@ -57,7 +57,7 @@ Across Accra.
 ("Accra" in green accent)
 
 **Subtitle:**
-"GLYDE is Ghana's first app-based scheduled bus service. Book your seat, track your bus, and arrive on time — every time."
+"GLYDE is Ghana's app-based scheduled bus service. Book your seat, track your bus, and arrive on time — every time."
 
 **CTA Buttons:**
 - Primary: `Join the Waitlist →`
@@ -270,7 +270,7 @@ Icon: clock
 ### MISSION BLOCK
 
 **Large quote:**
-> "We're building Ghana's first tech-enabled scheduled bus network — where every ride is safe, on time, and worth it."
+> "We're building the tech-enabled scheduled bus network — where every ride is safe, on time, and worth it."
 
 **Two mission stats:**
 | Stat | Label |
@@ -765,7 +765,7 @@ Links: Instagram | Twitter/X | LinkedIn | WhatsApp
 ### Home Page
 ```html
 <title>GLYDE — Move Smarter Across Accra</title>
-<meta name="description" content="Ghana's first app-based scheduled bus service. Book your seat on the Accra–Oyibi and Accra–Oyarifa routes. Safe, on time, every time.">
+<meta name="description" content="Ghana's app-based scheduled bus service. Book your seat on the Accra–Oyibi and Accra–Oyarifa routes. Safe, on time, every time.">
 <meta property="og:title" content="GLYDE — Move Smarter Across Accra">
 <meta property="og:description" content="Book your seat. Track your bus. Arrive on time.">
 ```
@@ -773,7 +773,7 @@ Links: Instagram | Twitter/X | LinkedIn | WhatsApp
 ### About Page
 ```html
 <title>About GLYDE — Our Story & Mission</title>
-<meta name="description" content="GLYDE is building Ghana's first tech-enabled scheduled bus network. Learn about our mission, story, and values.">
+<meta name="description" content="GLYDE is building the tech-enabled scheduled bus network. Learn about our mission, story, and values.">
 ```
 
 ### How It Works
