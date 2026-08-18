@@ -2186,7 +2186,7 @@
 /* ── 3-Step row ──────────────────────────────────────────────── */
 .refer-steps {
   display: flex;
-  align-items: flex-start;
+  align-items: stretch;
   justify-content: center;
   gap: 0;
   margin-bottom: 64px;
@@ -2273,6 +2273,7 @@
   overflow: hidden;
   position: relative;
   z-index: 1;
+  margin-bottom: 40px;
 }
 
 .refer-cta-box,
@@ -2468,6 +2469,7 @@
   overflow: hidden;
   position: relative;
   z-index: 1;
+  margin-bottom: 40px;
 }
 
 .refer-cta-box,

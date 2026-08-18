@@ -260,6 +260,29 @@ export default async function handler(req, res) {
       `
     }).catch(err => console.error('Team notification error:', err));
 
+    // ── Send to Google Sheets Webhook (if configured) ──
+    if (process.env.GOOGLE_SHEETS_WEBHOOK_URL) {
+      try {
+        fetch(process.env.GOOGLE_SHEETS_WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: newUser.name,
+            email: normalizedEmail,
+            phone: newUser.phone,
+            route: route,
+            officeLocation: officeLocation,
+            frustration: frustration,
+            referralCode: newRefCode,
+            referredBy: cleanedRefCode || '',
+            joinedAt: newUser.joinedAt
+          })
+        }).catch(err => console.error('Webhook payload send error:', err));
+      } catch (err) {
+        console.error('Webhook fetch block error:', err);
+      }
+    }
+
     return res.status(200).json({
       success: true,
       referralCode: newRefCode,
