@@ -42,7 +42,8 @@ export default async function handler(req, res) {
 
     // Resend the code email
     await resend.emails.send({
-      from: 'GLYDE Team <no-reply@glydegh.com>',
+      from: 'GLYDE Team <hello@glydegh.com>',
+      reply_to: 'hello@glydegh.com',
       to: [normalizedEmail],
       subject: 'Your GLYDE referral code 🎁',
       html: `

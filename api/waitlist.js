@@ -35,7 +35,8 @@ function generateReferralCode(seed) {
 async function sendJoinerEmail({ name, email, referralCode, points }) {
   const referralLink = `${SITE_URL}/?ref=${referralCode}`;
   await resend.emails.send({
-    from: 'GLYDE Team <no-reply@glydegh.com>',
+    from: 'GLYDE Team <hello@glydegh.com>',
+    reply_to: 'hello@glydegh.com',
     to: [email],
     subject: "You're on the GLYDE waitlist! 🎉",
     html: `
@@ -77,7 +78,8 @@ async function sendJoinerEmail({ name, email, referralCode, points }) {
 async function sendReferrerPointsEmail({ referrerName, referrerEmail, referrerCode, newPoints }) {
   const referralLink = `${SITE_URL}/?ref=${referrerCode}`;
   await resend.emails.send({
-    from: 'GLYDE Team <no-reply@glydegh.com>',
+    from: 'GLYDE Team <hello@glydegh.com>',
+    reply_to: 'hello@glydegh.com',
     to: [referrerEmail],
     subject: `Someone joined GLYDE through you! +${POINTS_PER_REFERRAL} points 🎉`,
     html: `
