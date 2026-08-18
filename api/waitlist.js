@@ -201,49 +201,58 @@ export default async function handler(req, res) {
     await dbSet(userKey, newUser);
     await dbSet(`ref:${newRefCode}`, normalizedEmail);
 
+    // ── Execute Background Tasks Concurrently ──
+    const tasks = [];
+
     // ── Award points to referrer ──
     if (referrerData && referrerEmail) {
       referrerData.referredEmails = [...(referrerData.referredEmails || []), normalizedEmail];
       referrerData.points = (referrerData.points || 0) + POINTS_PER_REFERRAL;
       await dbSet(`waitlist:${referrerEmail}`, referrerData);
 
-      sendReferrerPointsEmail({
-        referrerName: referrerData.name,
-        referrerEmail,
-        referrerCode: referrerData.referralCode,
-        newPoints: referrerData.points
-      }).catch(err => console.error('Referrer email error:', err));
+      tasks.push(
+        sendReferrerPointsEmail({
+          referrerName: referrerData.name,
+          referrerEmail,
+          referrerCode: referrerData.referralCode,
+          newPoints: referrerData.points
+        }).catch(err => console.error('Referrer email error:', err))
+      );
     }
 
     // ── Send confirmation email to new joiner ──
-    await sendJoinerEmail({
-      name: newUser.name,
-      email: normalizedEmail,
-      referralCode: newRefCode,
-      points: newUser.points
-    });
+    tasks.push(
+      sendJoinerEmail({
+        name: newUser.name,
+        email: normalizedEmail,
+        referralCode: newRefCode,
+        points: newUser.points
+      }).catch(err => console.error('Joiner email error:', err))
+    );
 
     // ── Notify GLYDE team ──
-    resend.emails.send({
-      from: 'GLYDE Website <no-reply@glydegh.com>',
-      to: ['info@glydegh.com', 'emmanuel.agbeko@glydegh.com', 'jabez.clottey@glydegh.com', 'lawrence.benson@glydegh.com'],
-      subject: `New Waitlist Signup: ${newUser.name}`,
-      html: `
-        <h2>New Waitlist Signup</h2>
-        <p><strong>Name:</strong> ${newUser.name}</p>
-        <p><strong>Email:</strong> ${normalizedEmail}</p>
-        <p><strong>Phone:</strong> ${newUser.phone || 'N/A'}</p>
-        <p><strong>Route:</strong> ${route}</p>
-        <p><strong>Office Location:</strong> ${officeLocation}</p>
-        <p><strong>Frustration:</strong> ${frustration}</p>
-        <p><strong>Referred By Code:</strong> ${cleanedRefCode || 'None (organic)'}</p>
-        <p><strong>Their New Code:</strong> ${newRefCode}</p>
-      `
-    }).catch(err => console.error('Team notification error:', err));
+    tasks.push(
+      resend.emails.send({
+        from: 'GLYDE Website <no-reply@glydegh.com>',
+        to: ['info@glydegh.com', 'emmanuel.agbeko@glydegh.com', 'jabez.clottey@glydegh.com', 'lawrence.benson@glydegh.com'],
+        subject: `New Waitlist Signup: ${newUser.name}`,
+        html: `
+          <h2>New Waitlist Signup</h2>
+          <p><strong>Name:</strong> ${newUser.name}</p>
+          <p><strong>Email:</strong> ${normalizedEmail}</p>
+          <p><strong>Phone:</strong> ${newUser.phone || 'N/A'}</p>
+          <p><strong>Route:</strong> ${route}</p>
+          <p><strong>Office Location:</strong> ${officeLocation}</p>
+          <p><strong>Frustration:</strong> ${frustration}</p>
+          <p><strong>Referred By Code:</strong> ${cleanedRefCode || 'None (organic)'}</p>
+          <p><strong>Their New Code:</strong> ${newRefCode}</p>
+        `
+      }).catch(err => console.error('Team notification error:', err))
+    );
 
     // ── Send to Google Sheets Webhook (if configured) ──
     if (process.env.GOOGLE_SHEETS_WEBHOOK_URL) {
-      try {
+      tasks.push(
         fetch(process.env.GOOGLE_SHEETS_WEBHOOK_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -258,11 +267,11 @@ export default async function handler(req, res) {
             referredBy: cleanedRefCode || '',
             joinedAt: newUser.joinedAt
           })
-        }).catch(err => console.error('Webhook payload send error:', err));
-      } catch (err) {
-        console.error('Webhook fetch block error:', err);
-      }
+        }).catch(err => console.error('Webhook payload send error:', err))
+      );
     }
+
+    await Promise.all(tasks);
 
     return res.status(200).json({
       success: true,
